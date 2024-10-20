@@ -1,6 +1,6 @@
 import flet as ft
 
-async def main(page: ft.Page):
+def main(page: ft.Page):
     page.window_width = 1200
     page.window_height = 720
     page.window_resizable = False
@@ -36,7 +36,7 @@ async def main(page: ft.Page):
         ft.Row([
             ft.Column([
                 ft.ElevatedButton(
-                    text="Hola"
+                    text=("Hola columna 2")
                 ), 
                 ft.ElevatedButton(
                     text=("Hola Colm")
@@ -55,5 +55,4 @@ async def main(page: ft.Page):
 
 
 
-    await page.add_async(container)
-ft.app(target=main)
+    page.add(container)

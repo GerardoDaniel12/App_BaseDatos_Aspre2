@@ -1,8 +1,6 @@
 import flet as ft
-import requests
-
-# URL de tu back end Flask
-BACKEND_URL = "http://127.0.0.1:5000"
+from DB.ConexionUsuarios import login as firebase_login
+from GuiInicial import main as gui_inicial_main
 
 # Variables para los campos de texto
 email_field = ft.TextField(
@@ -29,42 +27,14 @@ def on_login_click(e):
     email = email_field.value
     password = password_field.value
     
-    payload = {
-        "email": email,
-        "password": password
-    }
-    
-    try:
-        response = requests.post(f"{BACKEND_URL}/login", json=payload)
-        result = response.json()
-        if response.status_code == 200:
-            print(f"Inicio de sesión exitoso para {email}")
-            # Aquí puedes redirigir al usuario o actualizar la UI
-        else:
-            print(f"Error: {result.get('error')}")
-    except Exception as ex:
-        print(f"Error de conexión: {ex}")
-
-# Función para manejar el registro
-def on_signup_click(e):
-    email = email_field.value
-    password = password_field.value
-    
-    payload = {
-        "email": email,
-        "password": password
-    }
-    
-    try:
-        response = requests.post(f"{BACKEND_URL}/signup", json=payload)
-        result = response.json()
-        if response.status_code == 201:
-            print(f"Usuario registrado con éxito: {email}")
-            # Aquí puedes redirigir al usuario o actualizar la UI
-        else:
-            print(f"Error: {result.get('error')}")
-    except Exception as ex:
-        print(f"Error de conexión: {ex}")
+    # Usar la función de login de ConexionUsuarios
+    success, result = firebase_login(email, password)
+    if success:
+        print(f"Inicio de sesión exitoso para {email}")
+        e.page.clean()  # Limpia la página actual
+        gui_inicial_main(e.page)  # Llama a la función main de GuiInicial.py
+    else:
+        print(f"Error: {result}")  # Imprime el error si el inicio de sesión falla
 
 conteiner = ft.Container(
     ft.Column([
@@ -79,15 +49,13 @@ conteiner = ft.Container(
             padding=ft.padding.only(20, 20)
         ),
         ft.Container(
-            email_field,  # Campo de correo electrónico
+            email_field,
             padding=ft.padding.only(20, 20)
         ),
-                
         ft.Container(
-            password_field,  # Campo de contraseña
+            password_field,
             padding=ft.padding.only(20, 20),
         ),
-
         ft.Row([
             ft.ElevatedButton(
                 text="Iniciar Sesión",
@@ -98,7 +66,6 @@ conteiner = ft.Container(
         ],
         alignment=ft.MainAxisAlignment.CENTER,
         ),
-
     ],
     alignment=ft.MainAxisAlignment.SPACE_EVENLY,
     horizontal_alignment="Center"
@@ -117,11 +84,12 @@ def main(page: ft.Page):
     page.window_width = 700
     
     # Centrar la ventana al iniciar
-    page.window_center(),
+    page.window_center()
     
-    page.add(
-        conteiner
-    )
+    # Agregar el contenedor de inicio de sesión
+    page.add(conteiner)
 
+# Asegúrate de que este sea el archivo que se ejecuta
 ft.app(target=main)
+
 

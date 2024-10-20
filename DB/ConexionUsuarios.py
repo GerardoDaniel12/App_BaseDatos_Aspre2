@@ -1,6 +1,7 @@
+# ConexionUsuarios.py
 import pyrebase
 
-# Configuración de Firebase (reemplaza los valores con los de tu proyecto)
+# Configuración de Firebase
 firebaseConfig = {
     "apiKey": "AIzaSyChAKnvmT8TVMIvOBUB1n14HU0sf-bBnu4",
     "authDomain": "extintoresaspreconsultores.firebaseapp.com",
@@ -12,42 +13,19 @@ firebaseConfig = {
     "measurementId": "G-ZPW8Y4HSZC"
 }
 
-# Inicializar la aplicación de Firebase usando Pyrebase4
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-def login():
-    print("Iniciar sesión")
-    email = input("Introduce tu correo: ")
-    password = input("Introduce tu contraseña: ")
-    
+def login(email, password):
     try:
-        # Intenta iniciar sesión con el email y contraseña proporcionados
         user = auth.sign_in_with_email_and_password(email, password)
-        print(f"Inicio de sesión exitoso para {email}")
+        return True, user  # Devuelve True y el objeto de usuario
     except Exception as e:
-        print(f"Error al iniciar sesión: {e}")
-    return
+        return False, str(e)  # Devuelve False y el error como cadena
 
-def signup():
-    print("Registro de usuario")
-    email = input("Introduce tu correo: ")
-    password = input("Introduce tu contraseña: ")
-    
+def signup(email, password):
     try:
-        # Intenta registrar al usuario con el email y contraseña proporcionados
         user = auth.create_user_with_email_and_password(email, password)
-        print(f"Usuario registrado con éxito: {email}")
+        return True, user  # Devuelve True y el objeto de usuario
     except Exception as e:
-        print(f"Error durante el registro: {e}")
-    return
-
-# Pregunta si el usuario es nuevo o ya tiene cuenta
-ans = input("¿Eres un nuevo usuario? (y/n): ").lower()
-
-if ans == "n":
-    login()
-elif ans == "y":
-    signup()
-else:
-    print("Opción no válida, por favor elige 'y' para nuevo usuario o 'n' para iniciar sesión.")
+        return False, str(e)  # Devuelve False y el error como cadena
