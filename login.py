@@ -81,7 +81,7 @@ def main(page: ft.Page):
     page.vertical_alignment = "center"
     page.horizontal_alignment = "center"
     page.window_height = 700
-    page.window_width = 700
+    page.window_width = 570
     
     # Centrar la ventana al iniciar
     page.window_center()

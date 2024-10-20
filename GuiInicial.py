@@ -1,50 +1,45 @@
 import flet as ft
 
+def ButtomExtintoresMostrador(e, page):
+    page.navigate("NavIzq/ExtintoresMostrador") 
+    
 def main(page: ft.Page):
-    page.window_width = 1200
-    page.window_height = 720
-    page.window_resizable = False
+    page.window.width = 1200
+    page.window.height = 720
+    page.window.resizable = False
     page.padding = 20
     page.bgcolor = ft.colors.WHITE38
-
-    BotonesNavGui=ft.Container(
-       
-        width=100,
-        border_radius=10,
-        bgcolor=ft.colors.BLACK
-    )
+    page.window_center
 
 
-    OpcionesGui=ft.Container(
-        BotonesNavGui,
-        width=300,
-        bgcolor=ft.colors.LIGHT_BLUE
-    )
-
-    InformacionGui=ft.Container(
-        content=ft.Text("Informacion"),
-        expand=True,
-        bgcolor=ft.colors.LIGHT_GREEN,
-        padding=10,
-    )
-
-    
-
+      
 
 
     container = ft.Container(
         ft.Row([
-            ft.Column([
-                ft.ElevatedButton(
-                    text=("Hola columna 2")
-                ), 
-                ft.ElevatedButton(
-                    text=("Hola Colm")
-                )               
-            ]),
-            ft.Column([
-                ft.Text("Informacion")
-            ])
+            ft.Container(
+                ft.Column([
+                    ft.ElevatedButton(
+                        text="Hola columna 1",
+                        on_click=lambda e: ButtomExtintoresMostrador(e, page)  # Pasar `page`
+                    ), 
+                    ft.ElevatedButton(
+                        text=("Hola Colm"),
+                    )               
+                ]),
+                border=ft.border.all(color=ft.colors.BLACK),
+                width=250,
+                padding=10
+                ),
+            ft.Container(
+                ft.Column([
+                    ft.Text("Informacion")
+                ]),
+                border=ft.border.all(color=ft.colors.BLACK),
+                padding=10,
+                expand=True,
+            )
+
         ])
 
 
@@ -56,3 +51,4 @@ def main(page: ft.Page):
 
 
     page.add(container)
+ft.app(target=main)
