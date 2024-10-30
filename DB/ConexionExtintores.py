@@ -1,13 +1,18 @@
+# DB/ConexionExtintores.py
+
 import firebase_admin
 from firebase_admin import credentials
-from firebase_admin import db
+from firebase_admin import firestore
+import os
 
-#Cargo de certificado
-firebase_sdk = credentials.Certificate("extintoresaspreconsultores-firebase-adminsdk-b7nd9-0d717de68e.json")
+# Cargar las credenciales desde la carpeta DB
+cred = credentials.Certificate("DB/extintoresinspeccionados-firebase-adminsdk-qgq23-ef2db6ee41.json")
+firebase_admin.initialize_app(cred)
 
-#Referencia a la base de datos en tiempo real
-firebase_admin.initialize_app(firebase_sdk,{"databaseURL":"https://extintoresaspreconsultores-default-rtdb.firebaseio.com/"})
+# Crear un cliente de Firestore
+db = firestore.client()
 
-#Creo una coleccion
-ref = db.reference("/Productos")
-ref.push({"tipo":"monitor", "marca":"Powerpack"})
+# Función para obtener la referencia a la colección "Extintores"
+def obtener_referencia():
+    ExtitnroesAñoActual = f""
+    return db.collection("25-10-2024")  # Cambia "Extintores" al nombre de tu colección

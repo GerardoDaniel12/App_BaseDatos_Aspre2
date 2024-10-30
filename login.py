@@ -1,95 +1,54 @@
-import flet as ft
-from DB.ConexionUsuarios import login as firebase_login
-from GuiInicial import main as gui_inicial_main
+import customtkinter as ctk
+from tkinter import messagebox
+from DB.ConexionUsuarios import login  # Importa el módulo de autenticación
+from GuiInicial import crear_gui_inicial  # Importa la función para crear la GUI principal
 
-# Variables para los campos de texto
-email_field = ft.TextField(
-    width=400,
-    height=40,
-    hint_text="Correo electrónico",
-    border="underline",
-    color="black",
-    prefix_icon=ft.icons.EMAIL
-)
+class LoginWindow(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("Aspre Consultores")
+        self.geometry("400x300")
+        ctk.set_appearance_mode("light")  # Puedes cambiar a "dark" para un tema oscuro
+        ctk.set_default_color_theme("blue")
 
-password_field = ft.TextField(
-    width=400,
-    height=40,
-    hint_text="Contraseña",
-    border="underline",
-    color="black",
-    prefix_icon=ft.icons.LOCK,
-    password=True
-)
+        # Configuración del frame principal
+        self.main_frame = ctk.CTkFrame(self, corner_radius=10)
+        self.main_frame.pack(pady=20, padx=20, fill="both", expand=True)
 
-# Función para manejar el inicio de sesión
-def on_login_click(e):
-    email = email_field.value
-    password = password_field.value
-    
-    # Usar la función de login de ConexionUsuarios
-    success, result = firebase_login(email, password)
-    if success:
-        print(f"Inicio de sesión exitoso para {email}")
-        e.page.clean()  # Limpia la página actual
-        gui_inicial_main(e.page)  # Llama a la función main de GuiInicial.py
-    else:
-        print(f"Error: {result}")  # Imprime el error si el inicio de sesión falla
+        # Título
+        self.title_label = ctk.CTkLabel(self.main_frame, text="Inicio de Sesión", font=("Segoe UI", 18, "bold"))
+        self.title_label.pack(pady=(10, 15))
 
-conteiner = ft.Container(
-    ft.Column([
-        ft.Container(
-            ft.Text("Iniciar Sesión",
-                    width=320,
-                    size=30,
-                    text_align="center",
-                    weight="w900",
-                    color=ft.colors.BLACK
-                    ),
-            padding=ft.padding.only(20, 20)
-        ),
-        ft.Container(
-            email_field,
-            padding=ft.padding.only(20, 20)
-        ),
-        ft.Container(
-            password_field,
-            padding=ft.padding.only(20, 20),
-        ),
-        ft.Row([
-            ft.ElevatedButton(
-                text="Iniciar Sesión",
-                width=180,
-                bgcolor="black",
-                on_click=on_login_click  # Asocia la función al evento on_click
-            ),
-        ],
-        alignment=ft.MainAxisAlignment.CENTER,
-        ),
-    ],
-    alignment=ft.MainAxisAlignment.SPACE_EVENLY,
-    horizontal_alignment="Center"
-    ),
-    border_radius=20,
-    width=520,
-    height=600,
-    bgcolor=ft.colors.WHITE
-)
+        # Campo de usuario
+        self.user_label = ctk.CTkLabel(self.main_frame, text="Usuario:", font=("Segoe UI", 12))
+        self.user_label.pack(anchor="w", padx=10)
+        self.user_input = ctk.CTkEntry(self.main_frame, placeholder_text="Ingresa tu usuario", width=300)
+        self.user_input.pack(pady=(5, 15))
 
-def main(page: ft.Page):
-    page.bgcolor = ft.colors.BLACK87
-    page.vertical_alignment = "center"
-    page.horizontal_alignment = "center"
-    page.window_height = 700
-    page.window_width = 570
-    
-    # Centrar la ventana al iniciar
-    page.window_center()
-    
-    # Agregar el contenedor de inicio de sesión
-    page.add(conteiner)
+        # Campo de contraseña
+        self.pass_label = ctk.CTkLabel(self.main_frame, text="Contraseña:", font=("Segoe UI", 12))
+        self.pass_label.pack(anchor="w", padx=10)
+        self.pass_input = ctk.CTkEntry(self.main_frame, placeholder_text="Ingresa tu contraseña", show="*", width=300)
+        self.pass_input.pack(pady=(5, 15))
 
-# Asegúrate de que este sea el archivo que se ejecuta
-ft.app(target=main)
+        # Botón de inicio de sesión
+        self.login_button = ctk.CTkButton(self.main_frame, text="Iniciar Sesión", command=self.check_login, width=200)
+        self.login_button.pack(pady=20)
 
+    def check_login(self):
+        username = self.user_input.get()
+        password = self.pass_input.get()
+        success, user_or_error = login(username, password)
 
+        if success:
+            self.open_main_window()
+        else:
+            messagebox.showerror("Error", "Usuario o contraseña incorrectos")
+
+    def open_main_window(self):
+        self.withdraw()  # Oculta la ventana de login
+        crear_gui_inicial(self)  # Llama a la función para crear la GUI principal
+
+if __name__ == "__main__":
+    app = LoginWindow()
+    app.mainloop()

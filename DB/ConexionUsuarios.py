@@ -3,15 +3,15 @@ import pyrebase
 
 # Configuración de Firebase
 firebaseConfig = {
-    "apiKey": "AIzaSyChAKnvmT8TVMIvOBUB1n14HU0sf-bBnu4",
-    "authDomain": "extintoresaspreconsultores.firebaseapp.com",
-    "databaseURL": "https://extintoresaspreconsultores-default-rtdb.firebaseio.com",
-    "projectId": "extintoresaspreconsultores",
-    "storageBucket": "extintoresaspreconsultores.appspot.com",
-    "messagingSenderId": "265222328549",
-    "appId": "1:265222328549:web:5ac7c70a0e91272b7d040c",
-    "measurementId": "G-ZPW8Y4HSZC"
-}
+  "apiKey": "AIzaSyCje6AsUznBpCbiTApEOFJAmSvpuyHrrPk",
+  "authDomain": "extintoresinspeccionados.firebaseapp.com",
+  "databaseURL": "https://extintoresinspeccionados-default-rtdb.firebaseio.com",
+  "projectId": "extintoresinspeccionados",
+  "storageBucket": "extintoresinspeccionados.appspot.com",
+  "messagingSenderId": "798108528905",
+  "appId": "1:798108528905:web:f7ec1d66bdb5cfc431e3d8",
+  "measurementId": "G-SMZZY6GDLJ"
+};
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
