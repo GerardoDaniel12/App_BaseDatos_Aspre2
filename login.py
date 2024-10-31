@@ -6,34 +6,45 @@ from GuiInicial import crear_gui_inicial  # Importa la función para crear la GU
 class LoginWindow(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Aspre Consultores")
-        self.geometry("400x300")
-        ctk.set_appearance_mode("light")  # Puedes cambiar a "dark" para un tema oscuro
+        self.title("Aspre Consultores - Inicio de Sesión")
+        self.geometry("400x350")
+        self.resizable(False, False)
+        
+        # Tema de color y apariencia
+        ctk.set_appearance_mode("System")  # Cambia entre "System", "Light" y "Dark"
         ctk.set_default_color_theme("blue")
 
         # Configuración del frame principal
-        self.main_frame = ctk.CTkFrame(self, corner_radius=10)
-        self.main_frame.pack(pady=20, padx=20, fill="both", expand=True)
+        self.main_frame = ctk.CTkFrame(self, corner_radius=15)
+        self.main_frame.pack(pady=30, padx=30, fill="both", expand=True)
 
         # Título
-        self.title_label = ctk.CTkLabel(self.main_frame, text="Inicio de Sesión", font=("Segoe UI", 18, "bold"))
-        self.title_label.pack(pady=(10, 15))
+        self.title_label = ctk.CTkLabel(self.main_frame, text="Bienvenido", font=("Segoe UI", 20, "bold"))
+        self.title_label.pack(pady=(20, 10))
+
+        # Subtítulo
+        self.subtitle_label = ctk.CTkLabel(self.main_frame, text="Por favor, inicia sesión", font=("Segoe UI", 14))
+        self.subtitle_label.pack(pady=(0, 20))
 
         # Campo de usuario
-        self.user_label = ctk.CTkLabel(self.main_frame, text="Usuario:", font=("Segoe UI", 12))
-        self.user_label.pack(anchor="w", padx=10)
-        self.user_input = ctk.CTkEntry(self.main_frame, placeholder_text="Ingresa tu usuario", width=300)
-        self.user_input.pack(pady=(5, 15))
+        self.user_input = ctk.CTkEntry(self.main_frame, placeholder_text="Usuario", width=260)
+        self.user_input.pack(pady=(5, 10))
 
         # Campo de contraseña
-        self.pass_label = ctk.CTkLabel(self.main_frame, text="Contraseña:", font=("Segoe UI", 12))
-        self.pass_label.pack(anchor="w", padx=10)
-        self.pass_input = ctk.CTkEntry(self.main_frame, placeholder_text="Ingresa tu contraseña", show="*", width=300)
-        self.pass_input.pack(pady=(5, 15))
+        self.pass_input = ctk.CTkEntry(self.main_frame, placeholder_text="Contraseña", show="*", width=260)
+        self.pass_input.pack(pady=(5, 20))
 
         # Botón de inicio de sesión
         self.login_button = ctk.CTkButton(self.main_frame, text="Iniciar Sesión", command=self.check_login, width=200)
-        self.login_button.pack(pady=20)
+        self.login_button.pack(pady=(10, 20))
+
+        # Opción de alternar tema
+        self.switch_theme = ctk.CTkSwitch(self.main_frame, text="Modo oscuro", command=self.toggle_theme)
+        self.switch_theme.pack(pady=(10, 10))
+
+    def toggle_theme(self):
+        current_mode = ctk.get_appearance_mode()
+        ctk.set_appearance_mode("light" if current_mode == "dark" else "dark")
 
     def check_login(self):
         username = self.user_input.get()

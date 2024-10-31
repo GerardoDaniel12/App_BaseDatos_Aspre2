@@ -10,49 +10,54 @@ class GuiInicial(ctk.CTk):
     def __init__(self, login_window):
         super().__init__()
         self.login_window = login_window
-        self.title("Aspre Consultores")
-        self.geometry("800x600")
+        self.title("Aspre Consultores - Panel Principal")
+        self.geometry("1000x700")
+        self.resizable(False, False)
 
+        # Crear la estructura de widgets
         self.create_widgets()
 
     def create_widgets(self):
+        # Contenedor principal
+        main_frame = ctk.CTkFrame(self, corner_radius=10)
+        main_frame.pack(padx=20, pady=20, fill="both", expand=True)
+
         # Título
-        title_label = ctk.CTkLabel(self, text="Bienvenido a Aspre Consultores", font=("Arial", 24))
-        title_label.pack(pady=20)
+        title_label = ctk.CTkLabel(main_frame, text="Bienvenido a Aspre Consultores", font=("Arial", 24, "bold"))
+        title_label.pack(pady=(10, 20))
 
-        # Frame para los botones de navegación
-        self.nav_frame = ctk.CTkFrame(self)
-        self.nav_frame.pack(side="left", fill="y")
+        # Frame de navegación lateral
+        nav_frame = ctk.CTkFrame(main_frame, width=200, corner_radius=10)
+        nav_frame.pack(side="left", fill="y", padx=(10, 20), pady=10)
 
-        # Botón para ver extintores inspeccionados
-        extintores_button = ctk.CTkButton(self.nav_frame, text="Extintores Inspeccionados", command=self.mostrar_extintores)
+        # Botones de navegación
+        ctk.CTkLabel(nav_frame, text="Navegación", font=("Arial", 14, "bold")).pack(pady=(20, 10))
+        
+        extintores_button = ctk.CTkButton(nav_frame, text="Extintores Inspeccionados", command=self.mostrar_extintores, width=180)
         extintores_button.pack(pady=10)
-
-        # Botón para crear tabla en SQL
-        crear_tabla_button = ctk.CTkButton(self.nav_frame, text="Crear Tabla SQL", command=self.crear_tabla_sql)
+        
+        crear_tabla_button = ctk.CTkButton(nav_frame, text="Crear Tabla SQL", command=self.crear_tabla_sql, width=180)
         crear_tabla_button.pack(pady=10)
-
-        # Botón de Cerrar Sesión
-        logout_button = ctk.CTkButton(self.nav_frame, text="Cerrar Sesión", command=self.cerrar_sesion)
-        logout_button.pack(pady=10)
-
-        # Botón de Información Personal
-        info_button = ctk.CTkButton(self.nav_frame, text="Información Personal", command=self.mostrar_informacion_personal)
+        
+        info_button = ctk.CTkButton(nav_frame, text="Información Personal", command=self.mostrar_informacion_personal, width=180)
         info_button.pack(pady=10)
+        
+        logout_button = ctk.CTkButton(nav_frame, text="Cerrar Sesión", command=self.cerrar_sesion, fg_color="#d9534f", hover_color="#c9302c", width=180)
+        logout_button.pack(pady=20)
 
-        # Frame para la tabla de extintores
-        self.extintores_frame = ctk.CTkFrame(self)
-        self.extintores_frame.pack(fill="both", expand=True)
+        # Frame para mostrar la tabla de extintores
+        self.extintores_frame = ctk.CTkFrame(main_frame, corner_radius=10)
+        self.extintores_frame.pack(fill="both", expand=True, padx=(0, 20), pady=10)
         self.extintores_frame.pack_forget()  # Ocultar inicialmente
 
     def mostrar_extintores(self):
         self.extintores_frame.pack(fill="both", expand=True)
 
-        tree = ttk.Treeview(self.extintores_frame, columns=("Doc", "Fecha realizado", "Planta", "Área", "Número De Extintor",
-            "Ubicación de extintor", "TIPO", "Capacidad en KG", "Fecha de fabricacion", "Fecha Recarga", 
-            "Fecha Vencimiento", "Fecha ultima de prueba hidrostatica", "Presion", "Manometro", 
-            "Seguro", "Etiquetas", "Señalamientos", "Circulo y Numero", "Pintura", "Manguera", 
-            "Boquilla", "Golpes o daños", "Obstruido", "Comentarios"), show='headings')
+        tree = ttk.Treeview(self.extintores_frame, columns=("id", "Referencia", "Fecha realizado", "Planta", "Area",
+            "Numero de extintor", "Ubicacion de extintor", "Tipo", "Capacidad en kg", "Fecha de fabricacion", 
+            "Fecha de recarga", "Fecha de vencimiento", "Fecha ultima de prueba hidrostratica", "Presion", 
+            "Manometro", "Seguro", "Etiquetas", "Señalamiento", "Circulo y numero", "Pintura", 
+            "Manguera", "Boquilla", "Golpes o daños", "Obstruido","Comentarios"), show='headings')
 
         for col in tree["columns"]:
             tree.heading(col, text=col)
@@ -65,36 +70,29 @@ class GuiInicial(ctk.CTk):
         scrollbar.pack(side="right", fill="y")
 
         try:
-            # Conectar a la base de datos
             conn = crear_conexion()
             if conn:
-                # Obtener los extintores de la base de datos
                 extintores = obtener_extintores(conn)
 
-                # Limpiar la tabla
                 for item in tree.get_children():
                     tree.delete(item)
 
-                # Insertar datos en la tabla
                 for extintor in extintores:
                     tree.insert("", "end", values=extintor)
 
-                conn.close()  # Cerrar la conexión a la base de datos
+                conn.close()
 
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo obtener la información: {str(e)}")
 
     def crear_tabla_sql(self):
-        # Crear una ventana para solicitar el nombre de la tabla
         def crear_tabla():
             nombre_tabla = nombre_entry.get()
             if nombre_tabla:
                 try:
-                    # Conectar a la base de datos
                     conn = crear_conexion()
                     cursor = conn.cursor()
 
-                    # Crear la tabla
                     cursor.execute(f"""
                         CREATE TABLE {nombre_tabla} (
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -134,10 +132,8 @@ class GuiInicial(ctk.CTk):
             else:
                 messagebox.showwarning("Advertencia", "Por favor ingresa un nombre para la tabla.")
 
-            # Cerrar la ventana
             tabla_window.destroy()
 
-        # Ventana para ingresar el nombre de la tabla
         tabla_window = ctk.CTkToplevel(self)
         tabla_window.title("Crear Tabla SQL")
         tabla_window.geometry("300x150")
@@ -153,11 +149,10 @@ class GuiInicial(ctk.CTk):
         messagebox.showinfo("Información Personal", "Esta es tu información personal.")
 
     def cerrar_sesion(self):
-        # Opcional: Cancela animaciones o temporizadores aquí, si corresponde
-        self.extintores_frame.pack_forget()  # Ocultar el frame antes de cerrar la ventana
-        self.destroy()  # Cierra la ventana de GuiInicial
-        self.login_window.deiconify()  # Muestra nuevamente la ventana de login
+        self.extintores_frame.pack_forget()
+        self.destroy()
+        self.login_window.deiconify()
 
 if __name__ == "__main__":
-    app = GuiInicial()
+    app = GuiInicial(None)  # Aquí puedes pasar la ventana de login si corresponde
     app.mainloop()
