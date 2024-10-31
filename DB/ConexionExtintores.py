@@ -1,18 +1,35 @@
-# DB/ConexionExtintores.py
+import mysql.connector
+from mysql.connector import Error
 
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-import os
+def crear_conexion():
+    """Crea una conexión a la base de datos MySQL."""
+    try:
+        conn = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='1234567Frt',
+            database='extintoresinspeccionados'  # Cambia esto al nombre de tu base de datos
+        )
+        if conn.is_connected():
+            print("Conexión exitosa a MySQL")
+            return conn
+    except Error as e:
+        print(f"Error de conexión: {e}")
+        return None
 
-# Cargar las credenciales desde la carpeta DB
-cred = credentials.Certificate("DB/extintoresinspeccionados-firebase-adminsdk-qgq23-ef2db6ee41.json")
-firebase_admin.initialize_app(cred)
+def obtener_extintores(conn):
+    """Obtiene los extintores desde la base de datos."""
+    extintores = []
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM formulario_inspeccion")  # Cambia esto al nombre de tu tabla
+        rows = cursor.fetchall()
+        
+        for row in rows:
+            extintores.append(row)
+        
+        cursor.close()
+    except Error as e:
+        print(f"Error al obtener los extintores: {e}")
 
-# Crear un cliente de Firestore
-db = firestore.client()
-
-# Función para obtener la referencia a la colección "Extintores"
-def obtener_referencia():
-    ExtitnroesAñoActual = f""
-    return db.collection("25-10-2024")  # Cambia "Extintores" al nombre de tu colección
+    return extintores

@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from DB.ConexionExtintores import obtener_referencia
+from DB.ConexionExtintores import crear_conexion, obtener_extintores
 
 def crear_gui_inicial(login_window):
     gui_inicial = GuiInicial(login_window)
@@ -28,6 +28,10 @@ class GuiInicial(ctk.CTk):
         extintores_button = ctk.CTkButton(self.nav_frame, text="Extintores Inspeccionados", command=self.mostrar_extintores)
         extintores_button.pack(pady=10)
 
+        # Botón para crear tabla en SQL
+        crear_tabla_button = ctk.CTkButton(self.nav_frame, text="Crear Tabla SQL", command=self.crear_tabla_sql)
+        crear_tabla_button.pack(pady=10)
+
         # Botón de Cerrar Sesión
         logout_button = ctk.CTkButton(self.nav_frame, text="Cerrar Sesión", command=self.cerrar_sesion)
         logout_button.pack(pady=10)
@@ -52,7 +56,7 @@ class GuiInicial(ctk.CTk):
 
         for col in tree["columns"]:
             tree.heading(col, text=col)
-            tree.column(col, anchor="center") 
+            tree.column(col, anchor="center")
 
         scrollbar = ttk.Scrollbar(self.extintores_frame, orient="vertical", command=tree.yview)
         tree.configure(yscroll=scrollbar.set)
@@ -61,29 +65,89 @@ class GuiInicial(ctk.CTk):
         scrollbar.pack(side="right", fill="y")
 
         try:
-            ref = obtener_referencia()
-            docs = list(ref.stream())
+            # Conectar a la base de datos
+            conn = crear_conexion()
+            if conn:
+                # Obtener los extintores de la base de datos
+                extintores = obtener_extintores(conn)
 
-            for item in tree.get_children():
-                tree.delete(item)
+                # Limpiar la tabla
+                for item in tree.get_children():
+                    tree.delete(item)
 
-            for doc in docs:
-                data = doc.to_dict()
-                tree.insert("", "end", values=(
-                    doc.id, data.get("Fecha realizado", "N/A"), data.get("Planta", "N/A"),
-                    data.get("Area", "N/A"), data.get("NumeroDeExtintor", "N/A"), 
-                    data.get("Ubicacion de extintor", "N/A"), data.get("TIPO", "N/A"), 
-                    data.get("Capacidad en KG", "N/A"), data.get("Fecha de fabricacion", "N/A"), 
-                    data.get("Fecha Recarga", "N/A"), data.get("Fecha Vencimiento", "N/A"),
-                    data.get("Fecha ultima de prueba hidrostatica", "N/A"), data.get("Presion", "N/A"), 
-                    data.get("Manometro", "N/A"), data.get("Seguro", "N/A"), data.get("Etiquetas", "N/A"), 
-                    data.get("Señalamientos", "N/A"), data.get("Circulo y Numero", "N/A"), 
-                    data.get("Pintura", "N/A"), data.get("Manguera", "N/A"), data.get("Boquilla", "N/A"),
-                    data.get("Golpes o daños", "N/A"), data.get("Obstruido", "N/A"), data.get("Comentarios", "N/A")
-                ))
+                # Insertar datos en la tabla
+                for extintor in extintores:
+                    tree.insert("", "end", values=extintor)
+
+                conn.close()  # Cerrar la conexión a la base de datos
 
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo obtener la información: {str(e)}")
+
+    def crear_tabla_sql(self):
+        # Crear una ventana para solicitar el nombre de la tabla
+        def crear_tabla():
+            nombre_tabla = nombre_entry.get()
+            if nombre_tabla:
+                try:
+                    # Conectar a la base de datos
+                    conn = crear_conexion()
+                    cursor = conn.cursor()
+
+                    # Crear la tabla
+                    cursor.execute(f"""
+                        CREATE TABLE {nombre_tabla} (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            doc VARCHAR(255),
+                            fecha_realizado DATE,
+                            planta VARCHAR(255),
+                            area VARCHAR(255),
+                            numero_extintor VARCHAR(255),
+                            ubicacion_extintor VARCHAR(255),
+                            tipo VARCHAR(255),
+                            capacidad_kg DECIMAL(10, 2),
+                            fecha_fabricacion DATE,
+                            fecha_recarga DATE,
+                            fecha_vencimiento DATE,
+                            fecha_ultima_prueba DATE,
+                            presion VARCHAR(50),
+                            manometro VARCHAR(50),
+                            seguro VARCHAR(50),
+                            etiquetas VARCHAR(50),
+                            senalamientos VARCHAR(50),
+                            circulo_numero VARCHAR(50),
+                            pintura VARCHAR(50),
+                            manguera VARCHAR(50),
+                            boquilla VARCHAR(50),
+                            golpes_danos VARCHAR(50),
+                            obstruido VARCHAR(50),
+                            comentarios TEXT
+                        )
+                    """)
+                    conn.commit()
+                    cursor.close()
+                    conn.close()
+                    messagebox.showinfo("Éxito", f"Tabla '{nombre_tabla}' creada exitosamente.")
+
+                except Exception as e:
+                    messagebox.showerror("Error", f"No se pudo crear la tabla: {str(e)}")
+            else:
+                messagebox.showwarning("Advertencia", "Por favor ingresa un nombre para la tabla.")
+
+            # Cerrar la ventana
+            tabla_window.destroy()
+
+        # Ventana para ingresar el nombre de la tabla
+        tabla_window = ctk.CTkToplevel(self)
+        tabla_window.title("Crear Tabla SQL")
+        tabla_window.geometry("300x150")
+
+        ctk.CTkLabel(tabla_window, text="Nombre de la Tabla:").pack(pady=10)
+        nombre_entry = ctk.CTkEntry(tabla_window)
+        nombre_entry.pack(pady=5)
+
+        crear_button = ctk.CTkButton(tabla_window, text="Crear Tabla", command=crear_tabla)
+        crear_button.pack(pady=10)
 
     def mostrar_informacion_personal(self):
         messagebox.showinfo("Información Personal", "Esta es tu información personal.")
