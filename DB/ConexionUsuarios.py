@@ -1,31 +1,53 @@
 # ConexionUsuarios.py
-import pyrebase
+import mysql.connector
+from mysql.connector import Error
 
-# Configuración de Firebase
-firebaseConfig = {
-  "apiKey": "AIzaSyCje6AsUznBpCbiTApEOFJAmSvpuyHrrPk",
-  "authDomain": "extintoresinspeccionados.firebaseapp.com",
-  "databaseURL": "https://extintoresinspeccionados-default-rtdb.firebaseio.com",
-  "projectId": "extintoresinspeccionados",
-  "storageBucket": "extintoresinspeccionados.appspot.com",
-  "messagingSenderId": "798108528905",
-  "appId": "1:798108528905:web:f7ec1d66bdb5cfc431e3d8",
-  "measurementId": "G-SMZZY6GDLJ"
-};
+# Configuración de la conexión a MySQL
+db_config = {
+    'host': 'localhost',         
+    'user': 'root',        
+    'password': '1234567Frt', 
+    'database': 'extintoresinspeccionados'  
+}
 
-firebase = pyrebase.initialize_app(firebaseConfig)
-auth = firebase.auth()
+# Función para conectar a la base de datos
+def conectar():
+    try:
+        conexion = mysql.connector.connect(**db_config)
+        if conexion.is_connected():
+            print("Conexión exitosa a la base de datos MySQL")
+        return conexion
+    except Error as e:
+        print(f"Error al conectar a la base de datos: {e}")
+        return None
 
+# Función para iniciar sesión
 def login(email, password):
-    try:
-        user = auth.sign_in_with_email_and_password(email, password)
-        return True, user  # Devuelve True y el objeto de usuario
-    except Exception as e:
-        return False, str(e)  # Devuelve False y el error como cadena
+    conexion = conectar()
+    cursor = conexion.cursor(dictionary=True)
+    cursor.execute("SELECT id, correo, privilegio, empresa FROM usuarios WHERE correo=%s AND contraseña=%s", (email, password))
+    user = cursor.fetchone()
+    conexion.close()
 
-def signup(email, password):
+    if user:
+        return True, user  # Retorna el usuario con el privilegio
+    else:
+        return False, "Usuario o contraseña incorrectos"
+
+# Función para registrar un nuevo usuario
+def signup(email, password, privilegio='noadmin', empresa=None):
     try:
-        user = auth.create_user_with_email_and_password(email, password)
-        return True, user  # Devuelve True y el objeto de usuario
-    except Exception as e:
-        return False, str(e)  # Devuelve False y el error como cadena
+        conexion = conectar()
+        if conexion is None:
+            return False, "No se pudo conectar a la base de datos"
+
+        cursor = conexion.cursor()
+        consulta = "INSERT INTO usuarios (correo, contraseña, privilegio, empresa) VALUES (%s, %s, %s, %s)"
+        cursor.execute(consulta, (email, password, privilegio, empresa))
+        conexion.commit()
+
+        conexion.close()
+        return True, "Usuario registrado exitosamente"
+
+    except Error as e:
+        return False, f"Error al intentar registrar el usuario: {e}"
