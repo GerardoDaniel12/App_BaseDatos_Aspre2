@@ -10,15 +10,14 @@ ctk.set_default_color_theme("blue")
 class GuiInicial(ctk.CTk):
     def __init__(self, user_data, privilegio):
         super().__init__()
-        self.user_data = user_data  # Aquí almacenas los datos del usuario
+        self.user_data = user_data
         self.privilegio = privilegio
         self.title("Interfaz Principal")
         self.geometry("800x600")
+        self.orden_ascendente = True  # Variable para alternar entre ascendente y descendente
         self.initialize_widgets()
 
     def initialize_widgets(self):
-       
-
         self.create_widgets()
 
     def create_widgets(self):
@@ -74,7 +73,19 @@ class GuiInicial(ctk.CTk):
         v_scrollbar.pack(side="right", fill="y")
         h_scrollbar.pack(side="bottom", fill="x")
 
-        # Llenado de datos
+        asc_button = ctk.CTkButton(self.extintores_frame, text="Orden Ascendente", command=lambda: self.ordenar_referencia(ascendente=True))
+        asc_button.pack(side="left", padx=5, pady=10)
+
+        desc_button = ctk.CTkButton(self.extintores_frame, text="Orden Descendente", command=lambda: self.ordenar_referencia(ascendente=False))
+        desc_button.pack(side="left", padx=5, pady=10)
+
+        self.cargar_datos_extintores()
+
+        if self.privilegio == "admin":
+            editar_button = ctk.CTkButton(self.extintores_frame, text="Editar Extintor", command=self.editar_extintor, width=180, fg_color="#4BBE4B")
+            editar_button.pack(pady=10)
+
+    def cargar_datos_extintores(self):
         try:
             conn = crear_conexion()
             if conn:
@@ -93,61 +104,102 @@ class GuiInicial(ctk.CTk):
         except Exception as e:
             messagebox.showerror("Error", f"Ocurrió un error inesperado: {str(e)}")
 
-        if self.privilegio == "admin":
-            editar_button = ctk.CTkButton(self.extintores_frame, text="Editar Extintor", command=self.editar_extintor, width=180, fg_color="#4BBE4B")
-            editar_button.pack(pady=10)
+    def ordenar_referencia(self, ascendente=True):
+        datos = [(self.tree.set(k, "Referencia"), k) for k in self.tree.get_children("")]
+        datos.sort(reverse=not ascendente)
+
+        for index, (val, k) in enumerate(datos):
+            self.tree.move(k, "", index)
 
     def mostrar_info_personal(self):
-        messagebox.showinfo("Información Personal", f"Correo: {self.user_data['correo']}")
+        # Limpiar todos los widgets en extintores_frame antes de mostrar la información personal
+        for widget in self.extintores_frame.winfo_children():
+            widget.pack_forget()  # Oculta todos los widgets
 
-    def editar_extintor(self):
-        selected_item = self.tree.selection()
-        if selected_item:
-            item_values = self.tree.item(selected_item, 'values')
-            edit_window = ctk.CTkToplevel(self)
-            edit_window.title("Editar Extintor")
-            edit_window.geometry("400x300")
+        # Crear un nuevo frame para mostrar la información personal
+        info_frame = ctk.CTkFrame(self.extintores_frame, corner_radius=15, fg_color="#4D4D4D" if ctk.get_appearance_mode() == "Dark" else "#FFFFFF")
+        info_frame.pack(pady=10, padx=10, fill="both", expand=True)
 
-            ctk.CTkLabel(edit_window, text="Referencia:").pack(pady=5)
-            ref_entry = ctk.CTkEntry(edit_window)
-            ref_entry.insert(0, item_values[1])  # Insertar valor actual
-            ref_entry.pack(pady=5)
+        # Mostrar el correo
+        correo_label = ctk.CTkLabel(info_frame, text=f"Usuario: {self.user_data['correo']}", font=("Arial", 14))
+        correo_label.pack(pady=(10, 5))
 
-            def guardar_cambios():
-                nuevo_valor = ref_entry.get()
-                try:
-                    conn = crear_conexion()
-                    cursor = conn.cursor()
-                    cursor.execute("UPDATE extintores SET referencia=%s WHERE id=%s", (nuevo_valor, item_values[0]))
-                    conn.commit()
-                    conn.close()
-                    messagebox.showinfo("Éxito", "Extintor actualizado correctamente")
-                    edit_window.destroy()
-                    self.mostrar_extintores()  # Refrescar la tabla
-                except Exception as e:
-                    messagebox.showerror("Error", f"No se pudo actualizar el extintor: {str(e)}")
+        # Mostrar el privilegio
+        privilegio_label = ctk.CTkLabel(info_frame, text=f"Privilegio: {self.privilegio}", font=("Arial", 14))
+        privilegio_label.pack(pady=(0, 10))
 
-            save_button = ctk.CTkButton(edit_window, text="Guardar Cambios", command=guardar_cambios)
-            save_button.pack(pady=20)
-        else:
-            messagebox.showwarning("Seleccionar Extintor", "Por favor, selecciona un extintor para editar.")
+        # Aquí puedes agregar código para mostrar una imagen, si la deseas
+        # Asegúrate de tener una imagen disponible y la ruta correcta
+
 
     def cerrar_sesion(self):
-        self.extintores_frame.pack_forget()
-        self.destroy()  # Cierra la ventana actual
-        if hasattr(self, 'login_window'):
-            self.login_window.deiconify()  # Muestra la ventana de inicio de sesión si existe
+        self.destroy()
 
-    def login(self):
-        # Después de que el usuario inicia sesión correctamente
-        user_data = {'correo': 'usuario@example.com'}  # Datos de ejemplo
-        privilegio = "admin"  # Privilegios de ejemplo
-        self.withdraw()  # Oculta la ventana de inicio de sesión
-        self.gui_inicial = GuiInicial(user_data, privilegio)  # Pasa datos de usuario
-        self.gui_inicial.login_window = self  # Asigna la ventana de inicio de sesión
-        self.gui_inicial.mainloop()  # Muestra la ventana principal
+    def editar_extintor(self):
+        # Obtener el ítem seleccionado en la tabla
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Seleccionar Extintor", "Por favor, selecciona un extintor para editar.")
+            return
+
+        # Obtener los valores del extintor seleccionado
+        item_id = selected_item[0]
+        extintor_data = self.tree.item(item_id)["values"]
+
+        # Crear una nueva ventana para editar los datos del extintor
+        edit_window = ctk.CTkToplevel(self)
+        edit_window.title("Editar Extintor")
+        edit_window.geometry("400x400")
+
+        # Crear un frame desplazable
+        scrollable_frame = ctk.CTkScrollableFrame(edit_window)
+        scrollable_frame.pack(fill="both", expand=True)
+
+        # Crear campos de entrada para cada dato del extintor
+        labels = [
+            "Id", "Referencia", "Fecha realizado", "Planta", "Area",
+            "Numero de extintor", "Ubicacion de extintor", "Tipo",
+            "Capacidad en kg", "Fecha de fabricacion", "Fecha de recarga",
+            "Fecha de vencimiento", "Fecha ultima de prueba hidrostatica",
+            "Presion", "Manometro", "Seguro", "Etiquetas",
+            "Señalamiento", "Circulo y numero", "Pintura",
+            "Manguera", "Boquilla", "Golpes o daños", "Obstruido", "Comentarios"
+        ]
+
+        entries = []
+
+        for label, value in zip(labels, extintor_data):
+            # Crear un campo de entrada
+            row_frame = ctk.CTkFrame(scrollable_frame)
+            row_frame.pack(pady=5)
+
+            ctk.CTkLabel(row_frame, text=label).pack(side="left", padx=5)
+            entry = ctk.CTkEntry(row_frame, width=250)
+            entry.insert(0, value)
+            entry.pack(side="left", padx=5)
+            entries.append(entry)
+
+        # Botón para guardar cambios
+        def guardar_cambios():
+            # Obtener los nuevos valores
+            new_values = [entry.get() for entry in entries]
+            # Aquí deberías actualizar el extintor en la base de datos
+            # utilizando el item_id y los nuevos valores
+            # Por ejemplo, puedes hacer una función de actualización que maneje esto
+            # update_extintor(item_id, new_values)
+
+            # Actualizar la tabla
+            self.tree.item(item_id, values=new_values)
+            edit_window.destroy()
+
+        save_button = ctk.CTkButton(scrollable_frame, text="Guardar Cambios", command=guardar_cambios)
+        save_button.pack(pady=10)
+
+        edit_window.transient(self)  # Establece la ventana de edición como modal
+        edit_window.grab_set()  # Desactiva la ventana principal mientras está abierta
 
 
 if __name__ == "__main__":
-    app = GuiInicial({'correo': 'DanielLopez@gmail.com'}, "admin")  # Aquí puedes pasar la ventana de login si corresponde
+    app = GuiInicial({'correo': 'DanielLopez@gmail.com'}, "admin")
     app.mainloop()
+
