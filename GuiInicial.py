@@ -303,7 +303,7 @@ class GuiInicial(ctk.CTk):
             # Definir la consulta de actualización SQL
             update_query = """
                 UPDATE formulario_inspeccion SET 
-                    id_Extintores = %s, fecha_realizado = %s, planta = %s, area = %s,
+                    id_Extintores = %s, fecha_realizado = %s, empresa = %s, area = %s,
                     numero_extintor = %s, ubicacion_extintor = %s, tipo = %s,
                     capacidad_kg = %s, fecha_fabricacion = %s, fecha_recarga = %s,
                     fecha_vencimiento = %s, fecha_ultima_prueba = %s,
@@ -341,33 +341,36 @@ class GuiInicial(ctk.CTk):
         # Crear una nueva ventana para editar los datos del extintor
         edit_window = ctk.CTkToplevel(self)
         edit_window.title("Editar Extintor")
-        edit_window.geometry("400x400")
+        edit_window.geometry("450x500")
+        edit_window.resizable(False, False)  # Evitar que se redimensione
 
         # Crear un frame desplazable
-        scrollable_frame = ctk.CTkScrollableFrame(edit_window)
-        scrollable_frame.pack(fill="both", expand=True)
+        scrollable_frame = ctk.CTkScrollableFrame(edit_window, corner_radius=10)
+        scrollable_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
         # Crear campos de entrada para cada dato del extintor
         labels = [
-            "Id", "Referencia", "Fecha realizado", "Planta", "Area",
-            "Numero de extintor", "Ubicacion de extintor", "Tipo",
-            "Capacidad en kg", "Fecha de fabricacion", "Fecha de recarga",
-            "Fecha de vencimiento", "Fecha ultima de prueba hidrostatica",
-            "Presion", "Manometro", "Seguro", "Etiquetas",
-            "Señalamiento", "Circulo y numero", "Pintura",
+            "Id", "Referencia", "Fecha realizado", "Empresa", "Área",
+            "Número de extintor", "Ubicación de extintor", "Tipo",
+            "Capacidad en kg", "Fecha de fabricación", "Fecha de recarga",
+            "Fecha de vencimiento", "Fecha última de prueba hidrostatica",
+            "Presión", "Manómetro", "Seguro", "Etiquetas",
+            "Señalamiento", "Círculo y número", "Pintura",
             "Manguera", "Boquilla", "Golpes o daños", "Obstruido", "Comentarios"
         ]
 
         entries = []
 
         for label, value in zip(labels, extintor_data):
-            row_frame = ctk.CTkFrame(scrollable_frame)
-            row_frame.pack(pady=5)
+            row_frame = ctk.CTkFrame(scrollable_frame, corner_radius=8)
+            row_frame.pack(pady=5, fill="x")
 
-            ctk.CTkLabel(row_frame, text=label).pack(side="left", padx=5)
-            entry = ctk.CTkEntry(row_frame, width=250)
+            label_widget = ctk.CTkLabel(row_frame, text=label, width=150, anchor="w", font=("Arial", 10, "bold"))
+            label_widget.pack(side="left", padx=10)
+
+            entry = ctk.CTkEntry(row_frame, width=250, placeholder_text="Introduce valor...")
             entry.insert(0, value)
-            entry.pack(side="left", padx=5)
+            entry.pack(side="left", padx=10)
             entries.append(entry)
 
         # Botón para guardar cambios
@@ -375,16 +378,26 @@ class GuiInicial(ctk.CTk):
             # Obtener los nuevos valores
             new_values = [entry.get() for entry in entries]
 
+            # Validar que no haya campos vacíos
+            if any(not value for value in new_values):
+                messagebox.showwarning("Campos Vacíos", "Por favor, complete todos los campos.")
+                return
+
             # Actualizar en la base de datos
-            self.update_extintor (item_id, new_values)
+            self.update_extintor(item_id, new_values)
 
             # Actualizar la tabla en la interfaz
             self.tree.item(item_id, values=new_values)
             edit_window.destroy()
 
-        save_button = ctk.CTkButton(scrollable_frame, text="Guardar Cambios", command=guardar_cambios)
-        save_button.pack(pady=10)
+        save_button = ctk.CTkButton(scrollable_frame, text="Guardar Cambios", command=guardar_cambios, width=200, corner_radius=8)
+        save_button.pack(pady=20)
 
+        # Agregar botones de acción con más estilo
+        cancel_button = ctk.CTkButton(scrollable_frame, text="Cancelar", command=edit_window.destroy, width=200, corner_radius=8, fg_color="red")
+        cancel_button.pack(pady=5)
+
+        # Establecer la ventana como modal (solo interactuar con esta ventana)
         edit_window.transient(self)
         edit_window.grab_set()
 
