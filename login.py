@@ -2,7 +2,6 @@ import customtkinter as ctk
 from tkinter import messagebox
 from DB.ConexionUsuarios import login  # Importa el módulo de autenticación
 from GuiInicial import GuiInicial  # Importa la función para crear la GUI principal
-from DB.ConexionUsuarios import login
 
 # Configuración inicial de tema
 ctk.set_appearance_mode("System")  # Alterna entre "System", "Light" y "Dark"
@@ -18,6 +17,17 @@ class LoginWindow(ctk.CTk):
         # Frame principal estilizado
         self.main_frame = ctk.CTkFrame(self, corner_radius=20, fg_color="#34495e")
         self.main_frame.pack(pady=30, padx=30, fill="both", expand=True)
+
+        width = 400
+        height = 500
+
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (screen_width // 2) - (width // 2)
+        y = (screen_height // 2) - (height // 2)
+        
+        # Aplica las dimensiones y la posición calculada
+        self.geometry(f"{width}x{height}+{x}+{y}")
 
         # Título y subtítulo
         self.title_label = ctk.CTkLabel(
@@ -36,7 +46,7 @@ class LoginWindow(ctk.CTk):
         )
         self.subtitle_label.pack(pady=(0, 20))
 
-        # Campo de usuario con estilo mejorado
+        # Campo de usuario
         self.user_input = ctk.CTkEntry(
             self.main_frame, 
             placeholder_text="Usuario", 
@@ -48,7 +58,7 @@ class LoginWindow(ctk.CTk):
         )
         self.user_input.pack(pady=(10, 10))
 
-        # Campo de contraseña con estilo mejorado
+        # Campo de contraseña
         self.pass_input = ctk.CTkEntry(
             self.main_frame, 
             placeholder_text="Contraseña", 
@@ -61,7 +71,7 @@ class LoginWindow(ctk.CTk):
         )
         self.pass_input.pack(pady=(10, 20))
 
-        # Botón de inicio de sesión estilizado
+        # Botón de inicio de sesión
         self.login_button = ctk.CTkButton(
             self.main_frame, 
             text="Iniciar Sesión", 
@@ -96,23 +106,16 @@ class LoginWindow(ctk.CTk):
 
         if success:
             print("", user_or_error)  # Imprime los datos del usuario para depuración
-            self.open_main_window()
+            self.open_main_window(user_or_error)  # Pasa los datos del usuario aquí
         else:
             messagebox.showerror("Error", "Usuario o contraseña incorrectos")
 
-    def open_main_window(self):
-        username = self.user_input.get()
-        password = self.pass_input.get()
-        success, user_or_error = login(username, password)
-
-        if success:
-            user_data = user_or_error  # Aquí deberías recibir un diccionario con la información del usuario
-            privilegio = user_data.get('privilegio', 'usuario')  # Obtén el privilegio
-            self.withdraw()  # Oculta la ventana de login
-            GuiInicial(user_data, privilegio).mainloop()  # Asegúrate de llamar a mainloop() para abrir la nueva ventana
-        else:
-            messagebox.showerror("Error", "Usuario o contraseña incorrectos")
+    def open_main_window(self, user_data):
+        privilegio = user_data.get('privilegio', 'usuario')  # Obtén el privilegio
+        self.withdraw()  # Oculta la ventana de login
+        GuiInicial(user_data, privilegio).mainloop()  # Asegúrate de llamar a mainloop() para abrir la nueva ventana
 
 if __name__ == "__main__":
     app = LoginWindow()
     app.mainloop()
+
