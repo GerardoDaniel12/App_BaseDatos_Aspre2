@@ -13,6 +13,322 @@
    'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
    'carpeta\\App_BaseDatos_Aspre2\\GuiInicial.py',
    'PYMODULE'),
+  ('PIL',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\__init__.py',
+   'PYMODULE'),
+  ('PIL.BlpImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\BlpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BmpImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\BmpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BufrStubImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.CurImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\CurImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DcxImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DdsImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\DdsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.EpsImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\EpsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ExifTags',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ExifTags.py',
+   'PYMODULE'),
+  ('PIL.FitsImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\FitsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FliImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FpxImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FtexImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\FtexImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GbrImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GifImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\GifImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GimpGradientFile',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\GimpGradientFile.py',
+   'PYMODULE'),
+  ('PIL.GimpPaletteFile',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\GimpPaletteFile.py',
+   'PYMODULE'),
+  ('PIL.GribStubImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Hdf5StubImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcnsImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\IcnsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcoImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Image',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\Image.py',
+   'PYMODULE'),
+  ('PIL.ImageChops',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageChops.py',
+   'PYMODULE'),
+  ('PIL.ImageCms',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageCms.py',
+   'PYMODULE'),
+  ('PIL.ImageColor',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageColor.py',
+   'PYMODULE'),
+  ('PIL.ImageDraw',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageDraw.py',
+   'PYMODULE'),
+  ('PIL.ImageDraw2',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageDraw2.py',
+   'PYMODULE'),
+  ('PIL.ImageFile',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageFile.py',
+   'PYMODULE'),
+  ('PIL.ImageFilter',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageFilter.py',
+   'PYMODULE'),
+  ('PIL.ImageFont',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageFont.py',
+   'PYMODULE'),
+  ('PIL.ImageMath',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageMath.py',
+   'PYMODULE'),
+  ('PIL.ImageMode',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageMode.py',
+   'PYMODULE'),
+  ('PIL.ImageOps',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageOps.py',
+   'PYMODULE'),
+  ('PIL.ImagePalette',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImagePalette.py',
+   'PYMODULE'),
+  ('PIL.ImagePath',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImagePath.py',
+   'PYMODULE'),
+  ('PIL.ImageQt',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageQt.py',
+   'PYMODULE'),
+  ('PIL.ImageSequence',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageSequence.py',
+   'PYMODULE'),
+  ('PIL.ImageShow',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageShow.py',
+   'PYMODULE'),
+  ('PIL.ImageTk',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageTk.py',
+   'PYMODULE'),
+  ('PIL.ImageWin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImageWin.py',
+   'PYMODULE'),
+  ('PIL.ImtImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\ImtImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IptcImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Jpeg2KImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.JpegImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\JpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.JpegPresets',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\JpegPresets.py',
+   'PYMODULE'),
+  ('PIL.McIdasImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\McIdasImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MicImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\MicImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpegImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpoImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MspImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\MspImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PaletteFile',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PaletteFile.py',
+   'PYMODULE'),
+  ('PIL.PalmImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PalmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcdImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PcdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcxImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PdfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfParser',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PdfParser.py',
+   'PYMODULE'),
+  ('PIL.PixarImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PixarImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PngImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PngImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PpmImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PsdImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\PsdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.QoiImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\QoiImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SgiImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\SgiImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SpiderImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\SpiderImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SunImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\SunImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TgaImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TiffImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\TiffImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TiffTags',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\TiffTags.py',
+   'PYMODULE'),
+  ('PIL.WebPImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\WebPImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WmfImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XVThumbImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XbmImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XpmImagePlugin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL._binary',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\_binary.py',
+   'PYMODULE'),
+  ('PIL._deprecate',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\_deprecate.py',
+   'PYMODULE'),
+  ('PIL._typing',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\_typing.py',
+   'PYMODULE'),
+  ('PIL._util',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\_util.py',
+   'PYMODULE'),
+  ('PIL._version',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\_version.py',
+   'PYMODULE'),
+  ('PIL.features',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\features.py',
+   'PYMODULE'),
   ('__future__',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\__future__.py',
    'PYMODULE'),
@@ -26,10 +342,12 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_compression.py',
    'PYMODULE'),
   ('_distutils_hack',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\_distutils_hack\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\_distutils_hack\\__init__.py',
    'PYMODULE'),
   ('_distutils_hack.override',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\_distutils_hack\\override.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\_distutils_hack\\override.py',
    'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\_py_abc.py',
@@ -152,7 +470,8 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\windows_utils.py',
    'PYMODULE'),
   ('backports',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\backports\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\backports\\__init__.py',
    'PYMODULE'),
   ('base64',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\base64.py',
@@ -165,6 +484,9 @@
    'PYMODULE'),
   ('calendar',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\calendar.py',
+   'PYMODULE'),
+  ('colorsys',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\colorsys.py',
    'PYMODULE'),
   ('concurrent',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\__init__.py',
@@ -224,148 +546,196 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\ctypes\\wintypes.py',
    'PYMODULE'),
   ('customtkinter',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.ctk_input_dialog',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\ctk_input_dialog.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\ctk_input_dialog.py',
    'PYMODULE'),
   ('customtkinter.windows.ctk_tk',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\ctk_tk.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\ctk_tk.py',
    'PYMODULE'),
   ('customtkinter.windows.ctk_toplevel',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\ctk_toplevel.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\ctk_toplevel.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.appearance_mode',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\appearance_mode\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\appearance_mode\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.appearance_mode.appearance_mode_base_class',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\appearance_mode\\appearance_mode_base_class.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\appearance_mode\\appearance_mode_base_class.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.appearance_mode.appearance_mode_tracker',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\appearance_mode\\appearance_mode_tracker.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\appearance_mode\\appearance_mode_tracker.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.core_rendering',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_rendering\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_rendering\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.core_rendering.ctk_canvas',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_rendering\\ctk_canvas.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_rendering\\ctk_canvas.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.core_rendering.draw_engine',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_rendering\\draw_engine.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_rendering\\draw_engine.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.core_widget_classes',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_widget_classes\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_widget_classes\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.core_widget_classes.ctk_base_class',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_widget_classes\\ctk_base_class.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_widget_classes\\ctk_base_class.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.core_widget_classes.dropdown_menu',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_widget_classes\\dropdown_menu.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\core_widget_classes\\dropdown_menu.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_button',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_button.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_button.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_checkbox',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_checkbox.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_checkbox.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_combobox',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_combobox.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_combobox.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_entry',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_entry.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_entry.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_frame',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_frame.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_frame.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_label',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_label.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_label.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_optionmenu',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_optionmenu.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_optionmenu.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_progressbar',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_progressbar.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_progressbar.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_radiobutton',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_radiobutton.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_radiobutton.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_scrollable_frame',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_scrollable_frame.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_scrollable_frame.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_scrollbar',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_scrollbar.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_scrollbar.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_segmented_button',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_segmented_button.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_segmented_button.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_slider',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_slider.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_slider.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_switch',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_switch.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_switch.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_tabview',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_tabview.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_tabview.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.ctk_textbox',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_textbox.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\ctk_textbox.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.font',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\font\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\font\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.font.ctk_font',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\font\\ctk_font.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\font\\ctk_font.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.font.font_manager',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\font\\font_manager.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\font\\font_manager.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.image',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\image\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\image\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.image.ctk_image',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\image\\ctk_image.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\image\\ctk_image.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.scaling',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\scaling\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\scaling\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.scaling.scaling_base_class',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\scaling\\scaling_base_class.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\scaling\\scaling_base_class.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.scaling.scaling_tracker',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\scaling\\scaling_tracker.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\scaling\\scaling_tracker.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.theme',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\theme\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\theme\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.theme.theme_manager',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\theme\\theme_manager.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\theme\\theme_manager.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.utility',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\utility\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\utility\\__init__.py',
    'PYMODULE'),
   ('customtkinter.windows.widgets.utility.utility_functions',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\customtkinter\\windows\\widgets\\utility\\utility_functions.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\customtkinter\\windows\\widgets\\utility\\utility_functions.py',
    'PYMODULE'),
   ('darkdetect',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\darkdetect\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\darkdetect\\__init__.py',
    'PYMODULE'),
   ('darkdetect._dummy',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\darkdetect\\_dummy.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\darkdetect\\_dummy.py',
    'PYMODULE'),
   ('darkdetect._linux_detect',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\darkdetect\\_linux_detect.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\darkdetect\\_linux_detect.py',
    'PYMODULE'),
   ('darkdetect._mac_detect',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\darkdetect\\_mac_detect.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\darkdetect\\_mac_detect.py',
    'PYMODULE'),
   ('darkdetect._windows_detect',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\darkdetect\\_windows_detect.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\darkdetect\\_windows_detect.py',
    'PYMODULE'),
   ('dataclasses',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\dataclasses.py',
@@ -653,6 +1023,130 @@
   ('multiprocessing.util',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\multiprocessing\\util.py',
    'PYMODULE'),
+  ('mysql',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.abstracts',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\abstracts.py',
+   'PYMODULE'),
+  ('mysql.connector.authentication',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\authentication.py',
+   'PYMODULE'),
+  ('mysql.connector.charsets',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\charsets.py',
+   'PYMODULE'),
+  ('mysql.connector.connection',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\connection.py',
+   'PYMODULE'),
+  ('mysql.connector.connection_cext',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\connection_cext.py',
+   'PYMODULE'),
+  ('mysql.connector.constants',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\constants.py',
+   'PYMODULE'),
+  ('mysql.connector.conversion',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\conversion.py',
+   'PYMODULE'),
+  ('mysql.connector.cursor',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\cursor.py',
+   'PYMODULE'),
+  ('mysql.connector.cursor_cext',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\cursor_cext.py',
+   'PYMODULE'),
+  ('mysql.connector.custom_types',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\custom_types.py',
+   'PYMODULE'),
+  ('mysql.connector.dbapi',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\dbapi.py',
+   'PYMODULE'),
+  ('mysql.connector.errorcode',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\errorcode.py',
+   'PYMODULE'),
+  ('mysql.connector.errors',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\errors.py',
+   'PYMODULE'),
+  ('mysql.connector.locales',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\locales\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.logger',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\logger.py',
+   'PYMODULE'),
+  ('mysql.connector.network',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\network.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\opentelemetry\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry.constants',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\opentelemetry\\constants.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry.context_propagation',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\opentelemetry\\context_propagation.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry.instrumentation',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\opentelemetry\\instrumentation.py',
+   'PYMODULE'),
+  ('mysql.connector.optionfiles',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\optionfiles.py',
+   'PYMODULE'),
+  ('mysql.connector.plugins',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\plugins\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.plugins.caching_sha2_password',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\plugins\\caching_sha2_password.py',
+   'PYMODULE'),
+  ('mysql.connector.pooling',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\pooling.py',
+   'PYMODULE'),
+  ('mysql.connector.protocol',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\protocol.py',
+   'PYMODULE'),
+  ('mysql.connector.tls_ciphers',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\tls_ciphers.py',
+   'PYMODULE'),
+  ('mysql.connector.types',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\types.py',
+   'PYMODULE'),
+  ('mysql.connector.utils',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\utils.py',
+   'PYMODULE'),
+  ('mysql.connector.version',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\mysql\\connector\\version.py',
+   'PYMODULE'),
   ('netrc',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\netrc.py',
    'PYMODULE'),
@@ -666,46 +1160,68 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\opcode.py',
    'PYMODULE'),
   ('packaging',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\__init__.py',
    'PYMODULE'),
   ('packaging._elffile',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\_elffile.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\_elffile.py',
    'PYMODULE'),
   ('packaging._manylinux',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\_manylinux.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\_manylinux.py',
    'PYMODULE'),
   ('packaging._musllinux',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\_musllinux.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\_musllinux.py',
    'PYMODULE'),
   ('packaging._parser',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\_parser.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\_parser.py',
    'PYMODULE'),
   ('packaging._structures',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\_structures.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\_structures.py',
    'PYMODULE'),
   ('packaging._tokenizer',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\_tokenizer.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\_tokenizer.py',
+   'PYMODULE'),
+  ('packaging.licenses',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\licenses\\__init__.py',
+   'PYMODULE'),
+  ('packaging.licenses._spdx',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\licenses\\_spdx.py',
    'PYMODULE'),
   ('packaging.markers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\markers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\markers.py',
    'PYMODULE'),
   ('packaging.metadata',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\metadata.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\metadata.py',
    'PYMODULE'),
   ('packaging.requirements',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\requirements.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\requirements.py',
    'PYMODULE'),
   ('packaging.specifiers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\specifiers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\specifiers.py',
    'PYMODULE'),
   ('packaging.tags',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\tags.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\tags.py',
    'PYMODULE'),
   ('packaging.utils',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\utils.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\utils.py',
    'PYMODULE'),
   ('packaging.version',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\packaging\\version.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\packaging\\version.py',
    'PYMODULE'),
   ('pathlib',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pathlib.py',
@@ -714,7 +1230,8 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pickle.py',
    'PYMODULE'),
   ('pkg_resources',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pkg_resources\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pkg_resources\\__init__.py',
    'PYMODULE'),
   ('pkgutil',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pkgutil.py',
@@ -740,6 +1257,74 @@
   ('pydoc_data.topics',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\pydoc_data\\topics.py',
    'PYMODULE'),
+  ('pymysql',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\__init__.py',
+   'PYMODULE'),
+  ('pymysql._auth',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\_auth.py',
+   'PYMODULE'),
+  ('pymysql.charset',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\charset.py',
+   'PYMODULE'),
+  ('pymysql.connections',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\connections.py',
+   'PYMODULE'),
+  ('pymysql.constants',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\__init__.py',
+   'PYMODULE'),
+  ('pymysql.constants.CLIENT',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\CLIENT.py',
+   'PYMODULE'),
+  ('pymysql.constants.COMMAND',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\COMMAND.py',
+   'PYMODULE'),
+  ('pymysql.constants.CR',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\CR.py',
+   'PYMODULE'),
+  ('pymysql.constants.ER',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\ER.py',
+   'PYMODULE'),
+  ('pymysql.constants.FIELD_TYPE',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\FIELD_TYPE.py',
+   'PYMODULE'),
+  ('pymysql.constants.SERVER_STATUS',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\constants\\SERVER_STATUS.py',
+   'PYMODULE'),
+  ('pymysql.converters',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\converters.py',
+   'PYMODULE'),
+  ('pymysql.cursors',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\cursors.py',
+   'PYMODULE'),
+  ('pymysql.err',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\err.py',
+   'PYMODULE'),
+  ('pymysql.optionfile',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\optionfile.py',
+   'PYMODULE'),
+  ('pymysql.protocol',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\protocol.py',
+   'PYMODULE'),
+  ('pymysql.times',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\pymysql\\times.py',
+   'PYMODULE'),
   ('queue',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\queue.py',
    'PYMODULE'),
@@ -762,501 +1347,666 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\selectors.py',
    'PYMODULE'),
   ('setuptools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\__init__.py',
    'PYMODULE'),
   ('setuptools._core_metadata',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_core_metadata.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_core_metadata.py',
    'PYMODULE'),
   ('setuptools._distutils',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\__init__.py',
    'PYMODULE'),
   ('setuptools._distutils._log',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\_log.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\_log.py',
    'PYMODULE'),
   ('setuptools._distutils._modified',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\_modified.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\_modified.py',
    'PYMODULE'),
   ('setuptools._distutils._msvccompiler',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\_msvccompiler.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\_msvccompiler.py',
    'PYMODULE'),
   ('setuptools._distutils.archive_util',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\archive_util.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\archive_util.py',
    'PYMODULE'),
   ('setuptools._distutils.ccompiler',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\ccompiler.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\ccompiler.py',
    'PYMODULE'),
   ('setuptools._distutils.cmd',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\cmd.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\cmd.py',
    'PYMODULE'),
   ('setuptools._distutils.command',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\command\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\command\\__init__.py',
    'PYMODULE'),
   ('setuptools._distutils.command.bdist',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\command\\bdist.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\command\\bdist.py',
    'PYMODULE'),
   ('setuptools._distutils.command.build',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\command\\build.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\command\\build.py',
    'PYMODULE'),
   ('setuptools._distutils.command.build_ext',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\command\\build_ext.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\command\\build_ext.py',
    'PYMODULE'),
   ('setuptools._distutils.command.sdist',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\command\\sdist.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\command\\sdist.py',
    'PYMODULE'),
   ('setuptools._distutils.compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\compat\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\compat\\__init__.py',
    'PYMODULE'),
   ('setuptools._distutils.compat.py38',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\compat\\py38.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\compat\\py38.py',
    'PYMODULE'),
   ('setuptools._distutils.compat.py39',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\compat\\py39.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\compat\\py39.py',
    'PYMODULE'),
   ('setuptools._distutils.core',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\core.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\core.py',
    'PYMODULE'),
   ('setuptools._distutils.debug',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\debug.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\debug.py',
    'PYMODULE'),
   ('setuptools._distutils.dir_util',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\dir_util.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\dir_util.py',
    'PYMODULE'),
   ('setuptools._distutils.dist',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\dist.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\dist.py',
    'PYMODULE'),
   ('setuptools._distutils.errors',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\errors.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\errors.py',
    'PYMODULE'),
   ('setuptools._distutils.extension',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\extension.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\extension.py',
    'PYMODULE'),
   ('setuptools._distutils.fancy_getopt',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\fancy_getopt.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\fancy_getopt.py',
    'PYMODULE'),
   ('setuptools._distutils.file_util',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\file_util.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\file_util.py',
    'PYMODULE'),
   ('setuptools._distutils.filelist',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\filelist.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\filelist.py',
    'PYMODULE'),
   ('setuptools._distutils.log',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\log.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\log.py',
    'PYMODULE'),
   ('setuptools._distutils.spawn',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\spawn.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\spawn.py',
    'PYMODULE'),
   ('setuptools._distutils.sysconfig',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\sysconfig.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\sysconfig.py',
    'PYMODULE'),
   ('setuptools._distutils.text_file',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\text_file.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\text_file.py',
    'PYMODULE'),
   ('setuptools._distutils.util',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\util.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\util.py',
    'PYMODULE'),
   ('setuptools._distutils.version',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\version.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\version.py',
    'PYMODULE'),
   ('setuptools._distutils.versionpredicate',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_distutils\\versionpredicate.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_distutils\\versionpredicate.py',
    'PYMODULE'),
   ('setuptools._entry_points',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_entry_points.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_entry_points.py',
    'PYMODULE'),
   ('setuptools._imp',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_imp.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_imp.py',
    'PYMODULE'),
   ('setuptools._importlib',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_importlib.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_importlib.py',
    'PYMODULE'),
   ('setuptools._itertools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_itertools.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_itertools.py',
    'PYMODULE'),
   ('setuptools._normalization',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_normalization.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_normalization.py',
    'PYMODULE'),
   ('setuptools._path',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_path.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_path.py',
    'PYMODULE'),
   ('setuptools._reqs',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_reqs.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_reqs.py',
    'PYMODULE'),
   ('setuptools._vendor', '-', 'PYMODULE'),
   ('setuptools._vendor.backports',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\backports\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\backports\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.backports.tarfile',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.backports.tarfile.compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\compat\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\compat\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.backports.tarfile.compat.py38',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\compat\\py38.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\compat\\py38.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._adapters',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_adapters.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_adapters.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._collections',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_collections.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_collections.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_compat.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_compat.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._functools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_functools.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_functools.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._itertools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_itertools.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_itertools.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._meta',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_meta.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_meta.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata._text',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_text.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_text.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata.compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata.compat.py311',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\py311.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\py311.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_metadata.compat.py39',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\py39.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\py39.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources._adapters',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\_adapters.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\_adapters.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources._common',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\_common.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\_common.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources._itertools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\_itertools.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\_itertools.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.abc',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\abc.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\abc.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\compat\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\compat\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.compat.py38',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\compat\\py38.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\compat\\py38.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.compat.py39',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\compat\\py39.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\compat\\py39.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.functional',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\functional.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\functional.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.future',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\future\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\future\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.future.adapters',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\future\\adapters.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\future\\adapters.py',
    'PYMODULE'),
   ('setuptools._vendor.importlib_resources.readers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\readers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\importlib_resources\\readers.py',
    'PYMODULE'),
   ('setuptools._vendor.jaraco', '-', 'PYMODULE'),
   ('setuptools._vendor.jaraco.context',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\context.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\context.py',
    'PYMODULE'),
   ('setuptools._vendor.jaraco.functools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\functools\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\functools\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.jaraco.text',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.more_itertools',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\more_itertools\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\more_itertools\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.more_itertools.more',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\more_itertools\\more.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\more_itertools\\more.py',
    'PYMODULE'),
   ('setuptools._vendor.more_itertools.recipes',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\more_itertools\\recipes.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\more_itertools\\recipes.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._elffile',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_elffile.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_elffile.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._manylinux',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_manylinux.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_manylinux.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._musllinux',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_musllinux.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_musllinux.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._parser',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_parser.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_parser.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._structures',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._tokenizer',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_tokenizer.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\_tokenizer.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.markers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.requirements',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.specifiers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.tags',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\tags.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\tags.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.utils',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.version',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\version.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\packaging\\version.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs.android',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\android.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\android.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs.api',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\api.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\api.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs.macos',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\macos.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\macos.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs.unix',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\unix.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\unix.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs.version',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\version.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\version.py',
    'PYMODULE'),
   ('setuptools._vendor.platformdirs.windows',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\windows.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\platformdirs\\windows.py',
    'PYMODULE'),
   ('setuptools._vendor.tomli',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.tomli._parser',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\_parser.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\_parser.py',
    'PYMODULE'),
   ('setuptools._vendor.tomli._re',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\_re.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\_re.py',
    'PYMODULE'),
   ('setuptools._vendor.tomli._types',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\_types.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\tomli\\_types.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel._setuptools_logging',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\_setuptools_logging.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\_setuptools_logging.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.bdist_wheel',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\bdist_wheel.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\bdist_wheel.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.cli',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.cli.convert',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\convert.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\convert.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.cli.pack',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\pack.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\pack.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.cli.tags',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\tags.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\tags.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.cli.unpack',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\unpack.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\cli\\unpack.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.macosx_libfile',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\macosx_libfile.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\macosx_libfile.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.metadata',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\metadata.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\metadata.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.util',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\util.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\util.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging._elffile',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_elffile.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_elffile.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging._manylinux',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_manylinux.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_manylinux.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging._musllinux',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_musllinux.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_musllinux.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging._parser',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_parser.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_parser.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging._structures',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_structures.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_structures.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging._tokenizer',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_tokenizer.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\_tokenizer.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging.markers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\markers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\markers.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging.requirements',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\requirements.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\requirements.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging.specifiers',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\specifiers.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\specifiers.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging.tags',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\tags.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\tags.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging.utils',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\utils.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\utils.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.vendored.packaging.version',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\version.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\vendored\\packaging\\version.py',
    'PYMODULE'),
   ('setuptools._vendor.wheel.wheelfile',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\wheelfile.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\wheel\\wheelfile.py',
    'PYMODULE'),
   ('setuptools._vendor.zipp',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.zipp.compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\compat\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\compat\\__init__.py',
    'PYMODULE'),
   ('setuptools._vendor.zipp.compat.py310',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\compat\\py310.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\compat\\py310.py',
    'PYMODULE'),
   ('setuptools._vendor.zipp.glob',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\glob.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\zipp\\glob.py',
    'PYMODULE'),
   ('setuptools.archive_util',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\archive_util.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\archive_util.py',
    'PYMODULE'),
   ('setuptools.command',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\__init__.py',
    'PYMODULE'),
   ('setuptools.command._requirestxt',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\_requirestxt.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\_requirestxt.py',
    'PYMODULE'),
   ('setuptools.command.bdist_egg',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\bdist_egg.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\bdist_egg.py',
    'PYMODULE'),
   ('setuptools.command.bdist_wheel',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\bdist_wheel.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\bdist_wheel.py',
    'PYMODULE'),
   ('setuptools.command.build',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\build.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\build.py',
    'PYMODULE'),
   ('setuptools.command.egg_info',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\egg_info.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\egg_info.py',
    'PYMODULE'),
   ('setuptools.command.sdist',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\sdist.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\sdist.py',
    'PYMODULE'),
   ('setuptools.command.setopt',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\command\\setopt.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\command\\setopt.py',
    'PYMODULE'),
   ('setuptools.compat',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\compat\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\compat\\__init__.py',
    'PYMODULE'),
   ('setuptools.compat.py310',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\compat\\py310.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\compat\\py310.py',
    'PYMODULE'),
   ('setuptools.compat.py39',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\compat\\py39.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\compat\\py39.py',
    'PYMODULE'),
   ('setuptools.config',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\__init__.py',
    'PYMODULE'),
   ('setuptools.config._apply_pyprojecttoml',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_apply_pyprojecttoml.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_apply_pyprojecttoml.py',
    'PYMODULE'),
   ('setuptools.config._validate_pyproject',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\__init__.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\__init__.py',
    'PYMODULE'),
   ('setuptools.config._validate_pyproject.error_reporting',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\error_reporting.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\error_reporting.py',
    'PYMODULE'),
   ('setuptools.config._validate_pyproject.extra_validations',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\extra_validations.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\extra_validations.py',
    'PYMODULE'),
   ('setuptools.config._validate_pyproject.fastjsonschema_exceptions',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\fastjsonschema_exceptions.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\fastjsonschema_exceptions.py',
    'PYMODULE'),
   ('setuptools.config._validate_pyproject.fastjsonschema_validations',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\fastjsonschema_validations.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\fastjsonschema_validations.py',
    'PYMODULE'),
   ('setuptools.config._validate_pyproject.formats',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\formats.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\_validate_pyproject\\formats.py',
    'PYMODULE'),
   ('setuptools.config.expand',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\expand.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\expand.py',
    'PYMODULE'),
   ('setuptools.config.pyprojecttoml',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\pyprojecttoml.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\pyprojecttoml.py',
    'PYMODULE'),
   ('setuptools.config.setupcfg',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\config\\setupcfg.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\config\\setupcfg.py',
    'PYMODULE'),
   ('setuptools.depends',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\depends.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\depends.py',
    'PYMODULE'),
   ('setuptools.discovery',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\discovery.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\discovery.py',
    'PYMODULE'),
   ('setuptools.dist',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\dist.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\dist.py',
    'PYMODULE'),
   ('setuptools.errors',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\errors.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\errors.py',
    'PYMODULE'),
   ('setuptools.extension',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\extension.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\extension.py',
    'PYMODULE'),
   ('setuptools.glob',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\glob.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\glob.py',
    'PYMODULE'),
   ('setuptools.installer',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\installer.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\installer.py',
    'PYMODULE'),
   ('setuptools.logging',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\logging.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\logging.py',
    'PYMODULE'),
   ('setuptools.monkey',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\monkey.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\monkey.py',
    'PYMODULE'),
   ('setuptools.msvc',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\msvc.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\msvc.py',
    'PYMODULE'),
   ('setuptools.unicode_utils',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\unicode_utils.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\unicode_utils.py',
    'PYMODULE'),
   ('setuptools.version',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\version.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\version.py',
    'PYMODULE'),
   ('setuptools.warnings',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\warnings.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\warnings.py',
    'PYMODULE'),
   ('setuptools.wheel',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\wheel.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\wheel.py',
    'PYMODULE'),
   ('setuptools.windows_support',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\setuptools\\windows_support.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\windows_support.py',
    'PYMODULE'),
   ('shlex',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\shlex.py',
@@ -1361,7 +2111,8 @@
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\typing.py',
    'PYMODULE'),
   ('typing_extensions',
-   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\typing_extensions.py',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\setuptools\\_vendor\\typing_extensions.py',
    'PYMODULE'),
   ('unittest',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\unittest\\__init__.py',
@@ -1414,11 +2165,29 @@
   ('urllib.response',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\urllib\\response.py',
    'PYMODULE'),
+  ('uuid',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\uuid.py',
+   'PYMODULE'),
   ('webbrowser',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\webbrowser.py',
    'PYMODULE'),
   ('xml',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\etree\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree.ElementInclude',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\etree\\ElementInclude.py',
+   'PYMODULE'),
+  ('xml.etree.ElementPath',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\etree\\ElementPath.py',
+   'PYMODULE'),
+  ('xml.etree.ElementTree',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\etree\\ElementTree.py',
+   'PYMODULE'),
+  ('xml.etree.cElementTree',
+   'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\etree\\cElementTree.py',
    'PYMODULE'),
   ('xml.parsers',
    'C:\\Users\\liber\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\xml\\parsers\\__init__.py',

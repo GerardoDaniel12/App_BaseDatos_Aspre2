@@ -7,6 +7,9 @@ import mysql.connector
 from PIL import Image, ImageTk, ImageDraw
 import io
 import pymysql.cursors
+import pandas as pd
+import openpyxl
+from tkinter import filedialog
 
 
 # Configuración para el tema del sistema
@@ -78,8 +81,6 @@ class GuiInicial(ctk.CTk):
         botones_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
         botones_frame.pack(fill="x", pady=(5, 10))
 
-        filtro_fecha_label = ctk.CTkLabel(filtros_frame, text="Filtro por Fecha Realizado", font=("Arial", 17, "bold"))
-        filtro_fecha_label.pack(side="top", anchor="w", padx=55)
 
         # Filtro para año
         self.año_filtro = ttk.Combobox(botones_frame, values=[], state="readonly")
@@ -91,6 +92,13 @@ class GuiInicial(ctk.CTk):
         self.mes_filtro.bind("<<ComboboxSelected>>", self.filtrar_por_fecha)
         self.mes_filtro.pack(side="left", padx=5)
 
+        # Botón para exportar a Excel, añadido en filtros_frame
+        export_button = ctk.CTkButton(filtros_frame, text="Exportar a Excel", command=self.exportar_a_excel)
+        export_button.pack(side="right", anchor="w", padx=10)
+
+        filtro_fecha_label = ctk.CTkLabel(filtros_frame, text="Filtro por Fecha Realizado", font=("Arial", 17, "bold"))
+        filtro_fecha_label.pack(side="top", anchor="w", padx=55)
+      
         # Botón de orden ascendente
         asc_button = ctk.CTkButton(botones_frame, text="Ascendente (Referencia)", 
                                     command=lambda: self.ordenar_referencia(ascendente=True), width=120)
@@ -101,11 +109,14 @@ class GuiInicial(ctk.CTk):
                                     command=lambda: self.ordenar_referencia(ascendente=False), width=120)
         desc_button.pack(side="left", padx=5)
 
+  
         # Botón de edición para administradores
         if self.privilegio == "admin":
             editar_button = ctk.CTkButton(botones_frame, text="Editar Extintor", 
                                         command=self.editar_extintor, fg_color="#4BBE4B", width=120)
             editar_button.pack(side="left", padx=5)
+        
+       
 
         # Configuración de la tabla de extintores
         columnas = ("id", "Referencia", "Fecha realizado", "Planta", "Area", "Numero de extintor",
@@ -334,6 +345,49 @@ class GuiInicial(ctk.CTk):
         self.btn_guardar = ctk.CTkButton(self.editar_ventana, text="Guardar cambios", command=self.guardar_cambios, width=150)
         self.btn_guardar.pack(pady=10)
     
+    def exportar_a_excel(self):
+        # Abre una ventana para que el usuario elija dónde guardar el archivo
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".xlsx",
+            filetypes=[("Archivos Excel", "*.xlsx"), ("Todos los archivos", "*.*")],
+            title="Guardar archivo de Excel"
+        )
+        
+        # Verifica si se seleccionó una ubicación
+        if not file_path:
+            return  # Si el usuario cancela, no hace nada
+
+        try:
+            # Crear un nuevo libro de trabajo
+            workbook = openpyxl.Workbook()
+            sheet = workbook.active
+            sheet.title = "Extintores"
+
+            # Encabezados
+            headers = [
+                "Id", "Referencia", "Fecha realizado", "Empresa", "Área",
+                "Número de extintor", "Ubicación de extintor", "Tipo",
+                "Capacidad en kg", "Fecha de fabricación", "Fecha de recarga",
+                "Fecha de vencimiento", "Fecha última de prueba hidrostatica",
+                "Presión", "Manómetro", "Seguro", "Etiquetas",
+                "Señalamiento", "Círculo y número", "Pintura",
+                "Manguera", "Boquilla", "Golpes o daños", "Obstruido", "Comentarios"
+            ]
+            sheet.append(headers)
+
+            # Filas de datos desde el Treeview
+            for row_id in self.tree.get_children():
+                row = self.tree.item(row_id)["values"]
+                sheet.append(row)
+
+            # Guarda el archivo en la ubicación seleccionada
+            workbook.save(file_path)
+            messagebox.showinfo("Éxito", f"Datos exportados exitosamente a {file_path}")
+
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo exportar a Excel: {e}")
+
+
     def seleccionar_imagen(self):
         # Seleccionar imagen desde el sistema de archivos
         self.imagen_path = filedialog.askopenfilename(title="Seleccionar Imagen", filetypes=[("Image Files", "*.png;*.jpg;*.jpeg")])
