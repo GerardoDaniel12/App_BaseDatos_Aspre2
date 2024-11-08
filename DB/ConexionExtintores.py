@@ -21,7 +21,7 @@ def obtener_extintores(conn):
     """Obtiene los extintores desde la base de datos."""
     extintores = []
     try:
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
         cursor.execute("SELECT * FROM formulario_inspeccion")  # Cambia esto al nombre de tu tabla
         rows = cursor.fetchall()
         

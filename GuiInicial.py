@@ -6,6 +6,8 @@ from DB.ConexionUsuarios import obtener_imagen, actualizar_usuario
 import mysql.connector
 from PIL import Image, ImageTk, ImageDraw
 import io
+import pymysql.cursors
+
 
 # Configuración para el tema del sistema
 ctk.set_appearance_mode("system")
@@ -20,6 +22,9 @@ class GuiInicial(ctk.CTk):
         self.after(1, lambda: self.state('zoomed'))
 
         self.orden_ascendente = True  # Variable para alternar entre ascendente y descendente
+        self.año_filtro = None
+        self.mes_filtro = None
+        self.tree = None
         self.initialize_widgets()
 
     def initialize_widgets(self):
@@ -32,7 +37,6 @@ class GuiInicial(ctk.CTk):
         # Frame de navegación a la izquierda
         nav_frame = ctk.CTkFrame(main_frame, width=200, corner_radius=15, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9")
         nav_frame.pack(side="left", fill="y", padx=(10, 20), pady=10)
-
 
         # Etiqueta de "Navegación" debajo de la imagen
         ctk.CTkLabel(nav_frame, text="Navegación", font=("Arial", 16, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 10))
@@ -51,7 +55,6 @@ class GuiInicial(ctk.CTk):
         self.extintores_frame = ctk.CTkFrame(main_frame, corner_radius=15, fg_color="#4D4D4D" if ctk.get_appearance_mode() == "Dark" else "#FFFFFF")
         self.extintores_frame.pack(fill="both", expand=True, padx=(0, 20), pady=10)
 
-        self.tree = None
         
     def mostrar_extintores(self):
         # Configuración del frame de extintores
@@ -135,52 +138,123 @@ class GuiInicial(ctk.CTk):
 
     def cargar_datos_extintores(self):
         try:
-            conn = crear_conexion()
-            if conn:
-                extintores = obtener_extintores(conn)
+            # Limpiar datos previos en la tabla
+            for item in self.tree.get_children():
+                self.tree.delete(item)
 
-                # Obtener años y meses únicos
-                años = sorted(set(extintor[2].year for extintor in extintores))  # Asumiendo que "fecha_realizado" es el tercer elemento
-                meses = sorted(set(extintor[2].month for extintor in extintores))
+            # Verifica si el usuario es admin
+            if self.privilegio == "admin":
+                # Si es admin, obtener todos los registros
+                query = "SELECT * FROM formulario_inspeccion"
+                parametros = ()
+            else:
+                # Si no es admin, filtra por la empresa del usuario
+                query = "SELECT * FROM formulario_inspeccion WHERE empresa = %s"
+                parametros = (self.user_data['empresa'],)  # Usa la empresa del usuario
 
-                años.insert(0, "Todos")
-                meses.insert(0, "Todos")
+            # Conectar a la base de datos y ejecutar la consulta
+            conexion = crear_conexion()
+            cursor = conexion.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(query, parametros)
 
-                self.año_filtro['values'] = años
-                self.mes_filtro['values'] = meses
+            # Cargar los registros obtenidos en la tabla
+            for row in cursor.fetchall():
+                self.tree.insert("", "end", values=row)
 
-                for item in self.tree.get_children():
-                    self.tree.delete(item)
+            # Cargar los años y meses disponibles para los filtros
+            cursor.execute("SELECT DISTINCT YEAR(fecha_realizado) FROM formulario_inspeccion ORDER BY YEAR(fecha_realizado) DESC")
+            years = [str(year[0]) for year in cursor.fetchall()]
+            years.insert(0, "Todos")  # Agregar opción "Todos" al inicio
 
-                for extintor in extintores:
-                    self.tree.insert("", "end", values=extintor)
+            cursor.execute("SELECT DISTINCT MONTH(fecha_realizado) FROM formulario_inspeccion ORDER BY MONTH(fecha_realizado)")
+            months = [str(month[0]) for month in cursor.fetchall()]
+            months.insert(0, "Todos")  # Agregar opción "Todos" al inicio
 
-                conn.close()
+            # Actualizar los combobox con los valores obtenidos
+            self.año_filtro['values'] = years
+            self.mes_filtro['values'] = months
+
+            # Cerrar la conexión a la base de datos
+            cursor.close()
+            conexion.close()
 
         except mysql.connector.Error as db_err:
             messagebox.showerror("Error de base de datos", f"No se pudo obtener la información: {str(db_err)}")
         except Exception as e:
             messagebox.showerror("Error", f"Ocurrió un error inesperado: {str(e)}")
 
-    def filtrar_por_fecha(self, event):
-        selected_year = self.año_filtro.get()
-        selected_month = self.mes_filtro.get()
 
-        # Filtrar la tabla según el año y mes seleccionados
+    def filtrar_por_fecha(self, event=None):
+        selected_year = self.año_filtro.get()  # Año seleccionado
+        selected_month = self.mes_filtro.get()  # Mes seleccionado
+
+        # Limpiar la tabla antes de aplicar los filtros
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # Establecer la conexión con la base de datos
         conn = crear_conexion()
         if conn:
-            extintores = obtener_extintores(conn)  # Obtén todos los extintores de nuevo
-            for extintor in extintores:
-                fecha_realizado = extintor[2]  # Asumiendo que "fecha_realizado" es el tercer elemento
-                year_match = (selected_year == "Todos" or str(fecha_realizado.year) == selected_year)
-                month_match = (selected_month == "Todos" or str(fecha_realizado.month) == selected_month)
-                if year_match and month_match:
-                    self.tree.insert("", "end", values=extintor)
+            # Consulta base que siempre devuelve todas las filas
+            query = "SELECT * FROM formulario_inspeccion WHERE 1=1"
+            parametros = []
 
-            conn.close()
+            # Filtrar por la empresa si no es admin
+            if self.privilegio != "admin":
+                empresa_filtro = self.user_data['empresa']
+                query += " AND empresa = %s"
+                parametros.append(empresa_filtro)
+                print(f"Filtrando por empresa: {empresa_filtro}")  # Mostrar empresa en la salida
+
+            # Verificar si el año es distinto de "Todos" y agregarlo a la consulta
+            if selected_year != "Todos":
+                query += " AND YEAR(fecha_realizado) = %s"
+                parametros.append(selected_year)
+                print(f"Filtrando por año: {selected_year}")  # Mostrar año en la salida
+
+            # Verificar si el mes es distinto de "Todos" y agregarlo a la consulta
+            if selected_month != "Todos":
+                query += " AND MONTH(fecha_realizado) = %s"
+                parametros.append(selected_month)
+                print(f"Filtrando por mes: {selected_month}")  # Mostrar mes en la salida
+
+            # Imprimir la consulta generada para depuración
+            print(f"Consulta SQL generada: {query}")
+            print(f"Parámetros para la consulta: {parametros}")
+
+            # Ejecutar la consulta con los parámetros
+            cursor = conn.cursor(pymysql.cursors.DictCursor)  # Utilizar DictCursor para obtener los resultados en forma de diccionario
+
+            try:
+                cursor.execute(query, tuple(parametros))
+                result = cursor.fetchall()
+                
+                # Verifica si se obtuvieron registros
+                if not result:
+                    print("No se encontraron registros con los filtros aplicados.")
+                else:
+                    print(f"Registros encontrados: {len(result)}")
+                    
+                # Convertir las filas a diccionarios si el cursor no los devuelve así
+                if isinstance(result, list):
+                    for row in result:
+                        # Si result no es un diccionario, lo convertimos manualmente
+                        if not isinstance(row, dict):
+                            columns = [desc[0] for desc in cursor.description]
+                            row = dict(zip(columns, row))
+                            
+                        if self.privilegio == "admin" or row['empresa'] == empresa_filtro:
+                            # Extraer valores en orden para que coincidan con las columnas de tu tabla
+                            valores = (row['id'],row['id_Extintores'], row['fecha_realizado'], row['empresa'], row['area'], row['numero_extintor'], row['ubicacion_extintor'], row['tipo'], row['capacidad_kg'], row['fecha_fabricacion'], row['fecha_recarga'], row['fecha_vencimiento'], row['fecha_ultima_prueba'], row['presion'], row['manometro'], row['seguro'], row['etiquetas'], row['senalamientos'], row['circulo_numero'], row['pintura'], row['manguera'], row['boquilla'], row['golpes_danos'], row['obstruido'], row['comentarios'])
+                            self.tree.insert("", "end", values=valores)
+
+            except Exception as e:
+                print(f"Error al ejecutar la consulta: {e}")
+            finally:
+                cursor.close()
+                conn.close()
+        else:
+            print("No se pudo conectar a la base de datos.")
 
     def ordenar_referencia(self, ascendente=True):
         datos = [(self.tree.set(k, "Referencia"), k) for k in self.tree.get_children("")]
@@ -403,6 +477,5 @@ class GuiInicial(ctk.CTk):
 
 
 if __name__ == "__main__":
-    app = GuiInicial({'correo': 'DanielLopez@gmail.com', "empresa": "Aspre Consultores"}, "admin")
     app.mainloop()
 
