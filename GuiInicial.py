@@ -1,8 +1,7 @@
 import customtkinter as ctk
 from customtkinter import CTkImage
 from tkinter import ttk, messagebox, filedialog  
-from DB.ConexionExtintores import crear_conexion, obtener_extintores
-from DB.ConexionUsuarios import obtener_imagen, actualizar_usuario
+from DB.ConexionExtintores import obtener_extintores_api  # Importa la función para crear la conexión
 import mysql.connector
 from PIL import Image, ImageTk, ImageDraw
 import io
@@ -147,53 +146,51 @@ class GuiInicial(ctk.CTk):
         # Cargar datos en la tabla
         self.cargar_datos_extintores()
 
-    def cargar_datos_extintores(self):
-        try:
-            # Limpiar datos previos en la tabla
-            for item in self.tree.get_children():
-                self.tree.delete(item)
+# Modificar cargar_datos_extintores para usar obtener_extintores_api
+def cargar_datos_extintores(self):
+    # Obtiene los datos desde la API
+    try:
+        datos_extintores = obtener_extintores_api()  # Llama a la función de conexión a la API
+        if not datos_extintores:
+            messagebox.showwarning("Advertencia", "No se encontraron datos de extintores.")
+            return
 
-            # Verifica si el usuario es admin
-            if self.privilegio == "admin":
-                # Si es admin, obtener todos los registros
-                query = "SELECT * FROM formulario_inspeccion"
-                parametros = ()
-            else:
-                # Si no es admin, filtra por la empresa del usuario
-                query = "SELECT * FROM formulario_inspeccion WHERE empresa = %s"
-                parametros = (self.user_data['empresa'],)  # Usa la empresa del usuario
+        # Limpia la tabla antes de cargar nuevos datos
+        for item in self.tree.get_children():
+            self.tree.delete(item)
 
-            # Conectar a la base de datos y ejecutar la consulta
-            conexion = crear_conexion()
-            cursor = conexion.cursor(pymysql.cursors.DictCursor)
-            cursor.execute(query, parametros)
-
-            # Cargar los registros obtenidos en la tabla
-            for row in cursor.fetchall():
-                self.tree.insert("", "end", values=row)
-
-            # Cargar los años y meses disponibles para los filtros
-            cursor.execute("SELECT DISTINCT YEAR(fecha_realizado) FROM formulario_inspeccion ORDER BY YEAR(fecha_realizado) DESC")
-            years = [str(year[0]) for year in cursor.fetchall()]
-            years.insert(0, "Todos")  # Agregar opción "Todos" al inicio
-
-            cursor.execute("SELECT DISTINCT MONTH(fecha_realizado) FROM formulario_inspeccion ORDER BY MONTH(fecha_realizado)")
-            months = [str(month[0]) for month in cursor.fetchall()]
-            months.insert(0, "Todos")  # Agregar opción "Todos" al inicio
-
-            # Actualizar los combobox con los valores obtenidos
-            self.año_filtro['values'] = years
-            self.mes_filtro['values'] = months
-
-            # Cerrar la conexión a la base de datos
-            cursor.close()
-            conexion.close()
-
-        except mysql.connector.Error as db_err:
-            messagebox.showerror("Error de base de datos", f"No se pudo obtener la información: {str(db_err)}")
-        except Exception as e:
-            messagebox.showerror("Error", f"Ocurrió un error inesperado: {str(e)}")
-
+        # Rellena la tabla con los datos obtenidos de la API
+        for extintor in datos_extintores:
+            # Asegúrate de que las claves en extintor coincidan con las columnas de tu tabla
+            self.tree.insert("", "end", values=(
+                extintor.get("id", ""),
+                extintor.get("referencia", ""),
+                extintor.get("fecha_realizado", ""),
+                extintor.get("planta", ""),
+                extintor.get("area", ""),
+                extintor.get("numero_extintor", ""),
+                extintor.get("ubicacion", ""),
+                extintor.get("tipo", ""),
+                extintor.get("capacidad", ""),
+                extintor.get("fecha_fabricacion", ""),
+                extintor.get("fecha_recarga", ""),
+                extintor.get("fecha_vencimiento", ""),
+                extintor.get("fecha_prueba_hidrostatica", ""),
+                extintor.get("presion", ""),
+                extintor.get("manometro", ""),
+                extintor.get("seguro", ""),
+                extintor.get("etiquetas", ""),
+                extintor.get("senalamiento", ""),
+                extintor.get("circulo_numero", ""),
+                extintor.get("pintura", ""),
+                extintor.get("manguera", ""),
+                extintor.get("boquilla", ""),
+                extintor.get("golpes_danos", ""),
+                extintor.get("obstruido", ""),
+                extintor.get("comentarios", "")
+            ))
+    except Exception as e:
+        messagebox.showerror("Error", f"Error al cargar los datos: {e}")
 
     def filtrar_por_fecha(self, event=None):
         selected_year = self.año_filtro.get()  # Año seleccionado
@@ -387,10 +384,6 @@ class GuiInicial(ctk.CTk):
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo exportar a Excel: {e}")
 
-
-    def seleccionar_imagen(self):
-        # Seleccionar imagen desde el sistema de archivos
-        self.imagen_path = filedialog.askopenfilename(title="Seleccionar Imagen", filetypes=[("Image Files", "*.png;*.jpg;*.jpeg")])
     
     def guardar_cambios(self):
         # Obtener datos del formulario

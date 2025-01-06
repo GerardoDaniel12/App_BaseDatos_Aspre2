@@ -108,7 +108,7 @@ class LoginWindow(ctk.CTk):
             print("", user_or_error)  # Imprime los datos del usuario para depuración
             self.open_main_window(user_or_error)  # Pasa los datos del usuario aquí
         else:
-            messagebox.showerror("Error", "Usuario o contraseña incorrectos")
+            messagebox.showerror("Error", f"Usuario o contraseña incorrectos: {user_or_error}")
 
     def open_main_window(self, user_data):
         privilegio = user_data.get('privilegio', 'usuario')  # Obtén el privilegio
