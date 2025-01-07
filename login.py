@@ -103,17 +103,20 @@ class LoginWindow(ctk.CTk):
         username = self.user_input.get()
         password = self.pass_input.get()
         success, user_or_error = login(username, password)
+        print(user_or_error)  # Imprime todo lo que llega desde la función login
 
         if success:
-            print("", user_or_error)  # Imprime los datos del usuario para depuración
-            self.open_main_window(user_or_error)  # Pasa los datos del usuario aquí
+            user_data = user_or_error['user']  # Accede a la clave 'user'
+            print(user_data)  # Imprime los datos del usuario para depuración
+            self.open_main_window(user_data)  # Pasa los datos del usuario aquí
         else:
             messagebox.showerror("Error", f"Usuario o contraseña incorrectos: {user_or_error}")
 
     def open_main_window(self, user_data):
-        privilegio = user_data.get('privilegio', 'usuario')  # Obtén el privilegio
+        empresa = user_data.get('empresa', 'Default')  # Usa 'Default' si no se encuentra la empresa
+        privilegio = user_data.get('privilegio', 'usuario')  # Usa 'usuario' si no se encuentra privilegio
         self.withdraw()  # Oculta la ventana de login
-        GuiInicial(user_data, privilegio).mainloop()  # Asegúrate de llamar a mainloop() para abrir la nueva ventana
+        GuiInicial(user_data, privilegio, empresa).mainloop()  # Pasa la empresa correctamente
 
 if __name__ == "__main__":
     app = LoginWindow()
