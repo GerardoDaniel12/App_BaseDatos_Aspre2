@@ -1,6 +1,5 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox, Toplevel
-import tkinter.messagebox as messagebox
 from DB.ConexionExtintores import *
 from datetime import datetime
 from io import BytesIO
@@ -10,18 +9,15 @@ from io import BytesIO
 ctk.set_appearance_mode("system")
 ctk.set_default_color_theme("blue")
 
-class GuiInicial(ctk.CTk):
-    def __init__(self, user_data, privilegio, empresa):
+class GuiInicialNoAdmin(ctk.CTk):
+    def __init__(self, user_data, empresa):
         super().__init__()
         self.user_data = user_data
-        self.privilegio = privilegio
         self.empresa = empresa  # Almacena el nombre de la empresa
         self.title("Extintores Generales")  # Título principal
         self.after(1, lambda: self.state('zoomed'))
 
         self.tree = None
-        self.planta_filtro = None  # Variable para el filtro de planta
-        self.planta_dropdown_resp = None
         self.search_input_resp = None
         self.search_input = None  # Campo de búsqueda
         self.tree = None
@@ -85,25 +81,9 @@ class GuiInicial(ctk.CTk):
         refresh_button = ctk.CTkButton(filtros_frame, text="Refrescar", command=self.cargar_datos_extintores, width=80)
         refresh_button.pack(side="left", padx=5)
 
-        # Botón para agregar extintor
-        agregar_button = ctk.CTkButton(filtros_frame, text="Agregar", command=self.agregar_extintor, width=80, fg_color="#4CAF50")
-        agregar_button.pack(side="left", padx=5)
-
         # Botón para modificar extintor
         modificar_button = ctk.CTkButton(filtros_frame, text="Modificar", command=self.modificar_extintor, width=80, fg_color="#FFA500")
         modificar_button.pack(side="left", padx=5)
-
-        # Botón para eliminar extintor
-        eliminar_button = ctk.CTkButton(filtros_frame, text="Eliminar", command=self.eliminar_extintor, width=80, fg_color="#FF6347")
-        eliminar_button.pack(side="left", padx=5)
-
-        # Dropdown para filtro por planta si es admin
-        planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
-        planta_label.pack(side="left", padx=5)
-
-        self.planta_filtro = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
-        self.planta_filtro.bind("<<ComboboxSelected>>", self.filtrar_por_planta)
-        self.planta_filtro.pack(side="left", padx=5)
 
         # Botón para exportar tabla completa
         exportar_button = ctk.CTkButton(filtros_frame, text="Exportar", command=self.exportar_reporte_extintores, width=80, fg_color="#4CAF50")
@@ -152,44 +132,36 @@ class GuiInicial(ctk.CTk):
         # Cargar datos en la tabla
         self.cargar_datos_extintores()
 
-    def filtrar_por_planta(self, event=None):
-        # Obtener la planta seleccionada del dropdown
-        planta_seleccionada = self.planta_filtro.get()
-
-        # Si la planta seleccionada es "Todos", no se filtra por planta
-        if planta_seleccionada == "Todos":
-            self.cargar_datos_extintores(planta=None)  # No filtrar por planta
-        else:
-            self.cargar_datos_extintores(planta=planta_seleccionada)  # Filtrar por la planta seleccionada
-
     def buscar_extintor(self):
-        # Obtener el valor del campo de búsqueda
-        search_term = self.search_input.get()
-
-        # Si el campo de búsqueda está vacío, mostrar un mensaje
-        if not search_term.strip():
-            messagebox.showwarning("Advertencia", "Por favor, ingresa un término de búsqueda.")
+        """
+        Función para buscar extintores según un término de búsqueda.
+        """
+        search_term = self.search_input.get()  # Obtener el término de búsqueda desde la entrada
+        if not search_term:
+            messagebox.showwarning("Advertencia", "Ingrese un término de búsqueda.")
             return
 
-        # Llamar a la función cargar_datos_extintores con el término de búsqueda y la página 1
-        self.cargar_datos_extintores(search=search_term, page=1)
-        
-        # Opcional: Limpiar la selección del dropdown después de la búsqueda
-        self.planta_filtro.set(self.planta_seleccionada)  # O cualquier valor predeterminado que quieras
+        print(f"Término de búsqueda: {search_term}")  # Depuración
+
+        planta_filtrada = self.empresa  # Aquí se obtiene correctamente la planta de la empresa
+
+        # Reiniciar a la primera página y cargar los datos filtrados
+        self.current_page = 1
+        self.cargar_datos_extintores(planta=planta_filtrada, search=search_term, page=self.current_page)
 
     def cargar_datos_extintores(self, planta=None, search=None, page=1):
         try:
-            # Si no se pasó la planta como parámetro, usar la planta seleccionada en el dropdown
-            planta_filtrada = planta if planta else self.planta_filtro.get()
+            # Guardar la planta filtrada actual para mantener el filtro al navegar entre páginas
+            self.planta_filtrada_anterior = self.empresa
 
             # Llamar a la API para obtener los datos (incluyendo búsqueda y paginación)
-            datos_extintores = obtener_extintores_api(planta_filtrada, search=search, page=page)
+            datos_extintores = obtener_extintores_api(self.empresa, search=search, page=page)
 
             if not datos_extintores:
                 messagebox.showwarning("Advertencia", "No se encontraron datos de extintores.")
                 return
 
-            # Limpiar la tabla antes de cargar nuevos datos
+            # Limpia la tabla antes de cargar nuevos datos
             for item in self.tree.get_children():
                 self.tree.delete(item)
 
@@ -212,7 +184,7 @@ class GuiInicial(ctk.CTk):
 
             # Actualizar página actual
             self.current_page = page
-            print(f"Datos cargados: Planta={planta_filtrada}, Búsqueda={search}, Página={page}")
+            print(f"Datos cargados: Planta={self.empresa}, Búsqueda={search}, Página={page}")
 
         except Exception as e:
             messagebox.showerror("Error", f"Error al cargar los datos: {e}")
@@ -271,7 +243,7 @@ class GuiInicial(ctk.CTk):
         fields = {
             "referencia": {"widget": "entry"},
             "fecha_fabricacion": {"widget": "entry", "hint": "MM AAAA"},
-            "planta": {"widget": "dropdown", "options": opciones_planta},
+            "planta": {"widget": "dropdown", "options": opciones_planta},  # Este es el campo que cambiamos
             "area": {"widget": "entry"},
             "numerodeextintor": {"widget": "entry"},
             "ubicacion_extintor": {"widget": "entry"},
@@ -296,53 +268,63 @@ class GuiInicial(ctk.CTk):
             label.grid(row=i, column=0, padx=10, pady=5, sticky="w")
 
             # Determinar si el campo será editable o no
-            editable = self.privilegio == "admin" or field in ["area", "numerodeextintor", "ubicacion_extintor"]
+            editable = field in ["tipo", "capacidad_kg"]
 
             if config["widget"] == "entry":
-                entry = ctk.CTkEntry(scrollable_frame, state="normal" if editable else "disabled")
-                entry.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                entry.insert(0, extintor_data[i])
-                entries[field] = entry
+                if editable:
+                    entry = ctk.CTkEntry(scrollable_frame)
+                    entry.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+                    entry.insert(0, extintor_data[i])
+                    entries[field] = entry
+                else:
+                    label_value = ctk.CTkLabel(scrollable_frame, text=extintor_data[i], font=("Arial", 12))
+                    label_value.grid(row=i, column=1, padx=10, pady=5, sticky="w")
 
-                if "hint" in config:
-                    hint_label = ctk.CTkLabel(scrollable_frame, text=config["hint"], font=("Arial", 10), text_color="gray")
-                    hint_label.grid(row=i, column=2, padx=5, pady=5, sticky="w")
+                    # Para los hints
+                    if "hint" in config:
+                        hint_label = ctk.CTkLabel(scrollable_frame, text=config["hint"], font=("Arial", 10), text_color="gray")
+                        hint_label.grid(row=i, column=2, padx=5, pady=5, sticky="w")
 
             elif config["widget"] == "dropdown":
-                if field == "tipo":
-                    tipo_combobox = ttk.Combobox(
-                        scrollable_frame,
-                        values=config["options"],
-                        state="readonly" if editable else "disabled",
-                    )
-                    tipo_combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                    tipo_combobox.set(extintor_data[i])
-                    tipo_combobox.bind("<<ComboboxSelected>>", actualizar_capacidades)
-                    entries[field] = tipo_combobox
-                elif field == "capacidad_kg":
-                    capacidad_combobox = ttk.Combobox(
-                        scrollable_frame,
-                        values=config["options"],
-                        state="readonly" if editable else "disabled",
-                    )
-                    capacidad_combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                    capacidad_combobox.set(extintor_data[i])
-                    entries[field] = capacidad_combobox
+                if editable:
+                    if field == "tipo":
+                        tipo_combobox = ttk.Combobox(
+                            scrollable_frame,
+                            values=config["options"],
+                            state="readonly",
+                        )
+                        tipo_combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+                        tipo_combobox.set(extintor_data[i])
+                        tipo_combobox.bind("<<ComboboxSelected>>", actualizar_capacidades)
+                        entries[field] = tipo_combobox
+                    elif field == "capacidad_kg":
+                        capacidad_combobox = ttk.Combobox(
+                            scrollable_frame,
+                            values=config["options"],
+                            state="readonly",
+                        )
+                        capacidad_combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+                        capacidad_combobox.set(extintor_data[i])
+                        entries[field] = capacidad_combobox
                 else:
-                    combobox = ttk.Combobox(
-                        scrollable_frame,
-                        values=config["options"],
-                        state="readonly" if editable else "disabled",
-                    )
-                    combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                    combobox.set(extintor_data[i])
-                    entries[field] = combobox
+                    # Para planta que no debe ser editable
+                    if field == "planta":
+                        label_planta = ctk.CTkLabel(scrollable_frame, text=extintor_data[i], font=("Arial", 12))
+                        label_planta.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+                    else:
+                        combobox = ttk.Combobox(
+                            scrollable_frame,
+                            values=config["options"],
+                            state="readonly",
+                        )
+                        combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+                        combobox.set(extintor_data[i])
+                        combobox.config(state="readonly")
 
         def guardar_cambios():
             nuevos_datos = {}
             for field, widget in entries.items():
-                if widget.cget("state") != "disabled":  # Solo guardar campos editables
-                    nuevos_datos[field] = widget.get()
+                nuevos_datos[field] = widget.get()
 
             # Enviar los datos a la API para guardarlos
             respuesta = editar_extintores_api(extintor_data[0], nuevos_datos)
@@ -356,163 +338,43 @@ class GuiInicial(ctk.CTk):
         guardar_button = ctk.CTkButton(top, text="Guardar Cambios", command=guardar_cambios)
         guardar_button.pack(pady=10)
 
-    def eliminar_extintor(self):
-        selected_item = self.tree.focus()
-        if not selected_item:
-            messagebox.showwarning("Advertencia", "Seleccione un extintor para eliminar.")
-            return
-
-        confirm = messagebox.askyesno("Confirmar", "¿Está seguro de que desea eliminar el extintor seleccionado?")
-        if confirm:
-            extintor_data = self.tree.item(selected_item, "values")
-            referencia = extintor_data[0]  # La referencia está en la primera columna de la tabla
-
-            # Llamar a la función de conexión para eliminar
-            respuesta = eliminar_extintor_api(referencia)
-
-            if "error" in respuesta:
-                messagebox.showerror("Error", respuesta["error"])
-            else:
-                messagebox.showinfo("Éxito", f"El extintor con referencia '{referencia}' fue eliminado exitosamente.")
-                self.cargar_datos_extintores()  # Refrescar la tabla
-
-    def agregar_extintor(self):
-        # Crear ventana emergente
-        top = ctk.CTkToplevel(self)
-        top.title("Agregar Nuevo Extintor")
-        top.geometry("450x640")
-
-        # Opciones para dropdowns
-        opciones_planta = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]
-        opciones_tipo = ["CO2", "PQS", "H2O", "Halotron", "ClaseK", "ClaseD", "AFFF"]
-        capacidades_por_tipo = {
-            "CO2": ["2.2", "4.5", "6.8", "9.0", "12.0", "25.0", "50.0"],
-            "PQS": ["1.0", "2.0", "4.5", "6.0", "9.0", "12.0", "34.0", "50.0", "68.0"],
-            "H2O": ["10.0"],
-            "Halotron": ["2.2"],
-            "ClaseK": ["6.0"],
-            "ClaseD": ["13.0"],
-            "AFFF": ["6.0", "9.0", "50.0", "68.0"],
-        }
-
-        # Campos de entrada
-        campos = [
-            "numero_referencia", "area", "numerodeextintor", "ubicacion_extintor",
-            "tipo", "capacidad_kg", "fecha_recarga", "fecha_vencimiento",
-            "fecha_ultima_prueba", "fecha_fabricacion"
-        ]
-        entradas = {}
-
-        # Crear formulario dinámico
-        for idx, campo in enumerate(campos):
-            label = ctk.CTkLabel(top, text=campo.replace("_", " ").capitalize(), font=("Arial", 12))
-            label.grid(row=idx, column=0, padx=10, pady=5, sticky="w")
-
-            if campo == "tipo":
-                tipo_combobox = ctk.CTkComboBox(top, values=opciones_tipo, width=250)
-                tipo_combobox.grid(row=idx, column=1, padx=10, pady=5)
-                entradas[campo] = tipo_combobox
-            elif campo == "capacidad_kg":
-                capacidad_combobox = ctk.CTkComboBox(top, values=[], width=250, state="disabled")
-                capacidad_combobox.grid(row=idx, column=1, padx=10, pady=5)
-                entradas[campo] = capacidad_combobox
-            elif "fecha" in campo:
-                entry = ctk.CTkEntry(top, width=250, placeholder_text="AAAA-MM-DD")
-                entry.grid(row=idx, column=1, padx=10, pady=5)
-                entradas[campo] = entry
-            else:
-                entry = ctk.CTkEntry(top, width=250)
-                entry.grid(row=idx, column=1, padx=10, pady=5)
-                entradas[campo] = entry
-
-        # Campo de planta (sin restricción)
-        label_planta = ctk.CTkLabel(top, text="Planta", font=("Arial", 12))
-        label_planta.grid(row=len(campos), column=0, padx=10, pady=5, sticky="w")
-
-        planta_combobox = ctk.CTkComboBox(top, values=opciones_planta, width=250)
-        planta_combobox.grid(row=len(campos), column=1, padx=10, pady=5)
-        entradas["planta"] = planta_combobox
-
-        # Función para actualizar capacidades
-        def actualizar_capacidades(event=None):
-            tipo_seleccionado = tipo_combobox.get()
-            print(f"Tipo seleccionado: {tipo_seleccionado}")  # Verificar selección
-            capacidades = capacidades_por_tipo.get(tipo_seleccionado, [])
-            print(f"Capacidades disponibles: {capacidades}")  # Verificar capacidades disponibles
-            capacidad_combobox.configure(values=capacidades)  # Actualizar opciones del combobox
-            if capacidades:
-                capacidad_combobox.set(capacidades[0])  # Seleccionar la primera opción
-                capacidad_combobox.configure(state="normal")  # Habilitar el combobox
-            else:
-                capacidad_combobox.set("")  # Limpiar si no hay opciones
-                capacidad_combobox.configure(state="disabled")  # Deshabilitar el combobox
-
-        # Asociar el evento de selección al combobox de tipo
-        tipo_combobox.bind("<<ComboboxSelected>>", actualizar_capacidades)
-
-        # Inicializar capacidades al cargar la ventana
-        if tipo_combobox.get():
-            actualizar_capacidades()
-
-        def guardar_datos():
-            # Obtener los valores ingresados
-            datos = {campo: entrada.get() for campo, entrada in entradas.items()}
-
-            # Validar campos obligatorios
-            for campo, valor in datos.items():
-                if not valor:
-                    messagebox.showerror("Error", f"El campo '{campo}' es obligatorio.")
-                    return
-
-            # Validar formato de fechas
-            for campo in ["fecha_recarga", "fecha_vencimiento", "fecha_ultima_prueba", "fecha_fabricacion"]:
-                if not validar_fecha(datos[campo]):
-                    messagebox.showerror("Error", f"El campo '{campo}' debe tener el formato AAAA-MM-DD.")
-                    return
-
-            # Llamar a la función de conexión para agregar
-            respuesta = agregar_extintor_api(datos)
-
-            if "error" in respuesta:
-                messagebox.showerror("Error", respuesta["error"])
-            else:
-                messagebox.showinfo("Éxito", respuesta.get("message", "El extintor fue agregado exitosamente."))
-                top.destroy()  # Cerrar ventana emergente
-                self.cargar_datos_extintores()  # Refrescar la tabla
-
-
-        def validar_fecha(fecha):
-            import re
-            patron = r"^\d{4}-\d{2}-\d{2}$"
-            return re.match(patron, fecha) is not None
-
-        # Botón para guardar los datos
-        guardar_button = ctk.CTkButton(top, text="Guardar", command=guardar_datos)
-        guardar_button.grid(row=len(campos) + 1, column=0, columnspan=2, pady=20)
-
     # Lógica para paginación (siguiente y retroceder)
     def pagina_anterior(self):
-        # Decrementar la página actual, asegurándose de no ir más allá de la página 1
-        if self.current_page > 1:
-            self.current_page -= 1
+        try:
+            # Verificar que no se intente ir más atrás de la primera página
+            if self.current_page > 1:
+                # Decrementar el número de la página
+                self.current_page -= 1
 
-            # Llamar a la función cargar_datos_extintores con la nueva página
-            self.cargar_datos_extintores(page=self.current_page)
+                # Usar la empresa vinculada a la cuenta para filtrar los registros
+                planta_filtrada = self.empresa
 
-            # Opcional: Deshabilitar el botón si ya estamos en la primera página
-            # if self.current_page == 1:
-            #     self.retroceder_button.config(state="disabled")
+                print(f"Planta filtrada (anterior): {planta_filtrada}, Página: {self.current_page}")
+
+                # Llamar a cargar_datos_extintores con la empresa vinculada y la página anterior
+                self.cargar_datos_extintores(planta=planta_filtrada, page=self.current_page)
+            else:
+                messagebox.showinfo("Información", "Ya estás en la primera página.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Ocurrió un error al cambiar de página: {e}")
 
     def pagina_siguiente(self):
-        # Incrementar la página actual
-        self.current_page += 1
+        try:
+            # Usar la empresa vinculada a la cuenta para filtrar los registros
+            planta_filtrada = self.empresa
 
-        # Llamar a la función cargar_datos_extintores con la nueva página
-        self.cargar_datos_extintores(page=self.current_page)
+            # Verificar si la planta filtrada es válida
+            if not planta_filtrada:
+                planta_filtrada = "Aspre Consultores"  # Valor predeterminado en caso de error
 
-        # Opcional: Deshabilitar el botón si se alcanzó la última página (según los datos de tu API)
-        # if self.current_page == self.total_pages:
-        #     self.siguiente_button.config(state="disabled")
+            print(f"Planta filtrada (siguiente): {planta_filtrada}")
+
+            # Llamar a cargar_datos_extintores con la empresa vinculada y la siguiente página
+            self.cargar_datos_extintores(planta=planta_filtrada, page=self.current_page + 1)
+
+        except Exception as e:
+            messagebox.showerror("Error", f"Ocurrió un error al cambiar de página: {e}")
+
 
     def exportar_reporte_extintores(self):
         """

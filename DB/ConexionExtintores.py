@@ -17,7 +17,6 @@ def obtener_extintores_api(empresa, search=None, page=1):
         response = requests.get(url, params=params)
         response.raise_for_status()
         data = response.json()
-        print(f"Respuesta de la API: {data}")  # Depuración
         return data.get("data", [])
     except requests.exceptions.RequestException as e:
         print(f"Error al obtener los datos de la API: {e}")

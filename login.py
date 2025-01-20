@@ -2,6 +2,7 @@ import customtkinter as ctk
 from tkinter import messagebox
 from DB.ConexionUsuarios import login  # Importa el módulo de autenticación
 from GuiInicial import GuiInicial  # Importa la función para crear la GUI principal
+from GuiInicialNoAdmin import GuiInicialNoAdmin
 
 # Configuración inicial de tema
 ctk.set_appearance_mode("System")  # Alterna entre "System", "Light" y "Dark"
@@ -116,9 +117,13 @@ class LoginWindow(ctk.CTk):
         empresa = user_data.get('empresa', 'Default')  # Usa 'Default' si no se encuentra la empresa
         privilegio = user_data.get('privilegio', 'usuario')  # Usa 'usuario' si no se encuentra privilegio
         self.withdraw()  # Oculta la ventana de login
-        GuiInicial(user_data, privilegio, empresa).mainloop()  # Pasa la empresa correctamente
+        if privilegio == "admin":
+            GuiInicial(user_data, privilegio, empresa).mainloop()  # Pasa la empresa correctamente
+        else:
+            GuiInicialNoAdmin(user_data, empresa).mainlooop()
 
 if __name__ == "__main__":
     app = LoginWindow()
     app.mainloop()
+    app.mainlooop()
 
