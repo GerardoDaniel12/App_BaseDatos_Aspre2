@@ -10,12 +10,14 @@ ctk.set_appearance_mode("system")
 ctk.set_default_color_theme("blue")
 
 class GuiInicialNoAdmin(ctk.CTk):
-    def __init__(self, user_data, empresa):
+    def __init__(self, user_data, privilegio, empresa):
         super().__init__()
         self.user_data = user_data
+        self.privilegio = privilegio
         self.empresa = empresa  # Almacena el nombre de la empresa
         self.title("Extintores Generales")  # Título principal
         self.after(1, lambda: self.state('zoomed'))
+
 
         self.tree = None
         self.search_input_resp = None
@@ -195,10 +197,10 @@ class GuiInicialNoAdmin(ctk.CTk):
         """
         try:
             # Si el usuario es admin, usa el valor del dropdown; si no, usa la empresa predeterminada
-            planta_seleccionada = self.planta_filtro.get() if self.planta_filtro else self.empresa
+            planta_seleccionada = self.empresa
 
             # Llama a la función de exportación, pasando el filtro de planta
-            resultado = exportar_extintores_api(self.empresa, self.privilegio, planta_seleccionada)
+            resultado = exportar_extintores_api(planta_seleccionada, self.privilegio, planta_seleccionada)
 
             # Mostrar mensajes según el resultado
             if "Archivo Excel guardado exitosamente" in resultado:
@@ -222,104 +224,38 @@ class GuiInicialNoAdmin(ctk.CTk):
         scrollable_frame = ctk.CTkScrollableFrame(top, width=380, height=400)
         scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
 
-        # Opciones para los dropdowns
-        opciones_planta = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]
-        opciones_tipo = ["CO2", "PQS", "H2O", "Halotron", "ClaseK", "ClaseD", "AP", "AFFF"]
-
-        # Tabla de capacidades por tipo
-        capacidades_por_tipo = {
-            "CO2": [2.2, 4.5, 6.8, 9.0, 12.0, 25.0, 50.0],
-            "PQS": [1.0, 2.0, 4.5, 6.0, 9.0, 12.0, 34.0, 50.0, 68.0],
-            "H2O": [10.0],
-            "Halotron": [2.2],
-            "ClaseK": [6.0],
-            "ClaseD": [13.0],
-            "AFFF": [6.0, 9.0, 50.0, 68.0],
-        }
-
-        opciones_capacidad = []
+        # Campos permitidos para editar
+        campos_editables = ["area", "numerodeextintor", "ubicacion_extintor"]
 
         # Campos y widgets
         fields = {
-            "referencia": {"widget": "entry"},
-            "fecha_fabricacion": {"widget": "entry", "hint": "MM AAAA"},
-            "planta": {"widget": "dropdown", "options": opciones_planta},  # Este es el campo que cambiamos
-            "area": {"widget": "entry"},
-            "numerodeextintor": {"widget": "entry"},
-            "ubicacion_extintor": {"widget": "entry"},
-            "tipo": {"widget": "dropdown", "options": opciones_tipo},
-            "capacidad_kg": {"widget": "dropdown", "options": opciones_capacidad},
-            "fecha_recarga": {"widget": "entry", "hint": "MM AAAA"},
-            "fecha_vencimiento": {"widget": "entry", "hint": "MM AAAA"},
-            "fecha_ultima_prueba": {"widget": "entry", "hint": "MM AAAA"},
+            "referencia": {"editable": False},
+            "fecha_fabricacion": {"editable": False},
+            "planta": {"editable": False},
+            "area": {"editable": True},
+            "numerodeextintor": {"editable": True},
+            "ubicacion_extintor": {"editable": True},
+            "tipo": {"editable": False},
+            "capacidad_kg": {"editable": False},
+            "fecha_recarga": {"editable": False},
+            "fecha_vencimiento": {"editable": False},
+            "fecha_ultima_prueba": {"editable": False},
         }
 
         entries = {}
-
-        def actualizar_capacidades(event):
-            tipo_seleccionado = tipo_combobox.get()
-            capacidades = capacidades_por_tipo.get(tipo_seleccionado, [])
-            capacidad_combobox['values'] = capacidades
-            if capacidades:
-                capacidad_combobox.set(capacidades[0])
 
         for i, (field, config) in enumerate(fields.items()):
             label = ctk.CTkLabel(scrollable_frame, text=field.capitalize(), font=("Arial", 12))
             label.grid(row=i, column=0, padx=10, pady=5, sticky="w")
 
-            # Determinar si el campo será editable o no
-            editable = field in ["tipo", "capacidad_kg"]
-
-            if config["widget"] == "entry":
-                if editable:
-                    entry = ctk.CTkEntry(scrollable_frame)
-                    entry.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                    entry.insert(0, extintor_data[i])
-                    entries[field] = entry
-                else:
-                    label_value = ctk.CTkLabel(scrollable_frame, text=extintor_data[i], font=("Arial", 12))
-                    label_value.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-
-                    # Para los hints
-                    if "hint" in config:
-                        hint_label = ctk.CTkLabel(scrollable_frame, text=config["hint"], font=("Arial", 10), text_color="gray")
-                        hint_label.grid(row=i, column=2, padx=5, pady=5, sticky="w")
-
-            elif config["widget"] == "dropdown":
-                if editable:
-                    if field == "tipo":
-                        tipo_combobox = ttk.Combobox(
-                            scrollable_frame,
-                            values=config["options"],
-                            state="readonly",
-                        )
-                        tipo_combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                        tipo_combobox.set(extintor_data[i])
-                        tipo_combobox.bind("<<ComboboxSelected>>", actualizar_capacidades)
-                        entries[field] = tipo_combobox
-                    elif field == "capacidad_kg":
-                        capacidad_combobox = ttk.Combobox(
-                            scrollable_frame,
-                            values=config["options"],
-                            state="readonly",
-                        )
-                        capacidad_combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                        capacidad_combobox.set(extintor_data[i])
-                        entries[field] = capacidad_combobox
-                else:
-                    # Para planta que no debe ser editable
-                    if field == "planta":
-                        label_planta = ctk.CTkLabel(scrollable_frame, text=extintor_data[i], font=("Arial", 12))
-                        label_planta.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                    else:
-                        combobox = ttk.Combobox(
-                            scrollable_frame,
-                            values=config["options"],
-                            state="readonly",
-                        )
-                        combobox.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-                        combobox.set(extintor_data[i])
-                        combobox.config(state="readonly")
+            if config["editable"]:  # Si el campo es editable
+                entry = ctk.CTkEntry(scrollable_frame)
+                entry.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+                entry.insert(0, extintor_data[i])
+                entries[field] = entry
+            else:  # Si no es editable, solo mostrar el valor actual
+                label_value = ctk.CTkLabel(scrollable_frame, text=extintor_data[i], font=("Arial", 12))
+                label_value.grid(row=i, column=1, padx=10, pady=5, sticky="w")
 
         def guardar_cambios():
             nuevos_datos = {}
@@ -338,7 +274,8 @@ class GuiInicialNoAdmin(ctk.CTk):
         guardar_button = ctk.CTkButton(top, text="Guardar Cambios", command=guardar_cambios)
         guardar_button.pack(pady=10)
 
-    # Lógica para paginación (siguiente y retroceder)
+     # Lógica para paginación (siguiente y retroceder)
+    
     def pagina_anterior(self):
         try:
             # Verificar que no se intente ir más atrás de la primera página
@@ -375,7 +312,6 @@ class GuiInicialNoAdmin(ctk.CTk):
         except Exception as e:
             messagebox.showerror("Error", f"Ocurrió un error al cambiar de página: {e}")
 
-
     def exportar_reporte_extintores(self):
         """
         Abre una ventana emergente con opciones para exportar la tabla de datos o un reporte completo de extintores inspeccionados.
@@ -393,28 +329,6 @@ class GuiInicialNoAdmin(ctk.CTk):
         label.pack(pady=10)
 
         # Botón para exportar la tabla de datos
-        def exportar_tabla():
-            """
-            Exporta la tabla actual mostrada en el sistema.
-            """
-            planta_seleccionada = self.planta_filtro.get() if self.planta_filtro else self.empresa
-            resultado = exportar_extintores_api(planta_seleccionada)
-
-            if isinstance(resultado, BytesIO):
-                # Guardar el archivo con un diálogo
-                ruta_archivo = filedialog.asksaveasfilename(
-                    defaultextension=".xlsx",
-                    filetypes=[("Archivos de Excel", "*.xlsx")],
-                    title="Guardar archivo como",
-                    initialfile=f"tabla_extintores_{planta_seleccionada}.xlsx"
-                )
-                if ruta_archivo:
-                    with open(ruta_archivo, "wb") as archivo:
-                        archivo.write(resultado.getvalue())
-                    messagebox.showinfo("Éxito", f"Tabla exportada exitosamente a {ruta_archivo}")
-            else:
-                messagebox.showerror("Error", f"Error al exportar la tabla: {resultado}")
-
         exportar_tabla_button = ctk.CTkButton(
             top,
             text="Exportar Tabla de Datos",
@@ -427,7 +341,7 @@ class GuiInicialNoAdmin(ctk.CTk):
             """
             Exporta el reporte completo de extintores inspeccionados y no inspeccionados.
             """
-            planta_seleccionada = self.planta_filtro.get() if self.planta_filtro else self.empresa
+            planta_seleccionada = self.empresa
 
             # Mostrar ventana emergente para elegir mes y año
             def seleccionar_filtros():

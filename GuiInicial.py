@@ -263,6 +263,7 @@ class GuiInicial(ctk.CTk):
             "ClaseK": [6.0],
             "ClaseD": [13.0],
             "AFFF": [6.0, 9.0, 50.0, 68.0],
+            "AP": [6.0]
         }
 
         opciones_capacidad = []
@@ -384,16 +385,8 @@ class GuiInicial(ctk.CTk):
 
         # Opciones para dropdowns
         opciones_planta = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]
-        opciones_tipo = ["CO2", "PQS", "H2O", "Halotron", "ClaseK", "ClaseD", "AFFF"]
-        capacidades_por_tipo = {
-            "CO2": ["2.2", "4.5", "6.8", "9.0", "12.0", "25.0", "50.0"],
-            "PQS": ["1.0", "2.0", "4.5", "6.0", "9.0", "12.0", "34.0", "50.0", "68.0"],
-            "H2O": ["10.0"],
-            "Halotron": ["2.2"],
-            "ClaseK": ["6.0"],
-            "ClaseD": ["13.0"],
-            "AFFF": ["6.0", "9.0", "50.0", "68.0"],
-        }
+        opciones_tipo = ["CO2", "PQS", "H2O", "Halotron", "ClaseK", "ClaseD", "AFFF", "AP"]
+        capacidades = ["1.0", "2.0", "2.2", "4.5", "6.0", "6.8", "9.0", "10.0", "12.0", "13.0", "25.0", "34.0", "50.0", "68.0"]  # Lista de capacidades estáticas
 
         # Campos de entrada
         campos = [
@@ -413,7 +406,7 @@ class GuiInicial(ctk.CTk):
                 tipo_combobox.grid(row=idx, column=1, padx=10, pady=5)
                 entradas[campo] = tipo_combobox
             elif campo == "capacidad_kg":
-                capacidad_combobox = ctk.CTkComboBox(top, values=[], width=250, state="disabled")
+                capacidad_combobox = ctk.CTkComboBox(top, values=capacidades, width=250)
                 capacidad_combobox.grid(row=idx, column=1, padx=10, pady=5)
                 entradas[campo] = capacidad_combobox
             elif "fecha" in campo:
@@ -432,27 +425,6 @@ class GuiInicial(ctk.CTk):
         planta_combobox = ctk.CTkComboBox(top, values=opciones_planta, width=250)
         planta_combobox.grid(row=len(campos), column=1, padx=10, pady=5)
         entradas["planta"] = planta_combobox
-
-        # Función para actualizar capacidades
-        def actualizar_capacidades(event=None):
-            tipo_seleccionado = tipo_combobox.get()
-            print(f"Tipo seleccionado: {tipo_seleccionado}")  # Verificar selección
-            capacidades = capacidades_por_tipo.get(tipo_seleccionado, [])
-            print(f"Capacidades disponibles: {capacidades}")  # Verificar capacidades disponibles
-            capacidad_combobox.configure(values=capacidades)  # Actualizar opciones del combobox
-            if capacidades:
-                capacidad_combobox.set(capacidades[0])  # Seleccionar la primera opción
-                capacidad_combobox.configure(state="normal")  # Habilitar el combobox
-            else:
-                capacidad_combobox.set("")  # Limpiar si no hay opciones
-                capacidad_combobox.configure(state="disabled")  # Deshabilitar el combobox
-
-        # Asociar el evento de selección al combobox de tipo
-        tipo_combobox.bind("<<ComboboxSelected>>", actualizar_capacidades)
-
-        # Inicializar capacidades al cargar la ventana
-        if tipo_combobox.get():
-            actualizar_capacidades()
 
         def guardar_datos():
             # Obtener los valores ingresados
@@ -490,7 +462,6 @@ class GuiInicial(ctk.CTk):
         guardar_button = ctk.CTkButton(top, text="Guardar", command=guardar_datos)
         guardar_button.grid(row=len(campos) + 1, column=0, columnspan=2, pady=20)
 
-    # Lógica para paginación (siguiente y retroceder)
     def pagina_anterior(self):
         # Decrementar la página actual, asegurándose de no ir más allá de la página 1
         if self.current_page > 1:
@@ -637,25 +608,24 @@ class GuiInicial(ctk.CTk):
 
 
 #############################################################################################################
-                        #Seccion para Gabientes de equipo de respiracion:
+                            #Seccion para Gabientes de equipo de respiracion:
 #############################################################################################################
     
     def configurar_filtros_resp(self):
         filtros_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
         filtros_frame.pack(fill="x", pady=(5, 10))
 
-        if self.privilegio == "admin":
-            planta_label = ctk.CTkLabel(filtros_frame, text="Seleccionar Planta:", font=("Arial", 12))
-            planta_label.pack(side="left", padx=5)
+        planta_label = ctk.CTkLabel(filtros_frame, text="Seleccionar Planta:", font=("Arial", 12))
+        planta_label.pack(side="left", padx=5)
 
-            self.planta_dropdown_resp = ctk.CTkComboBox(
-                filtros_frame,
-                values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"],
-                width=200
-            )
-            self.planta_dropdown_resp.set("Todos")  # Valor inicial predeterminado
-            self.planta_dropdown_resp.pack(side="left", padx=5)
-            self.planta_dropdown_resp.bind("<<ComboboxSelected>>", self.filtrar_por_planta_resp)
+        self.planta_dropdown_resp = ctk.CTkComboBox(
+            filtros_frame,
+            values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"],
+            width=200
+        )
+        self.planta_dropdown_resp.set("Todos")  # Valor inicial predeterminado
+        self.planta_dropdown_resp.pack(side="left", padx=5)
+        self.planta_dropdown_resp.bind("<<ComboboxSelected>>", self.filtrar_por_planta_resp)
 
         # Campo de búsqueda
         self.search_input_resp = ctk.CTkEntry(filtros_frame, placeholder_text="Buscar equipos de respiración...", width=200)
@@ -668,7 +638,7 @@ class GuiInicial(ctk.CTk):
         """
         Maneja el evento de selección de planta en el dropdown para equipos de respiración.
         """
-        if self.privilegio == "admin" and self.planta_dropdown_resp:
+        if self.planta_dropdown_resp:
             planta_seleccionada = self.planta_dropdown_resp.get()
             if planta_seleccionada:
                 print(f"[DEBUG] Planta seleccionada: {planta_seleccionada}")
@@ -677,19 +647,16 @@ class GuiInicial(ctk.CTk):
                 print("[DEBUG] No se seleccionó una planta válida. Usando 'Todos'.")
                 self.cargar_datos_resp(planta="Todos")
         else:
-            print("[DEBUG] El dropdown no está definido o el usuario no es admin.")
+            print("[DEBUG] El dropdown no está definido.")
             self.cargar_datos_resp(planta="Todos")
-            
+      
     def cargar_datos_resp(self, planta=None, search=None, page=1):
         """
         Carga los datos de equipos de respiración en la tabla.
         """
         try:
             # Determinar la planta a usar
-            if self.privilegio == "admin":
-                planta_filtrada = planta or (self.planta_dropdown_resp.get() if self.planta_dropdown_resp else "Todos")
-            else:
-                planta_filtrada = self.empresa
+            planta_filtrada = planta or (self.planta_dropdown_resp.get() if self.planta_dropdown_resp else "Todos")
 
             print(f"[DEBUG] Cargando datos para planta: {planta_filtrada}, búsqueda: {search}, página: {page}")
 
@@ -759,13 +726,12 @@ class GuiInicial(ctk.CTk):
         eliminar_button.pack(side="left", padx=5)
 
         # Dropdown para filtro por planta si es admin
-        if self.privilegio == "admin":
-            planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
-            planta_label.pack(side="left", padx=5)
+        planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
+        planta_label.pack(side="left", padx=5)
 
-            self.planta_dropdown_resp = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
-            self.planta_dropdown_resp.bind("<<ComboboxSelected>>", self.filtrar_por_planta_resp)
-            self.planta_dropdown_resp.pack(side="left", padx=5)
+        self.planta_dropdown_resp = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.planta_dropdown_resp.bind("<<ComboboxSelected>>", self.filtrar_por_planta_resp)
+        self.planta_dropdown_resp.pack(side="left", padx=5)
 
         # Botón para exportar tabla completa
         exportar_button = ctk.CTkButton(filtros_frame, text="Exportar", command=self.exportar_tabla_completa_resp, width=80, fg_color="#4CAF50")
@@ -817,18 +783,15 @@ class GuiInicial(ctk.CTk):
         """
         Función para buscar equipos de respiración según un término de búsqueda.
         """
-        search_term = self.search_input_resp.get()  # Obtener el término de búsqueda desde la entrada
+        search_term = self.search_input_resp()  # Obtener el término de búsqueda desde la entrada
         if not search_term:
             messagebox.showwarning("Advertencia", "Ingrese un término de búsqueda.")
             return
 
         print(f"Término de búsqueda: {search_term}")
 
-        # Determinar la planta según el privilegio
-        if self.privilegio == "admin" and hasattr(self, "planta_dropdown_resp"):
-            planta_filtrada = self.planta_dropdown_resp.get()
-        else:
-            planta_filtrada = self.empresa
+        # Determinar la planta
+        planta_filtrada = self.planta_dropdown_resp.get() if hasattr(self, "planta_dropdown_resp") else "Todos"
 
         # Reiniciar a la primera página y cargar los datos filtrados
         self.current_page = 1
@@ -871,18 +834,15 @@ class GuiInicial(ctk.CTk):
             entry.grid(row=idx, column=1, padx=10, pady=5)
             entradas[campo] = entry
 
-        # Campo de planta
+        # Campo de planta como dropdown
         label_planta = ctk.CTkLabel(top, text="Planta", font=("Arial", 12))
         label_planta.grid(row=len(campos), column=0, padx=10, pady=5, sticky="w")
 
-        if self.privilegio == "admin":  # Si es administrador, permitir seleccionar la planta
-            planta_entry = ctk.CTkComboBox(top, values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], width=250)
-            planta_entry.grid(row=len(campos), column=1, padx=10, pady=5)
-        else:  # Si no es administrador, prellenar la planta con la empresa
-            planta_entry = ctk.CTkEntry(top, width=250)
-            planta_entry.grid(row=len(campos), column=1, padx=10, pady=5)
-            planta_entry.insert(0, self.empresa)
-            planta_entry.configure(state="disabled")  # No editable
+        # Crear ComboBox para el campo "planta"
+        planta_options = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]  # Opciones disponibles
+        planta_entry = ctk.CTkComboBox(top, values=planta_options, width=250)
+        planta_entry.grid(row=len(campos), column=1, padx=10, pady=5)
+        planta_entry.set(self.empresa)  # Prellenar con la empresa del usuario (si se desea)
 
         entradas["planta"] = planta_entry
 
@@ -990,24 +950,24 @@ class GuiInicial(ctk.CTk):
 
             entries[field] = entry
 
-        # Campo de planta (solo editable si el usuario es admin)
-        if self.privilegio == "admin":
-            planta_entry = ctk.CTkComboBox(scrollable_frame, values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], width=250)
-            planta_entry.grid(row=len(fields), column=1, padx=10, pady=5)
-            planta_entry.set(planta)  # Valor inicial para planta
-        else:
-            planta_entry = ctk.CTkEntry(scrollable_frame, width=250)
-            planta_entry.grid(row=len(fields), column=1, padx=10, pady=5)
-            planta_entry.insert(0, self.empresa)
-            planta_entry.configure(state="disabled")  # No editable para usuarios no admin
+        # Campo de planta (editable como dropdown)
+        planta_label = ctk.CTkLabel(scrollable_frame, text="Planta", font=("Arial", 12))
+        planta_label.grid(row=len(fields), column=0, padx=10, pady=5, sticky="w")
 
-        entries["planta"] = planta_entry
+        planta_dropdown = ctk.CTkComboBox(
+            scrollable_frame, 
+            values=["Planta 1", "Planta 2", "Planta 3"],  # Reemplaza con las plantas reales
+            width=250
+        )
+        planta_dropdown.set(planta)  # Preseleccionar la planta actual
+        planta_dropdown.grid(row=len(fields), column=1, padx=10, pady=5)
+        entries["planta"] = planta_dropdown
 
         def guardar_cambios():
             """
             Envía los datos modificados al servidor para actualizar el equipo de respiración.
             """
-            nuevos_datos = {field: entry.get() for field, entry in entries.items()}
+            nuevos_datos = {field: (entry.get() if field != "planta" else planta_dropdown.get()) for field, entry in entries.items()}
 
             # Validar que todos los campos están completos
             for campo, valor in nuevos_datos.items():
@@ -1027,7 +987,6 @@ class GuiInicial(ctk.CTk):
 
         guardar_button = ctk.CTkButton(top, text="Guardar Cambios", command=guardar_cambios)
         guardar_button.pack(pady=10)
-
 
 
     def cerrar_sesion(self):

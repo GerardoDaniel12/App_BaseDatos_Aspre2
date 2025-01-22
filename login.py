@@ -120,10 +120,10 @@ class LoginWindow(ctk.CTk):
         if privilegio == "admin":
             GuiInicial(user_data, privilegio, empresa).mainloop()  # Pasa la empresa correctamente
         else:
-            GuiInicialNoAdmin(user_data, empresa).mainlooop()
+            GuiInicialNoAdmin(user_data, privilegio, empresa).mainloop()
 
 if __name__ == "__main__":
     app = LoginWindow()
     app.mainloop()
-    app.mainlooop()
+    app.mainloop()
 
