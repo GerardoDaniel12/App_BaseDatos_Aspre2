@@ -13,6 +13,10 @@
    'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
    'carpeta\\App_BaseDatos_Aspre2\\GuiInicial.py',
    'PYMODULE'),
+  ('GuiInicialNoAdmin',
+   'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
+   'carpeta\\App_BaseDatos_Aspre2\\GuiInicialNoAdmin.py',
+   'PYMODULE'),
   ('PIL',
    'D:\\Daniel_Programacion\\Documentos\\App-BD-Aspre\\Nueva '
    'carpeta\\App_BaseDatos_Aspre2\\venv\\Lib\\site-packages\\PIL\\__init__.py',
