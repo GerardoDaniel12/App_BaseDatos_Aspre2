@@ -250,6 +250,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Modificar Extintor")
         top.geometry("400x570")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         scrollable_frame = ctk.CTkScrollableFrame(top, width=380, height=400)
         scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
@@ -267,7 +270,7 @@ class GuiInicial(ctk.CTk):
             "ClaseK": [6.0],
             "ClaseD": [13.0],
             "AFFF": [6.0, 9.0, 50.0, 68.0],
-            "AP": [6.0]
+            "AP": [6.0, 9.0]
         }
 
         opciones_capacidad = []
@@ -497,6 +500,10 @@ class GuiInicial(ctk.CTk):
         top.title("Exportar Reporte de Extintores")
         top.geometry("400x200")
 
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
+
         # Etiqueta de descripción
         label = ctk.CTkLabel(
             top,
@@ -550,6 +557,10 @@ class GuiInicial(ctk.CTk):
                 filtro_top = ctk.CTkToplevel(top)
                 filtro_top.title("Seleccionar Filtros")
                 filtro_top.geometry("300x200")
+
+                filtro_top.lift()
+                filtro_top.attributes('-topmost', True)
+                filtro_top.after(10, lambda: top.attributes('-topmost', False))
 
                 # Campo para el mes
                 mes_label = ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12))
@@ -825,6 +836,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Agregar Nuevo Gabinete")
         top.geometry("450x500")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Campos de entrada
         campos = ["referencia", "numero", "area", "ubicacion", "fecha_ph"]
@@ -1003,6 +1017,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Equipo de Respiracion")
         top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Etiqueta de descripción
         label = ctk.CTkLabel(
@@ -1035,6 +1052,9 @@ class GuiInicial(ctk.CTk):
                 filtro_top = ctk.CTkToplevel(top)
                 filtro_top.title("Seleccionar Filtros")
                 filtro_top.geometry("300x200")
+                filtro_top.lift()
+                filtro_top.attributes('-topmost', True)
+                filtro_top.after(10, lambda: top.attributes('-topmost', False))
 
                 # Campo para el mes
                 mes_label = ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12))
@@ -1312,6 +1332,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Agregar Nuevo Gabinete de Bomberos")
         top.geometry("450x500")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Campos de entrada
         campos = ["referencia", "numero", "area", "ubicacion"]
@@ -1480,6 +1503,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Equipo de Bomberos")
         top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False)) 
 
         # Etiqueta de descripción
         label = ctk.CTkLabel(
@@ -1512,7 +1538,9 @@ class GuiInicial(ctk.CTk):
                 filtro_top = ctk.CTkToplevel(top)
                 filtro_top.title("Seleccionar Filtros")
                 filtro_top.geometry("300x200")
-
+                filtro_top.lift()
+                filtro_top.attributes('-topmost', True)
+                filtro_top.after(10, lambda: top.attributes('-topmost', False))
                 # Campo para el mes
                 mes_label = ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12))
                 mes_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")
@@ -1791,6 +1819,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Agregar Nuevo Gabinete de Hidrantes")
         top.geometry("450x500")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Campos de entrada
         campos = ["referencia", "numero", "area", "ubicacion"]
@@ -1983,6 +2014,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Mangueras")
         top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Etiqueta de descripción
         label = ctk.CTkLabel(
@@ -2015,7 +2049,9 @@ class GuiInicial(ctk.CTk):
                 filtro_top = ctk.CTkToplevel(top)
                 filtro_top.title("Seleccionar Filtros")
                 filtro_top.geometry("300x200")
-
+                filtro_top.lift()
+                filtro_top.attributes('-topmost', True)
+                filtro_top.after(10, lambda: top.attributes('-topmost', False))
                 # Campo para el mes
                 mes_label = ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12))
                 mes_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")

@@ -319,7 +319,9 @@ class GuiInicialNoAdmin(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Extintores")
         top.geometry("400x200")
-
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
         # Etiqueta de descripción
         label = ctk.CTkLabel(
             top,
@@ -643,6 +645,9 @@ class GuiInicialNoAdmin(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Extintores")
         top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Etiqueta de descripción
         label = ctk.CTkLabel(
@@ -978,6 +983,9 @@ class GuiInicialNoAdmin(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Equipo de Bomberos")
         top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
         # Etiqueta de descripción
         label = ctk.CTkLabel(
@@ -1327,7 +1335,10 @@ class GuiInicialNoAdmin(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Exportar Reporte de Mangueras")
         top.geometry("400x200")
-
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
+        
         # Etiqueta de descripción
         label = ctk.CTkLabel(
             top,
