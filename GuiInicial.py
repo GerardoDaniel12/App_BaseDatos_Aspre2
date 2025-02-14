@@ -4,11 +4,12 @@ import tkinter.messagebox as messagebox
 from DB.ConexionExtintores import *
 from datetime import datetime
 from io import BytesIO
-
+import datetime
 
 # Configuración para el tema del sistema
 ctk.set_appearance_mode("system")
 ctk.set_default_color_theme("blue")
+x = datetime.datetime.now()
 
 class GuiInicial(ctk.CTk):
     def __init__(self, user_data, privilegio, empresa):
@@ -24,10 +25,14 @@ class GuiInicial(ctk.CTk):
         self.planta_dropdown_resp = None
         self.planta_dropdown_bomberos = None
         self.planta_dropdown_hidrantes = None
+        self.tiempo_real_dropdown = None
         self.search_input = None  # Campo de búsqueda
         self.search_input_resp = None
         self.search_input_bomberos = None
         self.search_input_hidrantes = None
+        self.search_tiempo_real_dropdown = None
+        self.mes_dropdown_inspeccionados = x.month
+        self.ano_dropdown_inspeccionados = x.year
         self.tree = None
         self.initialize_widgets()
 
@@ -45,23 +50,87 @@ class GuiInicial(ctk.CTk):
         ctk.CTkLabel(nav_frame, text=self.user_data.get("NombreUsuario", "Usuario"), font=("Arial", 14, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 5))
         ctk.CTkLabel(nav_frame, text=self.empresa, font=("Arial", 12), text_color="#BDC3C7" if ctk.get_appearance_mode() == "Dark" else "#666666").pack(pady=(0, 20))
 
-        ctk.CTkLabel(nav_frame, text="Navegación", font=("Arial", 16, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 10))
+        ctk.CTkLabel(nav_frame, text="Extintores", font=("Arial", 16, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 10))
+    
+        linea_superior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_superior.pack(pady=(0, 0))
+        extintores_button = ctk.CTkButton(nav_frame, text="Extintores Generales", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion("Extintores Generales"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        extintores_button.pack(pady=(0,0))
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
 
-        extintores_button = ctk.CTkButton(nav_frame, text="Extintores Generales", command=lambda: self.mostrar_seccion("Extintores Generales"), width=180, fg_color="#4B8BBE", height=35)
-        extintores_button.pack(pady=10)
 
-        respiracion_button = ctk.CTkButton(nav_frame, text="Gabinete de Equipo de Respiración", command=lambda: self.mostrar_seccion_Gabinete_Equipo_Respiración("Gabinete de Equipo de Respiración"), width=180, fg_color="#4B8BBE", height=35)
-        respiracion_button.pack(pady=10)
+        inspecciones_tiempo_button = ctk.CTkButton(nav_frame, text="Inspecciones", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_inspecciones_hechas("Extintores Inspeccionados"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        inspecciones_tiempo_button.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 30))
+        
+        ctk.CTkLabel(nav_frame, text="Gabinetes", font=("Arial", 16, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 10))
 
-        bomberos_button = ctk.CTkButton(nav_frame, text="Gabinete de Equipo de Bomberos", command=lambda: self.mostrar_seccion_Gabinete_Equipo_Bomberos_PSC("Gabinete de Equipo de Bomberos"), width=180, fg_color="#4B8BBE", height=35)
-        bomberos_button.pack(pady=10)
+        linea_superior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_superior.pack(pady=(0, 0))
+        respiracion_button = ctk.CTkButton(nav_frame, text="Equipos de Respiracion", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_Gabinete_Equipo_Respiración("Equipo de respiracion"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        respiracion_button.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
 
-        mangueras_button = ctk.CTkButton(nav_frame, text="Gabinete de Mangueras e Hidrantes", command=lambda: self.mostrar_seccion_Gabinete_hidrantes_mangueras("Gabinete de Mangueras e Hidrantes"), width=180, fg_color="#4B8BBE", height=35)
-        mangueras_button.pack(pady=10)
-
-        logout_button = ctk.CTkButton(nav_frame, text="Cerrar Sesión", command=self.cerrar_sesion, fg_color="#d9534f", hover_color="#c9302c", width=180)
-        logout_button.pack(pady=20)
-
+        bomberos_button = ctk.CTkButton(nav_frame, text="Equipo de Bomberos", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_Gabinete_Equipo_Bomberos_PSC("Equipos de bomberos"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        bomberos_button.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
+        
+        mangueras_button = ctk.CTkButton(nav_frame, text="Mangueras e Hidrantes", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_Gabinete_hidrantes_mangueras("Mangueras e hidrantes"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        mangueras_button.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
+                
+        inspecciones_tiempo_button = ctk.CTkButton(nav_frame, text="Inspecciones", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_inspecciones_hechas("Inspecciones"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        inspecciones_tiempo_button.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 80))
+        
+        linea_superior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_superior.pack(pady=(0, 0))
+        logout_button = ctk.CTkButton(nav_frame, text="Cerrar Sesion", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.cerrar_sesion(),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#e73636", 
+        corner_radius=0)
+        logout_button.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 30))
+        
         # Frame de contenido principal para la tabla de extintores
         self.extintores_frame = ctk.CTkFrame(main_frame, corner_radius=15, fg_color="#4D4D4D" if ctk.get_appearance_mode() == "Dark" else "#FFFFFF")
         self.extintores_frame.pack(fill="both", expand=True, padx=(0, 20), pady=10)
@@ -151,7 +220,7 @@ class GuiInicial(ctk.CTk):
 
         # Botón para siguiente página
         siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente, width=100)
-        siguiente_button.pack(side="left", padx=5)
+        siguiente_button.pack(side="right", padx=5)
 
         # Cargar datos en la tabla
         self.cargar_datos_extintores()
@@ -389,6 +458,9 @@ class GuiInicial(ctk.CTk):
         top = ctk.CTkToplevel(self)
         top.title("Agregar Nuevo Extintor")
         top.geometry("450x640")
+        top.lift()
+        top.attributes('-topmost', True)  # Mantiene la ventana al frente
+        top.after(100, lambda: top.attributes('-topmost', False))  # Permite interacción con otras ventanas después de 100ms
 
         # Opciones para dropdowns
         opciones_planta = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]
@@ -620,7 +692,6 @@ class GuiInicial(ctk.CTk):
             command=exportar_reporte
         )
         exportar_reporte_button.pack(pady=10)
-
 
 #############################################################################################################
                             #Seccion para Gabientes de equipo de respiracion:
@@ -988,14 +1059,6 @@ class GuiInicial(ctk.CTk):
 
         def guardar_cambios():
             nuevos_datos = {field: (entry.get() if field != "planta" else planta_dropdown.get()) for field, entry in entries.items()}
-
-            fecha_ph = nuevos_datos.get("fecha_ph", "")
-            try:
-                # Validar que la fecha tenga el formato 'MM AAAA'
-                datetime.strptime(fecha_ph, "%m %Y")
-            except ValueError:
-                messagebox.showerror("Error", "El campo 'Fecha PH' debe tener el formato 'MM AAAA'.")
-                return
 
             # Llamar a la API para actualizar los datos
             respuesta = editar_gabinetes_api(referencia, nuevos_datos)
@@ -1860,7 +1923,7 @@ class GuiInicial(ctk.CTk):
             Valida si una fecha está en formato AAAA-MM-DD.
             """
             try:
-                datetime.strptime(fecha_texto, "%Y-%m-%d")
+                datetime.datetime.strptime(fecha_texto, "%Y-%m-%d")
                 return True
             except ValueError:
                 return False
@@ -2040,6 +2103,595 @@ class GuiInicial(ctk.CTk):
             Exporta el reporte completo de extintores inspeccionados y no inspeccionados.
             """
             planta_seleccionada = self.planta_dropdown_hidrantes.get() if self.planta_dropdown_hidrantes else self.empresa
+
+            # Mostrar ventana emergente para elegir mes y año
+            def seleccionar_filtros():
+                """
+                Permite al usuario seleccionar el mes y el año para filtrar el reporte.
+                """
+                filtro_top = ctk.CTkToplevel(top)
+                filtro_top.title("Seleccionar Filtros")
+                filtro_top.geometry("300x200")
+                filtro_top.lift()
+                filtro_top.attributes('-topmost', True)
+                filtro_top.after(10, lambda: top.attributes('-topmost', False))
+                # Campo para el mes
+                mes_label = ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12))
+                mes_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+                mes_entry = ctk.CTkEntry(filtro_top, width=150)
+                mes_entry.grid(row=0, column=1, padx=10, pady=5)
+
+                # Campo para el año
+                ano_label = ctk.CTkLabel(filtro_top, text="Año (Opcional):", font=("Arial", 12))
+                ano_label.grid(row=1, column=0, padx=10, pady=5, sticky="w")
+                ano_entry = ctk.CTkEntry(filtro_top, width=150)
+                ano_entry.grid(row=1, column=1, padx=10, pady=5)
+
+                # Botón para confirmar los filtros
+                def confirmar_filtros():
+                    mes = mes_entry.get()
+                    ano = ano_entry.get()
+
+                    # Validar que mes y año sean números si no están vacíos
+                    if mes and not mes.isdigit():
+                        messagebox.showerror("Error", "El mes debe ser un número.")
+                        return
+                    if ano and not ano.isdigit():
+                        messagebox.showerror("Error", "El año debe ser un número.")
+                        return
+
+                    resultado = exportar_reporte_hidrantes_mangueras_psc_api(
+                        planta_seleccionada,
+                        mes=int(mes) if mes else None,
+                        ano=int(ano) if ano else None
+                    )
+
+                    if isinstance(resultado, BytesIO):
+                        ruta_archivo = filedialog.asksaveasfilename(
+                            defaultextension=".xlsx",
+                            filetypes=[("Archivos de Excel", "*.xlsx")],
+                            title="Guardar archivo como",
+                            initialfile=f"Reporte_Gabinetes_Mangueras_Hidrantes_{planta_seleccionada}.xlsx"
+                        )
+                        if ruta_archivo:
+                            with open(ruta_archivo, "wb") as archivo:
+                                archivo.write(resultado.getvalue())
+                            messagebox.showinfo("Éxito", f"Reporte exportado exitosamente a {ruta_archivo}")
+                    else:
+                        messagebox.showerror("Error", f"Error al exportar el reporte: {resultado}")
+
+                    filtro_top.destroy()
+
+                confirmar_button = ctk.CTkButton(filtro_top, text="Confirmar", command=confirmar_filtros)
+                confirmar_button.grid(row=2, column=0, columnspan=2, pady=10)
+
+            seleccionar_filtros()
+
+        exportar_reporte_button = ctk.CTkButton(
+            top,
+            text="Exportar Reporte Completo",
+            command=exportar_reporte
+        )
+        exportar_reporte_button.pack(pady=10)
+
+
+#############################################################################################################
+            #Seccion para mostrar en tiempo real los extintores que se inspeccionan:
+#############################################################################################################
+
+
+    def configurar_filtros_inspeccionados(self):
+        filtros_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        filtros_frame.pack(fill="x", pady=(5, 10))
+
+        planta_label = ctk.CTkLabel(filtros_frame, text="Seleccionar Planta:", font=("Arial", 12))
+        planta_label.pack(side="left", padx=5)
+
+        self.tiempo_real_dropdown = ctk.CTkComboBox(
+            filtros_frame,
+            values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"],
+            width=200
+        )
+        self.tiempo_real_dropdown.set("Todos")  # Valor inicial predeterminado
+        self.tiempo_real_dropdown.pack(side="left", padx=5)
+        self.tiempo_real_dropdown.bind("<<ComboboxSelected>>", self.filtrar_por_planta_inspeccionados)
+
+        # Campo de búsqueda
+        self.search_tiempo_real_dropdown = ctk.CTkEntry(filtros_frame, placeholder_text="Buscar equipos hidrantes...", width=200)
+        self.search_tiempo_real_dropdown.pack(side="left", padx=5)
+
+        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_equipo_hidrantes)
+        search_button.pack(side="left", padx=5)
+
+    def filtrar_por_planta_inspeccionados(self, event=None):
+        """
+        Maneja el evento de selección de planta en el dropdown.
+        """
+        planta_seleccionada = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos"
+        mes = self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().year
+        ano = self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().month
+        search = self.search_input.get() if self.search_input else None
+
+        print(f"[DEBUG] Filtrando: Planta={planta_seleccionada}, Mes={mes}, Año={ano}, Search={search}")
+        self.cargar_datos_extintores_visualizador(planta=planta_seleccionada, mes=mes, ano=ano, search=search)
+
+    def filtrar_por_mes_inspeccionados(self, event=None):
+        """
+        Maneja el evento de selección del mes en el dropdown.
+        """
+        mes_seleccionado = self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month
+        planta = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos"
+        ano = self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year
+        search = self.search_input.get() if self.search_input else None
+
+        print(f"[DEBUG] Filtrando: Planta={planta}, Mes={mes_seleccionado}, Año={ano}, Search={search}")
+        self.cargar_datos_extintores_visualizador(planta=planta, mes=mes_seleccionado, ano=ano, search=search)
+
+    def filtrar_por_ano_inspeccionados(self, event=None):
+        """
+        Maneja el evento de selección del año en el dropdown.
+        """
+        ano_seleccionado = self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year
+        planta = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos"
+        mes = self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month
+        search = self.search_input.get() if self.search_input else None
+
+        print(f"[DEBUG] Filtrando: Planta={planta}, Mes={mes}, Año={ano_seleccionado}, Search={search}")
+        self.cargar_datos_extintores_visualizador(planta=planta, mes=mes, ano=ano_seleccionado, search=search)
+
+    def cargar_datos_extintores_visualizador(self, planta=None, mes=None, ano=None, page=1, search=None):
+        """Carga los datos de inspecciones en la tabla desde la API de manera eficiente."""
+        try:
+            # Obtener valores actuales de los filtros si no se pasaron como parámetros
+            planta_filtrada = planta or (self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos")
+            mes_filtrado = mes or (self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month)
+            ano_filtrado = ano or (self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year)
+
+            print(f"[DEBUG] Cargando datos: Planta={planta_filtrada}, Mes={mes_filtrado}, Año={ano_filtrado}, Página={page}")
+
+            # Obtener los datos con filtros y paginación
+            datos_extintores = obtener_extintores_gabinetes_inspeccionados_en_linea_api(
+                planta_filtrada, mes=mes_filtrado, ano=ano_filtrado, page=page, search=search
+            )
+
+            if not datos_extintores or not isinstance(datos_extintores, list):
+                print("[DEBUG] No se encontraron datos de extintores.")
+                return  # Evita el uso de messagebox para no bloquear la UI
+
+            # Limpiar solo si hay nuevos datos
+            if len(self.tree.get_children()) > 0:
+                self.tree.delete(*self.tree.get_children())
+
+            # Insertar datos en la tabla en un solo ciclo
+            for extintor in datos_extintores:
+                self.tree.insert("", "end", values=(
+                    extintor.get("referencia", ""),
+                    extintor.get("fecha_inspeccionado", ""),
+                    extintor.get("inspeccionista", ""),
+                    extintor.get("planta", ""),
+                    extintor.get("area", ""),
+                    extintor.get("numerodeextintor", ""),
+                    extintor.get("ubicacion_extintor", ""),
+                    extintor.get("tipo", ""),
+                    extintor.get("capacidad_kg", ""),
+                    extintor.get("fecha_recarga", ""),
+                    extintor.get("fecha_vencimiento", ""),
+                    extintor.get("fecha_ultima_prueba", ""),
+                    extintor.get("fecha_fabricacion", ""),
+                    extintor.get("presion", ""),
+                    extintor.get("manometro", ""),
+                    extintor.get("seguro", ""),
+                    extintor.get("etiquetas_datos", ""),
+                    extintor.get("senalamientos", ""),
+                    extintor.get("circulo_numero", ""),
+                    extintor.get("pintura", ""),
+                    extintor.get("manguera", ""),
+                    extintor.get("boquilla", ""),
+                    extintor.get("golpes_danos", ""),
+                    extintor.get("obstruido", ""),
+                    extintor.get("funda", ""),
+                    extintor.get("condicionllanta", ""),
+                    extintor.get("comentarios", ""),
+                ))
+
+            # Actualizar página actual
+            self.current_page = page
+            print(f"[DEBUG] Datos cargados para planta: {planta_filtrada}, página: {page}, mes: {mes_filtrado}, año: {ano_filtrado}, SEARCH: {search}")
+
+        except Exception as e:
+            print(f"[ERROR] {e}")  # Evitar messagebox para no bloquear la UI
+
+    def pagina_siguiente_extintores_inspeccionados(self):
+        """Avanza a la siguiente página y recarga los datos."""
+        self.current_page += 1  # Aumenta el número de página
+        print(f"[DEBUG] Página siguiente: {self.current_page}")  # Depuración
+        self.cargar_datos_extintores_visualizador(page=self.current_page)
+
+    def pagina_anterior_extintores_inspeccionados(self):
+        """Retrocede una página (si no es la primera) y recarga los datos."""
+        if self.current_page > 1:
+            self.current_page -= 1  # Reduce el número de página
+            print(f"[DEBUG] Página anterior: {self.current_page}")  # Depuración
+            self.cargar_datos_extintores_visualizador(page=self.current_page)
+        else:
+            print("[DEBUG] Ya estás en la primera página.")
+        
+    def mostrar_seccion_inspecciones_hechas(self, titulo):
+        self.title(titulo)  # Cambia el título dinámicamente
+        self.extintores_frame.pack(fill="both", expand=True)
+        for widget in self.extintores_frame.winfo_children():
+            widget.destroy()  # Limpia el contenido actual del frame
+
+        filtros_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        filtros_frame.pack(fill="x", pady=(5, 10))
+
+        # Campo de búsqueda
+        search_label = ctk.CTkLabel(filtros_frame, text="Buscar:", font=("Arial", 12))
+        search_label.pack(side="left", padx=5)
+
+        self.search_tiempo_real_dropdown = ctk.CTkEntry(filtros_frame, placeholder_text="Número, referencia, ubicación", width=180)
+        self.search_tiempo_real_dropdown.pack(side="left", padx=5)
+
+        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_equipo_inspeccionados, width=40)
+        search_button.pack(side="left", padx=5)
+
+        # Botón de refrescar tabla
+        refresh_button = ctk.CTkButton(filtros_frame, text="Refrescar", command=self.cargar_datos_extintores_visualizador, width=80)
+        refresh_button.pack(side="left", padx=5)
+
+        # Botón para eliminar extintor
+        eliminar_button = ctk.CTkButton(filtros_frame, text="Eliminar", command=self.eliminar_equipo_inspeccionados, width=80, fg_color="#FF6347")
+        eliminar_button.pack(side="left", padx=5)
+
+        # Dropdown para filtro por planta si es admin
+        planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
+        planta_label.pack(side="left", padx=5)
+
+        self.tiempo_real_dropdown = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.tiempo_real_dropdown.bind("<<ComboboxSelected>>", self.filtrar_por_planta_inspeccionados)
+        self.tiempo_real_dropdown.pack(side="left", padx=5)
+        
+        # Botón para exportar tabla completa
+        exportar_button = ctk.CTkButton(filtros_frame, text="Exportar", command=self.exportar_reporte_inspeccionados, width=80, fg_color="#4CAF50")
+        exportar_button.pack(side="right", padx=5)
+        
+        filtros_frame_abajo = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        filtros_frame_abajo.pack(fill="x", pady=(5, 10))
+        
+        # Dropdown para filtro por mes 
+        mes_dropdown_inspeccionados = ctk.CTkLabel(filtros_frame_abajo, text="Mes:", font=("Arial", 12))
+        mes_dropdown_inspeccionados.pack(side="left", padx=5)
+        
+        self.mes_dropdown_inspeccionados = ttk.Combobox(filtros_frame_abajo, values=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"], state="readonly", width=6)
+        self.mes_dropdown_inspeccionados.bind("<<ComboboxSelected>>", self.filtrar_por_mes_inspeccionados)
+        self.mes_dropdown_inspeccionados.pack(side="left", padx=5)
+        
+        # Dropdown para filtro por año
+        ano_dropdown_inspeccionados = ctk.CTkLabel(filtros_frame_abajo, text="Año:", font=("Arial", 12))
+        ano_dropdown_inspeccionados.pack(side="left", padx=5)
+        
+        self.ano_dropdown_inspeccionados = ttk.Combobox(filtros_frame_abajo, values=["2025", "2026", "2027"], state="readonly", width=6)
+        self.ano_dropdown_inspeccionados.bind("<<ComboboxSelected>>", self.filtrar_por_ano_inspeccionados)
+        self.ano_dropdown_inspeccionados.pack(side="left", padx=5)
+
+        # Estilo de la tabla
+        style = ttk.Style()
+        style.configure("Treeview", font=("Arial", 10), rowheight=30, background="#1E1E1E", foreground="white", fieldbackground="#1E1E1E", borderwidth=1)
+        style.configure("Treeview.Heading", font=("Arial", 12, "bold"), background="#4B8BBE", foreground="white")
+        style.map("Treeview", background=[("selected", "#4B8BBE")])
+
+        boton_izquierda = ctk.CTkButton(self.extintores_frame, text="<",text_color="white" if ctk.get_appearance_mode() == "Dark" else "black",  command=lambda: self.mover_tabla_horizontalmente(-150), width=20, height=550, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9")
+        boton_izquierda.pack(side="left", padx=5, pady=5)
+        
+        columnas = (
+            "Referencia", "Fecha inspeccionado", "Inspeccionista", "Planta", "Area", "Numero de extintor", "Ubicacion de extintor",
+            "Tipo", "Capacidad en kg", "Fecha de recarga", "Fecha de vencimiento", "Fecha ph", "Fecha fabricacion",
+            "Presion", "Manometro", "Seguro", "Etiquetas de datos", "Señalamientos",
+            "Circulo y numero", "Pintura", "Manguera", "Boquilla", "Golpes o daños", "Obstruido", 
+            "Funda", "Condicion de llanta", "Comentarios"
+        )
+
+        self.tree = ttk.Treeview(self.extintores_frame, columns=columnas, show='headings', style="Treeview")
+
+        # Configuración de encabezados y ancho de columnas
+        for col in columnas:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, anchor="center", width=150)
+
+        boton_derecha = ctk.CTkButton(self.extintores_frame, text=">",text_color="white" if ctk.get_appearance_mode() == "Dark" else "black",  command=lambda: self.mover_tabla_horizontalmente(150), width=20, height=550, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9")
+        boton_derecha.pack(side="right", padx=5, pady=5)
+
+
+        self.tree.pack(side="top", fill="both", expand=True, pady=(5, 5))
+
+
+        # Agregar los botones de paginación
+        paginacion_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        paginacion_frame.pack(side="bottom", fill="x", pady=(10, 5))  # Asegúrate de que esté al final
+
+        # Botón para retroceder de página
+        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Pagina", command=self.pagina_anterior_extintores_inspeccionados, width=100)
+        retroceder_button.pack(side="left", padx=5)
+
+        # Botón para siguiente página
+        siguiente_button = ctk.CTkButton(paginacion_frame, text="Pagina >>", command=self.pagina_siguiente_extintores_inspeccionados, width=100)
+        siguiente_button.pack(side="right", padx=5)
+        
+        # Cargar datos en la tabla
+        self.cargar_datos_extintores_visualizador()
+        
+    # Función para mover la tabla horizontalmente
+    def mover_tabla_horizontalmente(self, direction):
+        """ Mueve la tabla horizontalmente al hacer clic en los botones. """
+        self.tree.xview_scroll(direction, "units")  # Mueve la vista de la tabla por unidades
+
+    #Funcion para buscar un equipo
+    def buscar_equipo_inspeccionados(self):
+        """
+        Función para buscar equipos de respiración según un término de búsqueda.
+        """
+        search_term = self.search_tiempo_real_dropdown.get()  # Obtener el término de búsqueda desde la entrada
+        if not search_term:
+            messagebox.showwarning("Advertencia", "Ingrese un término de búsqueda.")
+            return
+
+        print(f"Término de búsqueda: {search_term}")
+
+        # Determinar la planta
+        planta_filtrada = self.tiempo_real_dropdown.get() if hasattr(self, "tiempo_real_dropdown") else "Todos"
+
+        # Reiniciar a la primera página y cargar los datos filtrados
+        self.current_page = 1
+        self.cargar_datos_extintores_visualizador(planta=planta_filtrada, search=search_term, page=self.current_page)
+
+    def exportar_tabla_completa_inspeccionados(self):
+        """
+        Exporta la tabla completa o filtrada según la planta seleccionada o el privilegio del usuario.
+        """
+        try:
+            # Si el usuario es admin, usa el valor del dropdown; si no, usa la empresa predeterminada
+            planta_seleccionada = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else self.empresa
+
+            # Llama a la función de exportación, pasando el filtro de planta
+            resultado = exportar_gabinetes_hidrantes_mangueras_api(self.empresa, planta_seleccionada)
+
+            # Mostrar mensajes según el resultado
+            if "Archivo Excel guardado exitosamente" in resultado:
+                messagebox.showinfo("Éxito", resultado)
+            else:
+                messagebox.showerror("Error", resultado)
+        except Exception as e:
+            messagebox.showerror("Error", f"Error inesperado durante la exportación: {e}")
+
+    def agregar_equipo_inspeccionados(self):
+        """
+        Abre una ventana emergente para agregar un nuevo gabinete de hidrantes.
+        """
+        # Crear ventana emergente
+        top = ctk.CTkToplevel(self)
+        top.title("Agregar Nuevo Gabinete de Hidrantes")
+        top.geometry("450x500")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
+
+        # Campos de entrada
+        campos = ["referencia", "numero", "area", "ubicacion"]
+        entradas = {}
+
+        # Crear formulario dinámico
+        for idx, campo in enumerate(campos):
+            label = ctk.CTkLabel(top, text=campo.replace("_", " ").capitalize(), font=("Arial", 12))
+            label.grid(row=idx, column=0, padx=10, pady=5, sticky="w")
+
+            entry = ctk.CTkEntry(top, width=250)
+            entry.grid(row=idx, column=1, padx=10, pady=5)
+            entradas[campo] = entry
+
+        # Campo de fecha_ph_manguera
+        label_fecha_ph = ctk.CTkLabel(top, text="Fecha PH Manguera", font=("Arial", 12))
+        label_fecha_ph.grid(row=len(campos), column=0, padx=10, pady=5, sticky="w")
+
+        fecha_entry = ctk.CTkEntry(top, width=250, placeholder_text="YYYY-MM-DD")
+        fecha_entry.grid(row=len(campos), column=1, padx=10, pady=5)
+        entradas["fecha_ph_manguera"] = fecha_entry
+
+        # Campo de planta como dropdown
+        label_planta = ctk.CTkLabel(top, text="Planta", font=("Arial", 12))
+        label_planta.grid(row=len(campos) + 1, column=0, padx=10, pady=5, sticky="w")
+
+        planta_options = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]
+        planta_entry = ctk.CTkComboBox(top, values=planta_options, width=250)
+        planta_entry.grid(row=len(campos) + 1, column=1, padx=10, pady=5)
+        planta_entry.set(self.empresa)  # Prellenar con la empresa del usuario (si aplica)
+
+        entradas["planta"] = planta_entry
+
+        def validar_fecha(fecha_texto):
+            """
+            Valida si una fecha está en formato AAAA-MM-DD.
+            """
+            try:
+                datetime.datetime.strptime(fecha_texto, "%Y-%m-%d")
+                return True
+            except ValueError:
+                return False
+
+        def guardar_datos():
+            """
+            Guarda los datos del nuevo gabinete y llama a la API para agregarlo.
+            """
+            # Obtener los valores ingresados
+            datos = {campo: entrada.get() for campo, entrada in entradas.items()}
+            datos["planta"] = planta_entry.get()  # Planta seleccionada
+
+            # Validar que todos los campos están llenos
+            for campo, valor in datos.items():
+                if not valor:
+                    messagebox.showerror("Error", f"El campo '{campo}' es obligatorio.")
+                    return
+
+            # Validar formato de fecha para fecha_ph_manguera
+            if not validar_fecha(datos["fecha_ph_manguera"]):
+                messagebox.showerror("Error", "La fecha PH Manguera debe estar en el formato AAAA-MM-DD.")
+                return
+
+            # Llamar a la API para agregar el gabinete
+            respuesta = agregar_gabinete_hidrantes_mangueras(datos)
+
+            if "error" in respuesta:
+                messagebox.showerror("Error", respuesta["error"])
+            else:
+                messagebox.showinfo("Éxito", respuesta.get("message", "El gabinete fue agregado exitosamente."))
+                top.destroy()  # Cerrar ventana emergente
+                self.cargar_datos_hidrantes()  # Refrescar la tabla
+
+        # Botón para guardar los datos
+        guardar_button = ctk.CTkButton(top, text="Guardar", command=guardar_datos)
+        guardar_button.grid(row=len(campos) + 2, column=0, columnspan=2, pady=20)
+
+    def eliminar_equipo_inspeccionados(self):
+        """
+        Elimina un gabinete de bomberos seleccionado en la tabla.
+        """
+        selected_item = self.tree.focus()
+        if not selected_item:
+            messagebox.showwarning("Advertencia", "Seleccione un gabinete para eliminar.")
+            return
+
+        confirm = messagebox.askyesno("Confirmar", "¿Está seguro de que desea eliminar el gabinete seleccionado?")
+        if confirm:
+            # Obtener la referencia del equipo seleccionado
+            equipo_data = self.tree.item(selected_item, "values")
+            try:
+                referencia = equipo_data[0]  # Se asume que la referencia está en la primera columna
+            except IndexError:
+                messagebox.showerror("Error", "No se pudo obtener la referencia del gabinete.")
+                return
+
+            # Llamar a la API para eliminar el gabinete
+            respuesta = eliminar_gabinete_hidrantes_mangueras_api(referencia)
+
+            if "error" in respuesta:
+                messagebox.showerror("Error", respuesta["error"])
+            else:
+                messagebox.showinfo("Éxito", f"El gabinete con referencia '{referencia}' fue eliminado exitosamente.")
+                self.cargar_datos_hidrantes()  # Refrescar la tabla
+
+    def modificar_equipo_inspeccionados(self):
+        """
+        Abre una ventana emergente para modificar los datos de un equipo de bomberos seleccionado en la tabla.
+        """
+        selected_item = self.tree.focus()
+        if not selected_item:
+            messagebox.showwarning("Advertencia", "Seleccione un equipo de bomberos para modificar.")
+            return
+
+        # Obtener los datos del equipo seleccionado
+        equipo_data = self.tree.item(selected_item, "values")
+        
+        try:
+            referencia = equipo_data[0]
+            numero = equipo_data[1]
+            area = equipo_data[2]
+            ubicacion = equipo_data[3]
+            planta = equipo_data[4]
+            fecha_ph_manguera = equipo_data[5]
+        except IndexError as e:
+            messagebox.showerror("Error", f"Error al obtener datos del equipo: {e}")
+            return
+
+        # Crear ventana para modificar los datos
+        top = ctk.CTkToplevel(self)
+        top.title("Modificar Equipo de Bomberos")
+        top.geometry("450x500")
+
+        scrollable_frame = ctk.CTkScrollableFrame(top, width=400, height=350)
+        scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
+
+        # Campos a editar
+        fields = ["referencia", "numero", "area", "ubicacion", "fecha_ph_manguera"]
+        values = [referencia, numero, area, ubicacion, fecha_ph_manguera]
+        entries = {}
+
+        for i, (field, value) in enumerate(zip(fields, values)):
+            label = ctk.CTkLabel(scrollable_frame, text=field.capitalize(), font=("Arial", 12))
+            label.grid(row=i, column=0, padx=10, pady=5, sticky="w")
+            entry = ctk.CTkEntry(scrollable_frame)
+            entry.insert(0, value)  # Prellenar el campo con el valor actual
+            entry.grid(row=i, column=1, padx=10, pady=5, sticky="w")
+            entries[field] = entry
+
+        # Campo de planta como dropdown
+        planta_label = ctk.CTkLabel(scrollable_frame, text="Planta", font=("Arial", 12))
+        planta_label.grid(row=len(fields), column=0, padx=10, pady=5, sticky="w")
+
+        planta_dropdown = ctk.CTkComboBox(
+            scrollable_frame, 
+            values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"],  # Opciones reales
+            width=250
+        )
+        planta_dropdown.set(planta)  # Seleccionar la planta actual
+        planta_dropdown.grid(row=len(fields), column=1, padx=10, pady=5)
+        entries["planta"] = planta_dropdown
+
+        def guardar_cambios():
+            """
+            Envía los nuevos datos del equipo a la API para actualizar.
+            """
+            nuevos_datos = {field: (entry.get() if field != "planta" else planta_dropdown.get()) for field, entry in entries.items()}
+
+            # Validación de datos antes de enviar
+            for field, valor in nuevos_datos.items():
+                if not valor.strip():
+                    messagebox.showerror("Error", f"El campo '{field}' no puede estar vacío.")
+                    return
+
+            # Llamar a la API para actualizar los datos
+            respuesta = editar_gabinetes_hidrantes_mangueras_api(referencia, nuevos_datos)
+            if "error" in respuesta:
+                messagebox.showerror("Error", respuesta["error"])
+            else:
+                messagebox.showinfo("Éxito", "Equipo de bomberos actualizado correctamente.")
+                top.destroy()
+                self.cargar_datos_hidrantes()  # Refrescar la tabla con los datos actualizados
+
+        guardar_button = ctk.CTkButton(top, text="Guardar Cambios", command=guardar_cambios)
+        guardar_button.pack(pady=10)
+
+    def exportar_reporte_inspeccionados(self):
+        """
+        Abre una ventana emergente con opciones para exportar la tabla de datos o un reporte completo de extintores inspeccionados.
+        """
+        top = ctk.CTkToplevel(self)
+        top.title("Exportar Reporte de Mangueras")
+        top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
+
+        # Etiqueta de descripción
+        label = ctk.CTkLabel(
+            top,
+            text="Seleccione una opción para exportar:",
+            font=("Arial", 14)
+        )
+        label.pack(pady=10)
+
+        # Botón para exportar la tabla de datos
+        exportar_tabla_button = ctk.CTkButton(
+            top,
+            text="Exportar Tabla de Datos",
+            command=self.exportar_tabla_completa_hidrantes
+        )
+        exportar_tabla_button.pack(pady=10)
+
+        # Botón para exportar el reporte completo
+        def exportar_reporte():
+            """
+            Exporta el reporte completo de extintores inspeccionados y no inspeccionados.
+            """
+            planta_seleccionada = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else self.empresa
 
             # Mostrar ventana emergente para elegir mes y año
             def seleccionar_filtros():

@@ -3,10 +3,11 @@ import openpyxl
 from openpyxl.styles import Alignment, Font
 from tkinter import filedialog
 from io import BytesIO
+from config import *
+
 
 
 def obtener_extintores_api(empresa, search=None, page=1):
-    url = "https://timeortimee.onrender.com/api/extintores/generales/aspreconsultores/obtener/extintores/Desktop"
     try:
         params = {
             "search": search,
@@ -14,7 +15,7 @@ def obtener_extintores_api(empresa, search=None, page=1):
             "planta": empresa
         }
         print(f"Parámetros enviados a la API: {params}")  # Depuración
-        response = requests.get(url, params=params)
+        response = requests.get(api_url_obtener_extintores, params=params)
         response.raise_for_status()
         data = response.json()
         return data.get("data", [])
@@ -33,12 +34,11 @@ def editar_extintores_api(referencia, datos):
     Returns:
         dict: Respuesta de la API.
     """
-    url = "https://timeortimee.onrender.com/api/extintores/generales/aspreconsultores/editar/extintor"
     payload = {"referencia": referencia, **datos}  # Añadir referencia a los datos
 
     try:
         # Realizar la solicitud PUT
-        response = requests.put(url, json=payload)
+        response = requests.put(API_URL_editar_extintores_api, json=payload)
         response.raise_for_status()  # Lanzar error si el código de estado no es 200
         return response.json()  # Devolver la respuesta como JSON
     except requests.exceptions.RequestException as e:
@@ -59,7 +59,7 @@ def exportar_extintores_api(empresa, privilegio, planta):
     """
     # Construir la URL con el parámetro de planta
     planta_param = planta if planta != "Todos" else ""
-    url = f"https://timeortimee.onrender.com/api/extintores/generales/exportar/excel/desktop?planta={planta_param}"
+    url = f"{API_URL_exportar_extintores_api}{planta_param}"
 
     try:
         # Solicitar el archivo Excel al endpoint
@@ -97,10 +97,9 @@ def eliminar_extintor_api(referencia):
     Returns:
         dict: Respuesta de la API.
     """
-    url = "https://timeortimee.onrender.com/api/extintores/aspreconsultores/generales/eliminar"
     try:
         # Realizar la solicitud DELETE
-        response = requests.delete(url, json={"referencia": referencia})
+        response = requests.delete(API_URL_eliminar_extintor_api, json={"referencia": referencia})
         response.raise_for_status()  # Lanza un error si el código de estado no es 200
         return response.json()  # Retorna la respuesta en formato JSON
     except requests.exceptions.RequestException as e:
@@ -117,10 +116,9 @@ def agregar_extintor_api(datos):
     Returns:
         dict: Respuesta de la API en formato JSON.
     """
-    url = "https://timeortimee.onrender.com/api/extintores/aspreconsultores/generales/agregar"
     try:
         # Realizar la solicitud POST
-        response = requests.post(url, json=datos)
+        response = requests.post(API_URL_agregar_extintor_api, json=datos)
         response.raise_for_status()  # Lanza un error si el código de estado no es 200
         return response.json()  # Retorna la respuesta en formato JSON
     except requests.exceptions.RequestException as e:
@@ -140,7 +138,6 @@ def exportar_reporte_extintores_api(planta, mes=None, ano=None):
         BytesIO: Archivo Excel en memoria si la solicitud es exitosa.
         str: Mensaje de error en caso de falla.
     """
-    url = "https://timeortimee.onrender.com/api/extintores/aspreconsultores/generales/exportar/reporte/completo"
     try:
         params = {"planta": planta}
         if mes:
@@ -148,7 +145,7 @@ def exportar_reporte_extintores_api(planta, mes=None, ano=None):
         if ano:
             params["ano"] = ano
 
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_exportar_reporte_extintores_api, params=params)
         response.raise_for_status()
 
         # Retornar el contenido del archivo como BytesIO
@@ -157,13 +154,35 @@ def exportar_reporte_extintores_api(planta, mes=None, ano=None):
         print(f"Error al conectar con la API: {e}")
         return str(e)
 
+def obtener_extintores_gabinetes_inspeccionados_en_linea_api(empresa, mes=None, ano=None, page=1, search=None):
+    """Obtiene datos de inspecciones de extintores desde la API."""
+    
+    try:
+        params = {
+            "mes": mes,
+            "ano": ano,
+            "planta": empresa,
+            "page": page,
+            "search": search
+        }
+        print(f"Parámetros enviados a la API: {params}")  # Depuración
+        
+        response = requests.get(API_URL_obtener_extintores_gabinetes_inspeccionados_en_linea_api, params=params)
+        response.raise_for_status()  # Lanza un error si la respuesta no es 200 OK
+        
+        data = response.json()
+        return data.get("inspecciones", [])  # Se ajusta al formato esperado de la respuesta
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error al obtener los datos de la API: {e}")
+        return []
+
 
 
 
 
 
 def obtener_gabinetes_api(empresa, search=None, page=1):
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/respiracion/obtener/desktop"
     try:
         params = {
             "planta": empresa,
@@ -171,7 +190,7 @@ def obtener_gabinetes_api(empresa, search=None, page=1):
             "page": page
         }
         print(f"Parámetros enviados a la API: {params}")  # Depuración
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_obtener_gabinetes_api, params=params)
         response.raise_for_status()
         data = response.json()
         print(f"Respuesta de la API: {data}")  # Depuración
@@ -191,14 +210,13 @@ def editar_gabinetes_api(referencia, datos):
     Returns:
         dict: Respuesta de la API.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/equipo/respiracion/aspreconsultores/editar/equipo"
     
     # Asegurarnos de que la referencia está incluida en los datos
     payload = {"referencia": referencia, **datos}
 
     try:
         # Realizar la solicitud PUT a la API
-        response = requests.put(url, json=payload)
+        response = requests.put(API_URL_editar_gabinetes_api, json=payload)
         
         # Verificar si la respuesta fue exitosa (código HTTP 200)
         response.raise_for_status()
@@ -228,7 +246,7 @@ def exportar_gabinetes_api(empresa, planta):
         str: Mensaje de éxito o error.
     """
     planta_param = planta if planta != "Todos" else ""
-    url = f"https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/respiracion/exportar/desktop?planta={planta_param}"
+    url = f"{API_URL_exportar_gabinetes_api}{planta_param}"
 
     try:
         response = requests.get(url)
@@ -263,9 +281,8 @@ def eliminar_gabinete_api(referencia):
     Returns:
         dict: Respuesta de la API.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/respiracion/eliminar/desktop"
     try:
-        response = requests.delete(url, json={"referencia": referencia})
+        response = requests.delete(API_URL_eliminar_gabinete_api, json={"referencia": referencia})
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -282,10 +299,9 @@ def agregar_gabinete_api(datos):
     Returns:
         dict: Respuesta de la API en formato JSON.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/equiporespiracion/aspreconsultores/agregar"
     try:
         # Realizar la solicitud POST
-        response = requests.post(url, json=datos)
+        response = requests.post(API_URL_agregar_gabinete_api, json=datos)
         response.raise_for_status()  # Lanza un error si el código de estado no es 200
         return response.json()  # Retorna la respuesta en formato JSON
     except requests.exceptions.RequestException as e:
@@ -305,7 +321,6 @@ def exportar_reporte_gabinetes_equipo_respiracion_api(planta, mes=None, ano=None
         BytesIO: Archivo Excel en memoria si la solicitud es exitosa.
         str: Mensaje de error en caso de falla.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/respiracion/exportar/reporte/completo"
     try:
         params = {"planta": planta}
         if mes:
@@ -313,7 +328,7 @@ def exportar_reporte_gabinetes_equipo_respiracion_api(planta, mes=None, ano=None
         if ano:
             params["ano"] = ano
 
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_exportar_reporte_gabinetes_equipo_respiracion_api, params=params)
         response.raise_for_status()
 
         # Retornar el contenido del archivo como BytesIO
@@ -326,7 +341,6 @@ def exportar_reporte_gabinetes_equipo_respiracion_api(planta, mes=None, ano=None
 
 
 def obtener_gabinetes_equipo_bomberos_psc_api(empresa, search=None, page=1):
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/bomberos/obtener/desktop"
     try:
         params = {
             "planta": empresa,
@@ -334,7 +348,7 @@ def obtener_gabinetes_equipo_bomberos_psc_api(empresa, search=None, page=1):
             "page": page
         }
         print(f"Parámetros enviados a la API: {params}")  # Depuración
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_obtener_gabinetes_equipo_bomberos_psc_api, params=params)
         response.raise_for_status()
         data = response.json()
         print(f"Respuesta de la API: {data}")  # Depuración
@@ -354,14 +368,13 @@ def editar_gabinetes_equipo_bomberos_psc_api(referencia, datos):
     Returns:
         dict: Respuesta de la API.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/bomberos/psc/aspreconsultores/editar/gabinete"
     
     # Asegurarnos de que la referencia está incluida en los datos
     payload = {"referencia": referencia, **datos}
 
     try:
         # Realizar la solicitud PUT a la API
-        response = requests.put(url, json=payload)
+        response = requests.put(API_URL_editar_gabinetes_equipo_bomberos_psc_api, json=payload)
         
         # Verificar si la respuesta fue exitosa (código HTTP 200)
         response.raise_for_status()
@@ -389,9 +402,8 @@ def agregar_gabinete_bomberos_api(datos):
     Returns:
         dict: Respuesta de la API en formato JSON.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/bomberos/psc/agregar/desktop"
     try:
-        response = requests.post(url, json=datos)
+        response = requests.post(API_URL_agregar_gabinete_bomberos_api, json=datos)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -408,12 +420,11 @@ def eliminar_gabinete_bomberos_api(referencia):
     Returns:
         dict: Respuesta de la API.
     """
-    url = f"https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/bomberos/psc/eliminar/desktop"
     try:
         # Enviar la referencia como parámetro en la URL
         params = {"referencia": referencia}
         print(f"Enviando datos al servidor como parámetros: {params}")  # Depuración
-        response = requests.delete(url, params=params)  # Cambiar a 'params' en lugar de 'json'
+        response = requests.delete(API_URL_eliminar_gabinete_bomberos_api, params=params)  # Cambiar a 'params' en lugar de 'json'
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -433,7 +444,7 @@ def exportar_gabinetes_bomberos_api(empresa, planta):
         str: Mensaje de éxito o error.
     """
     planta_param = planta if planta != "Todos" else ""
-    url = f"https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/bomberos/exportar/desktop?planta={planta_param}"
+    url = f"{API_URL_exportar_gabinetes_bomberos_api}{planta_param}"
 
     try:
         response = requests.get(url)
@@ -471,7 +482,6 @@ def exportar_reporte_gabinetes_bomberos_psc_api(planta, mes=None, ano=None):
         BytesIO: Archivo Excel en memoria si la solicitud es exitosa.
         str: Mensaje de error en caso de falla.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/bomberos/psc/exportar/reporte/completo"
     try:
         params = {"planta": planta}
         if mes:
@@ -479,7 +489,7 @@ def exportar_reporte_gabinetes_bomberos_psc_api(planta, mes=None, ano=None):
         if ano:
             params["ano"] = ano
 
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_exportar_reporte_gabinetes_bomberos_psc_api, params=params)
         response.raise_for_status()
 
         # Retornar el contenido del archivo como BytesIO
@@ -493,7 +503,6 @@ def exportar_reporte_gabinetes_bomberos_psc_api(planta, mes=None, ano=None):
 
 
 def obtener_gabinetes_hidrantes_mangueras_api(empresa, search=None, page=1):
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/mangueras/hidrantes/obtener/desktop"
     try:
         params = {
             "planta": empresa,
@@ -501,7 +510,7 @@ def obtener_gabinetes_hidrantes_mangueras_api(empresa, search=None, page=1):
             "page": page
         }
         print(f"Parámetros enviados a la API: {params}")  # Depuración
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_obtener_gabinetes_hidrantes_mangueras_api, params=params)
         response.raise_for_status()
         data = response.json()
         print(f"Respuesta de la API: {data}")  # Depuración
@@ -521,14 +530,13 @@ def editar_gabinetes_hidrantes_mangueras_api(referencia, datos):
     Returns:
         dict: Respuesta de la API.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/mangueras/hidrantes/aspreconsultores/editar/gabinete"
     
     # Asegurarnos de que la referencia está incluida en los datos
     payload = {"referencia": referencia, **datos}
 
     try:
         # Realizar la solicitud PUT a la API
-        response = requests.put(url, json=payload)
+        response = requests.put(API_URL_editar_gabinetes_hidrantes_mangueras_api, json=payload)
         
         # Verificar si la respuesta fue exitosa (código HTTP 200)
         response.raise_for_status()
@@ -556,9 +564,8 @@ def agregar_gabinete_hidrantes_mangueras(datos):
     Returns:
         dict: Respuesta de la API en formato JSON.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/mangueras/hidrantes/agregar/desktop"
     try:
-        response = requests.post(url, json=datos)
+        response = requests.post(API_URL_agregar_gabinete_hidrantes_mangueras, json=datos)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -575,12 +582,11 @@ def eliminar_gabinete_hidrantes_mangueras_api(referencia):
     Returns:
         dict: Respuesta de la API.
     """
-    url = f"https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/mangueras/hidrantes/eliminar/desktop"
     try:
         # Enviar la referencia como parámetro en la URL
         params = {"referencia": referencia}
         print(f"Enviando datos al servidor como parámetros: {params}")  # Depuración
-        response = requests.delete(url, params=params)  # Cambiar a 'params' en lugar de 'json'
+        response = requests.delete(API_URL_eliminar_gabinete_hidrantes_mangueras_api, params=params)  # Cambiar a 'params' en lugar de 'json'
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -600,7 +606,7 @@ def exportar_gabinetes_hidrantes_mangueras_api(empresa, planta):
         str: Mensaje de éxito o error.
     """
     planta_param = planta if planta != "Todos" else ""
-    url = f"https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/mangueras/hidrantes/exportar/desktop?planta={planta_param}"
+    url = f"{API_URL_exportar_gabinetes_hidrantes_mangueras_api}{planta_param}"
 
     try:
         response = requests.get(url)
@@ -638,7 +644,6 @@ def exportar_reporte_hidrantes_mangueras_psc_api(planta, mes=None, ano=None):
         BytesIO: Archivo Excel en memoria si la solicitud es exitosa.
         str: Mensaje de error en caso de falla.
     """
-    url = "https://timeortimee.onrender.com/api/gabinetes/aspreconsultores/mangueras/hidrantes/exportar/reporte/completo"
     try:
         params = {"planta": planta}
         if mes:
@@ -646,7 +651,7 @@ def exportar_reporte_hidrantes_mangueras_psc_api(planta, mes=None, ano=None):
         if ano:
             params["ano"] = ano
 
-        response = requests.get(url, params=params)
+        response = requests.get(API_URL_exportar_reporte_hidrantes_mangueras_psc_api, params=params)
         response.raise_for_status()
 
         # Retornar el contenido del archivo como BytesIO

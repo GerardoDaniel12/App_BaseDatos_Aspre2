@@ -1,7 +1,8 @@
 import requests
+from config import login_api_url
+
 
 def login(username, password):
-    url = "https://timeortimee.onrender.com/api/data/flutter/login"  # Cambia por la URL de tu API
     headers = {"Content-Type": "application/json"}
     payload = {
         "username": username,
@@ -9,7 +10,7 @@ def login(username, password):
     }
 
     try:
-        response = requests.post(url, json=payload, headers=headers)
+        response = requests.post(login_api_url, json=payload, headers=headers)
         response_data = response.json()  # Parsear la respuesta como JSON
         
         if response.status_code == 200:
