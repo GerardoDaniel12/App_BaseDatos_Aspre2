@@ -15,9 +15,10 @@ API_URL_exportar_extintores_api = os.getenv("API_URL_exportar_extintores_api")
 API_URL_eliminar_extintor_api = os.getenv("API_URL_eliminar_extintor_api")
 API_URL_agregar_extintor_api = os.getenv("API_URL_agregar_extintor_api")
 API_URL_exportar_reporte_extintores_api = os.getenv("API_URL_exportar_reporte_extintores_api")
+API_URL_ubtener_extintores_inspeccionados_para_descargar = os.getenv("API_URL_ubtener_extintores_inspeccionados_para_descargar")
 API_URL_obtener_extintores_gabinetes_inspeccionados_en_linea_api = os.getenv("API_URL_obtener_extintores_gabinetes_inspeccionados_en_linea_api")
-if not api_url_obtener_extintores or not API_URL_editar_extintores_api or not API_URL_exportar_extintores_api or not API_URL_eliminar_extintor_api:
-    raise ValueError(f"⚠️ ERROR: La variable API_URL_OBTENER_EXTINTORES no está definida en el .env")
+API_URL_ubtener_extintores_no_inspeccionados_para_descargar = os.getenv("API_URL_ubtener_extintores_no_inspeccionados_para_descargar")
+
 
 
 API_URL_obtener_gabinetes_api = os.getenv("API_URL_obtener_gabinetes_api")
@@ -45,3 +46,5 @@ API_URL_eliminar_gabinete_hidrantes_mangueras_api = os.getenv("API_URL_eliminar_
 API_URL_exportar_gabinetes_hidrantes_mangueras_api = os.getenv("API_URL_exportar_gabinetes_hidrantes_mangueras_api")
 API_URL_exportar_reporte_hidrantes_mangueras_psc_api = os.getenv("API_URL_exportar_reporte_hidrantes_mangueras_psc_api")
 
+
+API_URL_obtener_reporte_mensual_gabinetes_extintores_api = os.getenv("API_URL_obtener_reporte_mensual_gabinetes_extintores_api")

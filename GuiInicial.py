@@ -31,6 +31,7 @@ class GuiInicial(ctk.CTk):
         self.search_input_bomberos = None
         self.search_input_hidrantes = None
         self.search_tiempo_real_dropdown = None
+        self.dia_dropdown_inspeccionados = x.day
         self.mes_dropdown_inspeccionados = x.month
         self.ano_dropdown_inspeccionados = x.year
         self.tree = None
@@ -117,10 +118,21 @@ class GuiInicial(ctk.CTk):
         corner_radius=0)
         inspecciones_tiempo_button.pack(pady=0)
         linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
-        linea_inferior.pack(pady=(0, 80))
-        
+        linea_inferior.pack(pady=(0, 20))
+
+        ctk.CTkLabel(nav_frame, text="Extras", font=("Arial", 16, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 10))
         linea_superior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
         linea_superior.pack(pady=(0, 0))
+        reporte_mensual_completo = ctk.CTkButton(nav_frame, text="Reporte Completo Mensual", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=self.reporte_completo_mensual_planta,
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        reporte_mensual_completo.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
+        
         logout_button = ctk.CTkButton(nav_frame, text="Cerrar Sesion", 
         text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
         command=lambda: self.cerrar_sesion(),
@@ -129,7 +141,7 @@ class GuiInicial(ctk.CTk):
         corner_radius=0)
         logout_button.pack(pady=0)
         linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
-        linea_inferior.pack(pady=(0, 30))
+        linea_inferior.pack(pady=(0, 0))
         
         # Frame de contenido principal para la tabla de extintores
         self.extintores_frame = ctk.CTkFrame(main_frame, corner_radius=15, fg_color="#4D4D4D" if ctk.get_appearance_mode() == "Dark" else "#FFFFFF")
@@ -2200,7 +2212,7 @@ class GuiInicial(ctk.CTk):
         self.search_tiempo_real_dropdown = ctk.CTkEntry(filtros_frame, placeholder_text="Buscar equipos hidrantes...", width=200)
         self.search_tiempo_real_dropdown.pack(side="left", padx=5)
 
-        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_equipo_hidrantes)
+        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_equipo_inspeccionados)
         search_button.pack(side="left", padx=5)
 
     def filtrar_por_planta_inspeccionados(self, event=None):
@@ -2215,17 +2227,31 @@ class GuiInicial(ctk.CTk):
         print(f"[DEBUG] Filtrando: Planta={planta_seleccionada}, Mes={mes}, Año={ano}, Search={search}")
         self.cargar_datos_extintores_visualizador(planta=planta_seleccionada, mes=mes, ano=ano, search=search)
 
+    def filtrar_por_dia_inspeccionados(self, event=None):
+        """
+        Maneja el evento de selección del mes en el dropdown.
+        """
+        dia_seleccionado = self.dia_dropdown_inspeccionados.get() if self.dia_dropdown_inspeccionados else datetime.datetime.now().day
+        planta = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos"
+        mes = self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month
+        ano = self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year
+        search = self.search_input.get() if self.search_input else None
+
+        print(f"[DEBUG] Filtrando: Planta={planta}, Dia={dia_seleccionado}, Mes={mes}, Año={ano}, Search={search}")
+        self.cargar_datos_extintores_visualizador(planta=planta, dia=dia_seleccionado, mes=mes, ano=ano, search=search)
+
     def filtrar_por_mes_inspeccionados(self, event=None):
         """
         Maneja el evento de selección del mes en el dropdown.
         """
         mes_seleccionado = self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month
         planta = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos"
+        dia = self.dia_dropdown_inspeccionados.get() if self.dia_dropdown_inspeccionados else datetime.datetime.now().year
         ano = self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year
         search = self.search_input.get() if self.search_input else None
 
-        print(f"[DEBUG] Filtrando: Planta={planta}, Mes={mes_seleccionado}, Año={ano}, Search={search}")
-        self.cargar_datos_extintores_visualizador(planta=planta, mes=mes_seleccionado, ano=ano, search=search)
+        print(f"[DEBUG] Filtrando: Planta={planta}, Dia={dia}, Mes={mes_seleccionado}, Año={ano}, Search={search}")
+        self.cargar_datos_extintores_visualizador(planta=planta, dia=dia, mes=mes_seleccionado, ano=ano, search=search)
 
     def filtrar_por_ano_inspeccionados(self, event=None):
         """
@@ -2234,24 +2260,26 @@ class GuiInicial(ctk.CTk):
         ano_seleccionado = self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year
         planta = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos"
         mes = self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month
+        dia = self.dia_dropdown_inspeccionados.get() if self.dia_dropdown_inspeccionados else datetime.datetime.now().month
         search = self.search_input.get() if self.search_input else None
 
-        print(f"[DEBUG] Filtrando: Planta={planta}, Mes={mes}, Año={ano_seleccionado}, Search={search}")
-        self.cargar_datos_extintores_visualizador(planta=planta, mes=mes, ano=ano_seleccionado, search=search)
+        print(f"[DEBUG] Filtrando: Planta={planta}, Dia={dia}, Mes={mes}, Año={ano_seleccionado}, Search={search}")
+        self.cargar_datos_extintores_visualizador(planta=planta, dia=dia, mes=mes, ano=ano_seleccionado, search=search)
 
-    def cargar_datos_extintores_visualizador(self, planta=None, mes=None, ano=None, page=1, search=None):
+    def cargar_datos_extintores_visualizador(self, planta=None, dia=None, mes=None, ano=None, page=1, search=None):
         """Carga los datos de inspecciones en la tabla desde la API de manera eficiente."""
         try:
             # Obtener valores actuales de los filtros si no se pasaron como parámetros
             planta_filtrada = planta or (self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else "Todos")
+            dia_filtrado = dia or (self.dia_dropdown_inspeccionados.get() if self.dia_dropdown_inspeccionados else datetime.datetime.now().day)
             mes_filtrado = mes or (self.mes_dropdown_inspeccionados.get() if self.mes_dropdown_inspeccionados else datetime.datetime.now().month)
             ano_filtrado = ano or (self.ano_dropdown_inspeccionados.get() if self.ano_dropdown_inspeccionados else datetime.datetime.now().year)
 
-            print(f"[DEBUG] Cargando datos: Planta={planta_filtrada}, Mes={mes_filtrado}, Año={ano_filtrado}, Página={page}")
+            print(f"[DEBUG] Cargando datos: Planta={planta_filtrada}, Dia={dia_filtrado}, Mes={mes_filtrado}, Año={ano_filtrado}, Página={page}")
 
             # Obtener los datos con filtros y paginación
             datos_extintores = obtener_extintores_gabinetes_inspeccionados_en_linea_api(
-                planta_filtrada, mes=mes_filtrado, ano=ano_filtrado, page=page, search=search
+                planta_filtrada, dia=dia_filtrado, mes=mes_filtrado, ano=ano_filtrado, page=page, search=search
             )
 
             if not datos_extintores or not isinstance(datos_extintores, list):
@@ -2296,7 +2324,7 @@ class GuiInicial(ctk.CTk):
 
             # Actualizar página actual
             self.current_page = page
-            print(f"[DEBUG] Datos cargados para planta: {planta_filtrada}, página: {page}, mes: {mes_filtrado}, año: {ano_filtrado}, SEARCH: {search}")
+            print(f"[DEBUG] Datos cargados para planta: {planta_filtrada}, página: {page}, dia: {dia_filtrado}, mes: {mes_filtrado}, año: {ano_filtrado}, SEARCH: {search}")
 
         except Exception as e:
             print(f"[ERROR] {e}")  # Evitar messagebox para no bloquear la UI
@@ -2357,6 +2385,17 @@ class GuiInicial(ctk.CTk):
         
         filtros_frame_abajo = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
         filtros_frame_abajo.pack(fill="x", pady=(5, 10))
+        
+        # Dropdown para filtro por mes 
+        dia_dropdown_inspeccionados = ctk.CTkLabel(filtros_frame_abajo, text="Dia:", font=("Arial", 12))
+        dia_dropdown_inspeccionados.pack(side="left", padx=5)
+        
+        self.dia_dropdown_inspeccionados = ttk.Combobox(filtros_frame_abajo, values=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+                                                                                     "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
+                                                                                     "27", "28", "29", "30", "31"], state="readonly", width=6)
+        self.dia_dropdown_inspeccionados.bind("<<ComboboxSelected>>", self.filtrar_por_mes_inspeccionados)
+        self.dia_dropdown_inspeccionados.pack(side="left", padx=5)
+        
         
         # Dropdown para filtro por mes 
         mes_dropdown_inspeccionados = ctk.CTkLabel(filtros_frame_abajo, text="Mes:", font=("Arial", 12))
@@ -2420,12 +2459,10 @@ class GuiInicial(ctk.CTk):
         # Cargar datos en la tabla
         self.cargar_datos_extintores_visualizador()
         
-    # Función para mover la tabla horizontalmente
     def mover_tabla_horizontalmente(self, direction):
         """ Mueve la tabla horizontalmente al hacer clic en los botones. """
         self.tree.xview_scroll(direction, "units")  # Mueve la vista de la tabla por unidades
 
-    #Funcion para buscar un equipo
     def buscar_equipo_inspeccionados(self):
         """
         Función para buscar equipos de respiración según un término de búsqueda.
@@ -2443,25 +2480,6 @@ class GuiInicial(ctk.CTk):
         # Reiniciar a la primera página y cargar los datos filtrados
         self.current_page = 1
         self.cargar_datos_extintores_visualizador(planta=planta_filtrada, search=search_term, page=self.current_page)
-
-    def exportar_tabla_completa_inspeccionados(self):
-        """
-        Exporta la tabla completa o filtrada según la planta seleccionada o el privilegio del usuario.
-        """
-        try:
-            # Si el usuario es admin, usa el valor del dropdown; si no, usa la empresa predeterminada
-            planta_seleccionada = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else self.empresa
-
-            # Llama a la función de exportación, pasando el filtro de planta
-            resultado = exportar_gabinetes_hidrantes_mangueras_api(self.empresa, planta_seleccionada)
-
-            # Mostrar mensajes según el resultado
-            if "Archivo Excel guardado exitosamente" in resultado:
-                messagebox.showinfo("Éxito", resultado)
-            else:
-                messagebox.showerror("Error", resultado)
-        except Exception as e:
-            messagebox.showerror("Error", f"Error inesperado durante la exportación: {e}")
 
     def agregar_equipo_inspeccionados(self):
         """
@@ -2660,111 +2678,164 @@ class GuiInicial(ctk.CTk):
         guardar_button.pack(pady=10)
 
     def exportar_reporte_inspeccionados(self):
-        """
-        Abre una ventana emergente con opciones para exportar la tabla de datos o un reporte completo de extintores inspeccionados.
-        """
+        """Abre una ventana emergente con opciones para exportar los reportes de inspecciones."""
         top = ctk.CTkToplevel(self)
-        top.title("Exportar Reporte de Mangueras")
+        top.title("Exportar Inspecciones de Extintores")
         top.geometry("400x200")
         top.lift()
         top.attributes('-topmost', True)
         top.after(10, lambda: top.attributes('-topmost', False))
 
-        # Etiqueta de descripción
-        label = ctk.CTkLabel(
-            top,
-            text="Seleccione una opción para exportar:",
-            font=("Arial", 14)
-        )
+        label = ctk.CTkLabel(top, text="Seleccione una opción para exportar:", font=("Arial", 14))
         label.pack(pady=10)
 
-        # Botón para exportar la tabla de datos
-        exportar_tabla_button = ctk.CTkButton(
-            top,
-            text="Exportar Tabla de Datos",
-            command=self.exportar_tabla_completa_hidrantes
-        )
-        exportar_tabla_button.pack(pady=10)
+        def seleccionar_filtros(callback):
+            """Ventana emergente para seleccionar filtros (mes, año y planta)."""
+            filtro_top = ctk.CTkToplevel(top)
+            filtro_top.title("Seleccionar Filtros")
+            filtro_top.geometry("300x200")
+            filtro_top.lift()
+            filtro_top.attributes('-topmost', True)
+            filtro_top.after(10, lambda: filtro_top.attributes('-topmost', False))
 
-        # Botón para exportar el reporte completo
-        def exportar_reporte():
-            """
-            Exporta el reporte completo de extintores inspeccionados y no inspeccionados.
-            """
-            planta_seleccionada = self.tiempo_real_dropdown.get() if self.tiempo_real_dropdown else self.empresa
+            ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12)).grid(row=0, column=0, padx=10, pady=5, sticky="w")
+            mes_entry = ctk.CTkEntry(filtro_top, width=150)
+            mes_entry.grid(row=0, column=1, padx=10, pady=5)
 
-            # Mostrar ventana emergente para elegir mes y año
-            def seleccionar_filtros():
-                """
-                Permite al usuario seleccionar el mes y el año para filtrar el reporte.
-                """
-                filtro_top = ctk.CTkToplevel(top)
-                filtro_top.title("Seleccionar Filtros")
-                filtro_top.geometry("300x200")
-                filtro_top.lift()
-                filtro_top.attributes('-topmost', True)
-                filtro_top.after(10, lambda: top.attributes('-topmost', False))
-                # Campo para el mes
-                mes_label = ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12))
-                mes_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-                mes_entry = ctk.CTkEntry(filtro_top, width=150)
-                mes_entry.grid(row=0, column=1, padx=10, pady=5)
+            ctk.CTkLabel(filtro_top, text="Año (Opcional):", font=("Arial", 12)).grid(row=1, column=0, padx=10, pady=5, sticky="w")
+            ano_entry = ctk.CTkEntry(filtro_top, width=150)
+            ano_entry.grid(row=1, column=1, padx=10, pady=5)
 
-                # Campo para el año
-                ano_label = ctk.CTkLabel(filtro_top, text="Año (Opcional):", font=("Arial", 12))
-                ano_label.grid(row=1, column=0, padx=10, pady=5, sticky="w")
-                ano_entry = ctk.CTkEntry(filtro_top, width=150)
-                ano_entry.grid(row=1, column=1, padx=10, pady=5)
+            ctk.CTkLabel(filtro_top, text="Planta (Obligatorio):", font=("Arial", 12)).grid(row=2, column=0, padx=10, pady=5, sticky="w")
+            planta_drop = ttk.Combobox(filtro_top, values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+            planta_drop.grid(row=2, column=1, padx=10, pady=5, sticky="w")
 
-                # Botón para confirmar los filtros
-                def confirmar_filtros():
-                    mes = mes_entry.get()
-                    ano = ano_entry.get()
+            def confirmar_filtros():
+                mes = mes_entry.get()
+                ano = ano_entry.get()
+                planta = planta_drop.get()
 
-                    # Validar que mes y año sean números si no están vacíos
-                    if mes and not mes.isdigit():
-                        messagebox.showerror("Error", "El mes debe ser un número.")
-                        return
-                    if ano and not ano.isdigit():
-                        messagebox.showerror("Error", "El año debe ser un número.")
-                        return
+                if not planta:
+                    messagebox.showerror("Error", "Debe seleccionar una planta.")
+                    return
+                if mes and not mes.isdigit():
+                    messagebox.showerror("Error", "El mes debe ser un número.")
+                    return
+                if ano and not ano.isdigit():
+                    messagebox.showerror("Error", "El año debe ser un número.")
+                    return
 
-                    resultado = exportar_reporte_hidrantes_mangueras_psc_api(
-                        planta_seleccionada,
-                        mes=int(mes) if mes else None,
-                        ano=int(ano) if ano else None
-                    )
+                callback(planta, int(mes) if mes else None, int(ano) if ano else None)
+                filtro_top.destroy()
 
-                    if isinstance(resultado, BytesIO):
-                        ruta_archivo = filedialog.asksaveasfilename(
-                            defaultextension=".xlsx",
-                            filetypes=[("Archivos de Excel", "*.xlsx")],
-                            title="Guardar archivo como",
-                            initialfile=f"Reporte_Gabinetes_Mangueras_Hidrantes_{planta_seleccionada}.xlsx"
-                        )
-                        if ruta_archivo:
-                            with open(ruta_archivo, "wb") as archivo:
-                                archivo.write(resultado.getvalue())
-                            messagebox.showinfo("Éxito", f"Reporte exportado exitosamente a {ruta_archivo}")
-                    else:
-                        messagebox.showerror("Error", f"Error al exportar el reporte: {resultado}")
+            ctk.CTkButton(filtro_top, text="Confirmar", command=confirmar_filtros).grid(row=3, column=0, columnspan=2, pady=10)
 
-                    filtro_top.destroy()
+        def exportar_reporte(tipo):
+            """Exporta el reporte según el tipo de inspección."""
+            def generar_reporte(planta, mes, ano):
+                if tipo == "inspeccionados":
+                    resultado = obtener_extintores_inspeccionados_excel(planta, mes, ano)
+                else:  # Aquí aseguramos que realmente se llame la función correcta
+                    resultado = obtener_extintores_no_inspeccionados_excel(planta, mes, ano)
 
-                confirmar_button = ctk.CTkButton(filtro_top, text="Confirmar", command=confirmar_filtros)
-                confirmar_button.grid(row=2, column=0, columnspan=2, pady=10)
+                fecha = datetime.datetime.now().strftime("%Y-%m-%d")
+                nombre_archivo = f"Extintores_{tipo.capitalize()}_{planta}_{fecha}.xlsx"
 
-            seleccionar_filtros()
+                if isinstance(resultado, BytesIO):
+                    ruta_archivo = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Archivos de Excel", "*.xlsx")], title="Guardar archivo como", initialfile=nombre_archivo)
+                    if ruta_archivo:
+                        with open(ruta_archivo, "wb") as archivo:
+                            archivo.write(resultado.getvalue())
+                        messagebox.showinfo("Éxito", f"Reporte exportado exitosamente a {ruta_archivo}")
+                else:
+                    messagebox.showerror("Error", f"No hay extintores pendientes de este mes y año")
 
-        exportar_reporte_button = ctk.CTkButton(
-            top,
-            text="Exportar Reporte Completo",
-            command=exportar_reporte
-        )
-        exportar_reporte_button.pack(pady=10)
+            seleccionar_filtros(generar_reporte)
+
+        ctk.CTkButton(top, text="Exportar Extintores No Inspeccionados", command=lambda: exportar_reporte("no_inspeccionados")).pack(pady=10)
+        ctk.CTkButton(top, text="Exportar Extintores Inspeccionados", command=lambda: exportar_reporte("inspeccionados")).pack(pady=10)
 
 
+#############################################################################################################
+                                    #Descarga de reporte completo mensual
+#############################################################################################################
+    def reporte_completo_mensual_planta(self):
+        """Abre una ventana emergente con opciones para exportar los reportes de inspecciones."""
+        top = ctk.CTkToplevel(self)
+        top.title("Exportar Reporte Mensual")
+        top.geometry("400x200")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
 
+        label = ctk.CTkLabel(top, text="Seleccione una opción para exportar:", font=("Arial", 14))
+        label.pack(pady=10)
+
+        def seleccionar_filtros(callback):
+            """Ventana emergente para seleccionar filtros (mes, año y planta)."""
+            filtro_top = ctk.CTkToplevel(top)
+            filtro_top.title("Seleccionar Filtros")
+            filtro_top.geometry("300x200")
+            filtro_top.lift()
+            filtro_top.attributes('-topmost', True)
+            filtro_top.after(10, lambda: filtro_top.attributes('-topmost', False))
+
+            ctk.CTkLabel(filtro_top, text="Mes (Opcional):", font=("Arial", 12)).grid(row=0, column=0, padx=10, pady=5, sticky="w")
+            mes_entry = ctk.CTkEntry(filtro_top, width=150)
+            mes_entry.grid(row=0, column=1, padx=10, pady=5)
+
+            ctk.CTkLabel(filtro_top, text="Año (Opcional):", font=("Arial", 12)).grid(row=1, column=0, padx=10, pady=5, sticky="w")
+            ano_entry = ctk.CTkEntry(filtro_top, width=150)
+            ano_entry.grid(row=1, column=1, padx=10, pady=5)
+
+            ctk.CTkLabel(filtro_top, text="Planta (Obligatorio):", font=("Arial", 12)).grid(row=2, column=0, padx=10, pady=5, sticky="w")
+            planta_drop = ttk.Combobox(filtro_top, values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+            planta_drop.grid(row=2, column=1, padx=10, pady=5, sticky="w")
+
+            def confirmar_filtros():
+                mes = mes_entry.get()
+                ano = ano_entry.get()
+                planta = planta_drop.get()
+
+                if not planta:
+                    messagebox.showerror("Error", "Debe seleccionar una planta.")
+                    return
+                if mes and not mes.isdigit():
+                    messagebox.showerror("Error", "El mes debe ser un número.")
+                    return
+                if ano and not ano.isdigit():
+                    messagebox.showerror("Error", "El año debe ser un número.")
+                    return
+
+                callback(planta, int(mes) if mes else None, int(ano) if ano else None)
+                filtro_top.destroy()
+
+            ctk.CTkButton(filtro_top, text="Confirmar", command=confirmar_filtros).grid(row=3, column=0, columnspan=2, pady=10)
+
+        def exportar_reporte(tipo):
+            """Exporta el reporte según el tipo de inspección."""
+            def generar_reporte(planta, mes, ano):
+                if tipo == "Reporte Completo":
+                    # Llamar a la función correcta para obtener el reporte
+                    resultado = exportar_reporte_mensual_extintores_gabinetes_api(planta, mes, ano)
+                else:  # Aquí aseguramos que realmente se llame la función correcta
+                    print("Error al exportar el reporte.")
+
+                fecha = datetime.datetime.now().strftime("%Y-%m-%d")
+                nombre_archivo = f"Reporte_Completo_{planta}_{fecha}.xlsx"
+
+                if isinstance(resultado, BytesIO):
+                    ruta_archivo = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Archivos de Excel", "*.xlsx")], title="Guardar archivo como", initialfile=nombre_archivo)
+                    if ruta_archivo:
+                        with open(ruta_archivo, "wb") as archivo:
+                            archivo.write(resultado.getvalue())
+                        messagebox.showinfo("Éxito", f"Reporte exportado exitosamente a {ruta_archivo}")
+                else:
+                    messagebox.showerror("Error", f"No se pudo generar el reporte para {planta} en {mes}/{ano}")
+
+            seleccionar_filtros(generar_reporte)
+
+        ctk.CTkButton(top, text="Exportar Reporte Completo Mensual", command=lambda: exportar_reporte("Reporte Completo")).pack(pady=10)
 
     def cerrar_sesion(self):
         respuesta = messagebox.askyesno("Confirmar", "¿Estás seguro de que deseas cerrar sesión?")

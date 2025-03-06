@@ -4,8 +4,12 @@ from openpyxl.styles import Alignment, Font
 from tkinter import filedialog
 from io import BytesIO
 from config import *
+from datetime import datetime
 
 
+###############################################         Extintores         ##############################################
+###############################################         Extintores         ##############################################
+###############################################         Extintores         ##############################################
 
 def obtener_extintores_api(empresa, search=None, page=1):
     try:
@@ -154,31 +158,153 @@ def exportar_reporte_extintores_api(planta, mes=None, ano=None):
         print(f"Error al conectar con la API: {e}")
         return str(e)
 
-def obtener_extintores_gabinetes_inspeccionados_en_linea_api(empresa, mes=None, ano=None, page=1, search=None):
-    """Obtiene datos de inspecciones de extintores desde la API."""
-    
-    try:
-        params = {
-            "mes": mes,
-            "ano": ano,
-            "planta": empresa,
-            "page": page,
-            "search": search
-        }
-        print(f"Parámetros enviados a la API: {params}")  # Depuración
-        
-        response = requests.get(API_URL_obtener_extintores_gabinetes_inspeccionados_en_linea_api, params=params)
-        response.raise_for_status()  # Lanza un error si la respuesta no es 200 OK
-        
-        data = response.json()
-        return data.get("inspecciones", [])  # Se ajusta al formato esperado de la respuesta
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error al obtener los datos de la API: {e}")
+def obtener_extintores_gabinetes_inspeccionados_en_linea_api(empresa, dia=None, mes=None, ano=None, page=1, search=None, ultima_actualizacion=False):
+    """Obtiene datos de inspecciones de extintores desde la API.
+    Si 'ultima_actualizacion' es True, devuelve solo el último registro.
+    """
+    if not empresa:
+        print("Error: Se debe especificar una empresa/planta.")
         return []
 
+    fecha_actual = datetime.now()
+    mes = mes or fecha_actual.month
+    ano = ano or fecha_actual.year
+
+    # Si 'dia' es proporcionado, convertirlo a entero y validar
+    if dia:
+        try:
+            dia = int(dia)
+        except ValueError:
+            print("Error: El parámetro 'día' debe ser un número válido.")
+            return []
+    
+    params = {
+        "mes": mes,
+        "ano": ano,
+        "planta": empresa,
+        "page": page,
+        "search": search,
+        "ultima_actualizacion": ultima_actualizacion
+    }
+    
+    # Solo añadir 'dia' si está definido
+    if dia:
+        params["dia"] = dia
+    
+    print(f"Parámetros enviados a la API: {params}")  # Depuración
+
+    try:
+        response = requests.get(
+            API_URL_obtener_extintores_gabinetes_inspeccionados_en_linea_api,
+            params=params,
+            timeout=10
+        )
+        response.raise_for_status()
+
+        data = response.json()
+        inspecciones = data.get("inspecciones", [])
+
+        # Si se solicita la última actualización, devolver solo el más reciente
+        if ultima_actualizacion and inspecciones:
+            return sorted(inspecciones, key=lambda x: x["fecha_inspeccionado"], reverse=True)[0]
+
+        return inspecciones
+
+    except requests.exceptions.Timeout:
+        print("Error: La solicitud a la API ha tardado demasiado en responder.")
+    except requests.exceptions.ConnectionError:
+        print("Error: No se pudo conectar a la API. Verifica la conexión de red.")
+    except requests.exceptions.HTTPError as e:
+        print(f"Error HTTP al obtener los datos: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error inesperado en la solicitud: {e}")
+    except ValueError:
+        print("Error: La respuesta de la API no es un JSON válido.")
+    
+    return []  # Devuelve lista vacía en caso de error
+
+def obtener_extintores_inspeccionados_excel(planta, mes=None, ano=None):
+    """
+    Conecta al endpoint para exportar el reporte completo de extintores inspeccionados.
+
+    Args:
+        planta (str): Nombre de la planta.
+        mes (int, opcional): Mes para filtrar.
+        ano (int, opcional): Año para filtrar.
+
+    Returns:
+        BytesIO: Archivo Excel en memoria si la solicitud es exitosa.
+        str: Mensaje de error en caso de falla.
+    """
+    try:
+        params = {"planta": planta}
+        if mes:
+            params["mes"] = mes
+        if ano:
+            params["ano"] = ano
+
+        response = requests.get(API_URL_ubtener_extintores_inspeccionados_para_descargar, params=params)
+        response.raise_for_status()
+
+        # Retornar el contenido del archivo como BytesIO
+        return BytesIO(response.content)
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con la API: {e}")
+        return str(e)
+
+def obtener_extintores_no_inspeccionados_excel(planta, mes=None, ano=None):
+    """
+    Descarga el reporte de extintores no inspeccionados desde la API.
+
+    Args:
+        planta (str): Nombre de la planta.
+        mes (int, opcional): Mes para filtrar.
+        ano (int, opcional): Año para filtrar.
+
+    Returns:
+        BytesIO: Archivo Excel en memoria si la solicitud es exitosa.
+        str: Mensaje de error en caso de falla.
+    """
+    try:
+        params = {"planta": planta}
+        if mes:
+            params["mes"] = mes
+        if ano:
+            params["ano"] = ano
+
+        print(f"Solicitando a API con: {params}")  # 🚀 Debug
+
+        response = requests.get(API_URL_ubtener_extintores_no_inspeccionados_para_descargar, params=params)
+        response.raise_for_status()
+
+        # Validar que el contenido realmente sea un archivo Excel
+        content_type = response.headers.get("Content-Type", "")
+        if "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" not in content_type:
+            print(f"Error: Respuesta de API no es un Excel. Content-Type recibido: {content_type}")
+            return "La API no devolvió un archivo Excel válido."
+
+        # Guardar el contenido como archivo en memoria
+        excel_bytes = BytesIO(response.content)
+
+        try:
+            # Intentar abrirlo con openpyxl para verificar que no está corrupto
+            wb = openpyxl.load_workbook(excel_bytes)
+            wb.close()
+            excel_bytes.seek(0)  # Volver al inicio del archivo
+        except Exception as e:
+            print(f"Error al abrir el archivo descargado: {e}")
+            return "El archivo descargado está corrupto."
+
+        return excel_bytes  # ✅ Devuelve el archivo válido en memoria
+
+    except requests.exceptions.RequestException as e:
+        print(f"No hay inspecciones pendientes")
+        return str(e)
 
 
+###############################################         Gabinetes respiracion         ##############################################
+###############################################         Gabinetes respiracion         ##############################################
+###############################################         Gabinetes respiracion         ##############################################
 
 
 
@@ -338,6 +464,9 @@ def exportar_reporte_gabinetes_equipo_respiracion_api(planta, mes=None, ano=None
         return str(e)
 
 
+###############################################         Gabinetes Bomberos         ##############################################
+###############################################         Gabinetes Bomberos         ##############################################
+###############################################         Gabinetes Bomberos         ##############################################
 
 
 def obtener_gabinetes_equipo_bomberos_psc_api(empresa, search=None, page=1):
@@ -499,7 +628,9 @@ def exportar_reporte_gabinetes_bomberos_psc_api(planta, mes=None, ano=None):
         return str(e)
 
 
-
+###############################################         Gabinetes Hidrantes         ##############################################
+###############################################         Gabinetes Hidrantes         ##############################################
+###############################################         Gabinetes Hidrantes         ##############################################
 
 
 def obtener_gabinetes_hidrantes_mangueras_api(empresa, search=None, page=1):
@@ -660,3 +791,25 @@ def exportar_reporte_hidrantes_mangueras_psc_api(planta, mes=None, ano=None):
         print(f"Error al conectar con la API: {e}")
         return str(e)
 
+
+###############################################         Exportar reporte mensual         ##############################################
+###############################################         Exportar reporte mensual         ##############################################
+###############################################         Exportar reporte mensual         ##############################################
+
+
+def exportar_reporte_mensual_extintores_gabinetes_api(planta, mes=None, ano=None):
+    try:
+        params = {"planta": planta}
+        if mes:
+            params["mes"] = mes
+        if ano:
+            params["ano"] = ano
+
+        response = requests.get(API_URL_obtener_reporte_mensual_gabinetes_extintores_api, params=params)
+        response.raise_for_status()
+
+        # Retornar el contenido del archivo como BytesIO
+        return BytesIO(response.content)
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con la API: {e}")
+        return str(e)
