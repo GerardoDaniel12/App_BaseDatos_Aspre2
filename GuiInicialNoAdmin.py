@@ -1885,8 +1885,6 @@ class GuiInicialNoAdmin(ctk.CTk):
             ano_entry = ctk.CTkEntry(filtro_top, width=150)
             ano_entry.grid(row=1, column=1, padx=10, pady=5)
 
-            ctk.CTkLabel(filtro_top, text="Planta (Obligatorio):", font=("Arial", 12)).grid(row=2, column=0, padx=10, pady=5, sticky="w")
-
             def confirmar_filtros():
                 mes = mes_entry.get()
                 ano = ano_entry.get()
