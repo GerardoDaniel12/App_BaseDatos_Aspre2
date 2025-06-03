@@ -25,12 +25,14 @@ class GuiInicial(ctk.CTk):
         self.planta_dropdown_resp = None
         self.planta_dropdown_bomberos = None
         self.planta_dropdown_hidrantes = None
+        self.planta_dropdown_ordenes_serivcio = None
         self.tiempo_real_dropdown = None
         self.search_input = None  # Campo de búsqueda
         self.search_input_resp = None
         self.search_input_bomberos = None
         self.search_input_hidrantes = None
         self.search_tiempo_real_dropdown = None
+        self.search_ordenes_servicio = None
         self.dia_dropdown_inspeccionados = x.day
         self.mes_dropdown_inspeccionados = x.month
         self.ano_dropdown_inspeccionados = x.year
@@ -123,21 +125,33 @@ class GuiInicial(ctk.CTk):
         ctk.CTkLabel(nav_frame, text="Extras", font=("Arial", 16, "bold"), text_color="#FFFFFF" if ctk.get_appearance_mode() == "Dark" else "#333333").pack(pady=(10, 10))
         linea_superior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
         linea_superior.pack(pady=(0, 0))
+        
         reporte_mensual_completo = ctk.CTkButton(nav_frame, text="Reporte Completo Mensual", 
         text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
         command=self.reporte_completo_mensual_planta,
         width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
-        height=40, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        height=25, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
         corner_radius=0)
         reporte_mensual_completo.pack(pady=0)
         linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
         linea_inferior.pack(pady=(0, 0))
         
+        ordenes_servicio = ctk.CTkButton(nav_frame, text="Ordenes de servicio", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_ordenes_servicio("Ordenes de servicio"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=25, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        ordenes_servicio.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
+                
+        
         logout_button = ctk.CTkButton(nav_frame, text="Cerrar Sesion", 
         text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
         command=lambda: self.cerrar_sesion(),
         width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
-        height=40, hover_color="#e73636", 
+        height=25, hover_color="#e73636", 
         corner_radius=0)
         logout_button.pack(pady=0)
         linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
@@ -867,11 +881,11 @@ class GuiInicial(ctk.CTk):
         paginacion_frame.pack(side="bottom", fill="x", pady=(10, 5))  # Asegúrate de que esté al final
 
         # Botón para retroceder de página
-        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior, width=100)
+        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior_resp, width=100)
         retroceder_button.pack(side="left", padx=5)
 
         # Botón para siguiente página
-        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente, width=100)
+        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente_resp, width=100)
         siguiente_button.pack(side="left", padx=5)
 
         # Cargar datos en la tabla
@@ -1190,6 +1204,21 @@ class GuiInicial(ctk.CTk):
         )
         exportar_reporte_button.pack(pady=10)
 
+    def pagina_anterior_resp(self):
+        if self.current_page > 1:
+            self.current_page -= 1
+            self.cargar_datos_resp(page=self.current_page)
+
+    def pagina_siguiente_resp(self):
+        # Incrementar la página actual
+        self.current_page += 1
+
+        # Llamar a la función cargar_datos_extintores con la nueva página
+        self.cargar_datos_resp(page=self.current_page)
+
+        # Opcional: Deshabilitar el botón si se alcanzó la última página (según los datos de tu API)
+        # if self.current_page == self.total_pages:
+        #     self.siguiente_button.config(state="disabled")
 
 #############################################################################################################
                             #Seccion para Gabientes de equipo de bomberos:
@@ -1212,7 +1241,7 @@ class GuiInicial(ctk.CTk):
         self.planta_dropdown_bomberos.bind("<<ComboboxSelected>>", self.filtrar_por_planta_bomberos)
 
         # Campo de búsqueda
-        self.search_input_bomberos = ctk.CTkEntry(filtros_frame, placeholder_text="Buscar equipos de respiración...", width=200)
+        self.search_input_bomberos = ctk.CTkEntry(filtros_frame, placeholder_text="Buscar equipos de bomberos...", width=200)
         self.search_input_bomberos.pack(side="left", padx=5)
 
         search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_equipo_bomberos)
@@ -1248,7 +1277,7 @@ class GuiInicial(ctk.CTk):
             datos_bomb = obtener_gabinetes_equipo_bomberos_psc_api(planta_filtrada, search=search, page=page)
 
             if not datos_bomb:
-                messagebox.showwarning("Advertencia", "No se encontraron datos de equipos de respiración.")
+                messagebox.showwarning("Advertencia", "No se encontraron datos de equipos de bomberos.")
                 return
 
             # Limpiar la tabla
@@ -1352,11 +1381,11 @@ class GuiInicial(ctk.CTk):
         paginacion_frame.pack(side="bottom", fill="x", pady=(10, 5))  # Asegúrate de que esté al final
 
         # Botón para retroceder de página
-        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior, width=100)
+        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior_bomb, width=100)
         retroceder_button.pack(side="left", padx=5)
 
         # Botón para siguiente página
-        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente, width=100)
+        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente_bomb, width=100)
         siguiente_button.pack(side="left", padx=5)
 
         # Cargar datos en la tabla
@@ -1675,6 +1704,14 @@ class GuiInicial(ctk.CTk):
         )
         exportar_reporte_button.pack(pady=10)
 
+    def pagina_anterior_bomb(self):
+        if self.current_page > 1:
+            self.current_page -= 1
+            self.cargar_datos_bomberos(page=self.current_page)
+
+    def pagina_siguiente_bomb(self):
+        self.current_page += 1
+        self.cargar_datos_bomberos(page=self.current_page)
 
 #############################################################################################################
                             #Seccion para Gabientes de mangueras e hidrantes:
@@ -1839,11 +1876,11 @@ class GuiInicial(ctk.CTk):
         paginacion_frame.pack(side="bottom", fill="x", pady=(10, 5))  # Asegúrate de que esté al final
 
         # Botón para retroceder de página
-        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior, width=100)
+        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior_hidrantes, width=100)
         retroceder_button.pack(side="left", padx=5)
 
         # Botón para siguiente página
-        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente, width=100)
+        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente_hidrantes, width=100)
         siguiente_button.pack(side="left", padx=5)
 
         # Cargar datos en la tabla
@@ -2185,6 +2222,15 @@ class GuiInicial(ctk.CTk):
             command=exportar_reporte
         )
         exportar_reporte_button.pack(pady=10)
+   
+    def pagina_anterior_hidrantes(self):
+        if self.current_page > 1:
+            self.current_page -= 1
+            self.cargar_datos_hidrantes(page=self.current_page)
+
+    def pagina_siguiente_hidrantes(self):
+        self.current_page += 1
+        self.cargar_datos_hidrantes(page=self.current_page)
 
 
 #############################################################################################################
@@ -2836,6 +2882,336 @@ class GuiInicial(ctk.CTk):
             seleccionar_filtros(generar_reporte)
 
         ctk.CTkButton(top, text="Exportar Reporte Completo Mensual", command=lambda: exportar_reporte("Reporte Completo")).pack(pady=10)
+
+
+
+
+#############################################################################################################
+                                    #Vizualizar y descargar ordenes de servicio
+#############################################################################################################
+
+    def configurar_ordenes_servicio(self):
+        filtros_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        filtros_frame.pack(fill="x", pady=(5, 10))
+
+        planta_label = ctk.CTkLabel(filtros_frame, text="Seleccionar Planta:", font=("Arial", 12))
+        planta_label.pack(side="left", padx=5)
+
+        self.planta_dropdown_ordenes_serivcio = ctk.CTkComboBox(
+            filtros_frame,
+            values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"],
+            width=200
+        )
+        self.planta_dropdown_ordenes_serivcio.set("Todos")  # Valor inicial predeterminado
+        self.planta_dropdown_ordenes_serivcio.pack(side="left", padx=5)
+        self.planta_dropdown_ordenes_serivcio.bind("<<ComboboxSelected>>", self.filtrar_por_planta_hidrantes)
+
+        # Campo de búsqueda
+        self.search_ordenes_servicio = ctk.CTkEntry(filtros_frame, placeholder_text="Buscar ordenes de servicio...", width=200)
+        self.search_ordenes_servicio.pack(side="left", padx=5)
+
+        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_ordenes_servicio)
+        search_button.pack(side="left", padx=5)
+
+    def filtrar_ordenes_servicio(self, event=None):
+        """
+        Maneja el evento de selección de planta en el dropdown para equipos de respiración.
+        """
+        if self.planta_dropdown_ordenes_serivcio:
+            planta_seleccionada = self.planta_dropdown_ordenes_serivcio.get()
+            if planta_seleccionada:
+                print(f"[DEBUG] Planta seleccionada: {planta_seleccionada}")
+                self.cargar_ordenes_servicio(planta=planta_seleccionada)
+            else:
+                print("[DEBUG] No se seleccionó una planta válida. Usando 'Todos'.")
+                self.cargar_ordenes_servicio(planta="Todos")
+        else:
+            print("[DEBUG] El dropdown no está definido.")
+            self.cargar_ordenes_servicio(planta="Todos")
+      
+    def cargar_ordenes_servicio(self, planta=None, search=None, page=1):
+        """
+        Carga los datos de equipos de respiración en la tabla.
+        """
+        try:
+            # Determinar la planta a usar
+            planta_filtrada = self.planta_dropdown_ordenes_serivcio.get() if self.planta_dropdown_ordenes_serivcio.get() else self.empresa
+
+            # Llamar a la API
+            ordenes_servicio = obtener_listado_ordenes_servicio(planta_filtrada, search=search, page=page)
+
+            if not ordenes_servicio:
+                messagebox.showwarning("Advertencia", "No se encontraron datos.")
+                return
+
+            # Limpiar la tabla
+            for item in self.tree.get_children():
+                self.tree.delete(item)
+
+            # Agregar los datos a la tabla
+            for equipo in ordenes_servicio:
+                self.tree.insert("", "end", values=(
+                    equipo.get("id", ""),
+                    equipo.get("cliente", ""),
+                    equipo.get("fecha_envio", ""),
+                    equipo.get("firma_confirmacion", "")
+                ))
+            # Actualizar página actual
+            self.current_page = page
+            print(f"[DEBUG] Datos cargados para planta: {planta_filtrada}, página: {page}")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al cargar los datos: {e}")
+
+    def mostrar_seccion_ordenes_servicio(self, titulo):
+        self.title(titulo)  # Cambia el título dinámicamente
+        self.extintores_frame.pack(fill="both", expand=True)
+        for widget in self.extintores_frame.winfo_children():
+            widget.destroy()  # Limpia el contenido actual del frame
+
+        filtros_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        filtros_frame.pack(fill="x", pady=(5, 10))
+
+        # Campo de búsqueda
+        search_label = ctk.CTkLabel(filtros_frame, text="Buscar:", font=("Arial", 12))
+        search_label.pack(side="left", padx=5)
+
+        self.search_ordenes_servicio = ctk.CTkEntry(filtros_frame, placeholder_text="Número", width=180)
+        self.search_ordenes_servicio.pack(side="left", padx=5)
+
+        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_ordenes_servicio, width=40)
+        search_button.pack(side="left", padx=5)
+
+        # Botón de refrescar tabla
+        refresh_button = ctk.CTkButton(filtros_frame, text="Refrescar", command=self.cargar_ordenes_servicio, width=80)
+        refresh_button.pack(side="left", padx=5)
+
+        # Dropdown para filtro por planta si es admin
+        planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
+        planta_label.pack(side="left", padx=5)
+
+        self.planta_dropdown_ordenes_serivcio = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.planta_dropdown_ordenes_serivcio.bind("<<ComboboxSelected>>", self.filtrar_ordenes_servicio)
+        self.planta_dropdown_ordenes_serivcio.pack(side="left", padx=5)
+
+        # Botón para exportar tabla completa
+        aprobar_orden_servicio = ctk.CTkButton(filtros_frame, text="Aprobar", command=self.aprobar_orden, width=80, fg_color="#4CAF50")
+        aprobar_orden_servicio.pack(side="left", padx=5)
+        
+        # Botón para exportar tabla completa
+        exportar_button = ctk.CTkButton(filtros_frame, text="Exportar", command=self.descargar_orden_servicio, width=80, fg_color="#4CAF50")
+        exportar_button.pack(side="left", padx=5)
+
+        # Estilo de la tabla
+        style = ttk.Style()
+        style.configure("Treeview", font=("Arial", 10), rowheight=30, background="#1E1E1E", foreground="white", fieldbackground="#1E1E1E", borderwidth=1)
+        style.configure("Treeview.Heading", font=("Arial", 12, "bold"), background="#4B8BBE", foreground="white")
+        style.map("Treeview", background=[("selected", "#4B8BBE")])
+
+        columnas = (
+            "Orden servicio", "Planta", "Fecha de envio", "Recibí equipo"
+        )
+
+        self.tree = ttk.Treeview(self.extintores_frame, columns=columnas, show='headings', style="Treeview")
+
+        # Configuración de encabezados y ancho de columnas
+        for col in columnas:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, anchor="center", width=150)
+
+        # Scrollbars
+        v_scrollbar = ttk.Scrollbar(self.extintores_frame, orient="vertical", command=self.tree.yview)
+        h_scrollbar = ttk.Scrollbar(self.extintores_frame, orient="horizontal", command=self.tree.xview)
+        self.tree.configure(yscroll=v_scrollbar.set, xscroll=h_scrollbar.set)
+
+        self.tree.pack(side="top", fill="both", expand=True, pady=(5, 5))
+        v_scrollbar.pack(side="right", fill="y")
+        h_scrollbar.pack(side="bottom", fill="x")
+
+        # Agregar los botones de paginación
+        paginacion_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        paginacion_frame.pack(side="bottom", fill="x", pady=(10, 5))  # Asegúrate de que esté al final
+
+        # Botón para retroceder de página
+        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior_ordenes_servicio, width=100)
+        retroceder_button.pack(side="left", padx=5)
+
+        # Botón para siguiente página
+        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente_ordenes_servicio, width=100)
+        siguiente_button.pack(side="left", padx=5)
+
+        # Cargar datos en la tabla
+        self.cargar_ordenes_servicio()
+
+    def buscar_ordenes_servicio(self):
+        """
+        Función para buscar equipos de respiración según un término de búsqueda.
+        """
+        search_term = self.search_ordenes_servicio.get()  # Obtener el término de búsqueda desde la entrada
+        if not search_term:
+            messagebox.showwarning("Advertencia", "Ingrese un término de búsqueda.")
+            return
+
+        print(f"Término de búsqueda: {search_term}")
+
+        # Determinar la planta
+        planta_filtrada = self.planta_dropdown_ordenes_serivcio.get() if hasattr(self, "planta_dropdown_ordenes_serivcio") else "Todos"
+
+        # Reiniciar a la primera página y cargar los datos filtrados
+        self.current_page = 1
+        self.cargar_ordenes_servicio(planta=planta_filtrada, search=search_term, page=self.current_page)
+
+    def descargar_orden_servicio(self):
+        """
+        Exporta la tabla completa o filtrada según la planta seleccionada o el privilegio del usuario.
+        """
+        try:
+            # Si el usuario es admin, usa el valor del dropdown; si no, usa la empresa predeterminada
+            planta_seleccionada = self.planta_dropdown_hidrantes.get() if self.planta_dropdown_hidrantes else self.empresa
+
+            # Llama a la función de exportación, pasando el filtro de planta
+            resultado = exportar_gabinetes_hidrantes_mangueras_api(self.empresa, planta_seleccionada)
+
+            # Mostrar mensajes según el resultado
+            if "Archivo Excel guardado exitosamente" in resultado:
+                messagebox.showinfo("Éxito", resultado)
+            else:
+                messagebox.showerror("Error", resultado)
+        except Exception as e:
+            messagebox.showerror("Error", f"Error inesperado durante la exportación: {e}")
+
+    def agregar_equipo_hidrantes(self):
+        """
+        Abre una ventana emergente para agregar un nuevo gabinete de hidrantes.
+        """
+        # Crear ventana emergente
+        top = ctk.CTkToplevel(self)
+        top.title("Agregar Nuevo Gabinete de Hidrantes")
+        top.geometry("450x500")
+        top.lift()
+        top.attributes('-topmost', True)
+        top.after(10, lambda: top.attributes('-topmost', False))
+
+        # Campos de entrada
+        campos = ["referencia", "numero", "area", "ubicacion"]
+        entradas = {}
+
+        # Crear formulario dinámico
+        for idx, campo in enumerate(campos):
+            label = ctk.CTkLabel(top, text=campo.replace("_", " ").capitalize(), font=("Arial", 12))
+            label.grid(row=idx, column=0, padx=10, pady=5, sticky="w")
+
+            entry = ctk.CTkEntry(top, width=250)
+            entry.grid(row=idx, column=1, padx=10, pady=5)
+            entradas[campo] = entry
+
+        # Campo de fecha_ph_manguera
+        label_fecha_ph = ctk.CTkLabel(top, text="Fecha PH Manguera", font=("Arial", 12))
+        label_fecha_ph.grid(row=len(campos), column=0, padx=10, pady=5, sticky="w")
+
+        fecha_entry = ctk.CTkEntry(top, width=250, placeholder_text="YYYY-MM-DD")
+        fecha_entry.grid(row=len(campos), column=1, padx=10, pady=5)
+        entradas["fecha_ph_manguera"] = fecha_entry
+
+        # Campo de planta como dropdown
+        label_planta = ctk.CTkLabel(top, text="Planta", font=("Arial", 12))
+        label_planta.grid(row=len(campos) + 1, column=0, padx=10, pady=5, sticky="w")
+
+        planta_options = ["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"]
+        planta_entry = ctk.CTkComboBox(top, values=planta_options, width=250)
+        planta_entry.grid(row=len(campos) + 1, column=1, padx=10, pady=5)
+        planta_entry.set(self.empresa)  # Prellenar con la empresa del usuario (si aplica)
+
+        entradas["planta"] = planta_entry
+
+        def validar_fecha(fecha_texto):
+            """
+            Valida si una fecha está en formato AAAA-MM-DD.
+            """
+            try:
+                datetime.datetime.strptime(fecha_texto, "%Y-%m-%d")
+                return True
+            except ValueError:
+                return False
+
+        def guardar_datos():
+            """
+            Guarda los datos del nuevo gabinete y llama a la API para agregarlo.
+            """
+            # Obtener los valores ingresados
+            datos = {campo: entrada.get() for campo, entrada in entradas.items()}
+            datos["planta"] = planta_entry.get()  # Planta seleccionada
+
+            # Validar que todos los campos están llenos
+            for campo, valor in datos.items():
+                if not valor:
+                    messagebox.showerror("Error", f"El campo '{campo}' es obligatorio.")
+                    return
+
+            # Validar formato de fecha para fecha_ph_manguera
+            if not validar_fecha(datos["fecha_ph_manguera"]):
+                messagebox.showerror("Error", "La fecha PH Manguera debe estar en el formato AAAA-MM-DD.")
+                return
+
+            # Llamar a la API para agregar el gabinete
+            respuesta = agregar_gabinete_hidrantes_mangueras(datos)
+
+            if "error" in respuesta:
+                messagebox.showerror("Error", respuesta["error"])
+            else:
+                messagebox.showinfo("Éxito", respuesta.get("message", "El gabinete fue agregado exitosamente."))
+                top.destroy()  # Cerrar ventana emergente
+                self.cargar_datos_hidrantes()  # Refrescar la tabla
+
+        # Botón para guardar los datos
+        guardar_button = ctk.CTkButton(top, text="Guardar", command=guardar_datos)
+        guardar_button.grid(row=len(campos) + 2, column=0, columnspan=2, pady=20)
+
+    def pagina_anterior_ordenes_servicio(self):
+        if self.current_page > 1:
+            self.current_page -= 1
+            self.cargar_ordenes_servicio(page=self.current_page)
+
+    def pagina_siguiente_ordenes_servicio(self):
+        self.current_page += 1
+        self.cargar_ordenes_servicio(page=self.current_page)
+
+    def aprobar_orden(id_orden):
+        selected_item = id_orden.tree.focus()
+        if not selected_item:
+            messagebox.showwarning("Advertencia", "Seleccione una orden de servicio.")
+            return
+
+        dato = id_orden.tree.item(selected_item, "values")
+
+        try:
+            id_seleccionado = dato[0]
+        except IndexError as e:
+            messagebox.showerror("Error", f"Error al obtener id de la orden de servicio: {e}")
+            return
+
+        confirmacion = messagebox.askyesno("Confirmar Aprobación", f"¿Estás seguro de aprobar la orden ID {id_seleccionado}?")
+
+        if not confirmacion:
+            messagebox.showinfo("Cancelado", "Aprobación cancelada.")
+            return
+
+        payload = {
+            "id": id_seleccionado,
+            "firma_confirmacion": "Aprobado"
+        }
+
+        resultado = aprobar_orden_servicio(payload)
+
+        if resultado.get("success"):
+            messagebox.showinfo("Éxito", f"Orden ID {id_seleccionado} aprobada exitosamente.")
+            if hasattr(id_orden, 'cargar_ordenes_servicio') and callable(getattr(id_orden, 'cargar_ordenes_servicio')):
+                id_orden.cargar_ordenes_servicio()
+        else:
+            messagebox.showerror("Error", f"Error al aprobar: {resultado.get('error', 'Error desconocido')}")
+
+
+
 
     def cerrar_sesion(self):
         respuesta = messagebox.askyesno("Confirmar", "¿Estás seguro de que deseas cerrar sesión?")

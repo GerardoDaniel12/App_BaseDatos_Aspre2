@@ -813,3 +813,33 @@ def exportar_reporte_mensual_extintores_gabinetes_api(planta, mes=None, ano=None
     except requests.exceptions.RequestException as e:
         print(f"Error al conectar con la API: {e}")
         return str(e)
+
+###############################################         Ordenes servicio         ##############################################
+###############################################         Ordenes servicio         ##############################################
+###############################################         Ordenes servicio         ##############################################
+
+def obtener_listado_ordenes_servicio(planta, search, page):
+    try:
+        params = {
+            "cliente": planta,
+            "search": search,
+            "page": page
+        }
+        print(f"Parámetros enviados a la API: {params}")  # Depuración
+        response = requests.get(API_URL_obtener_ordenes_servicio_listado_api, params=params)
+        response.raise_for_status()
+        data = response.json()
+        print(f"Respuesta de la API: {data}")  # Depuración
+        return data.get("data", [])
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con la API: {e}")
+        return []
+
+def aprobar_orden_servicio(datos):
+    try:
+        response = requests.post(API_URL_aprobar_ordenes_servicio_listado_api, json=datos)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error al conectar con la API: {e}")
+        return {"error": f"Error al conectar con la API: {str(e)}"}
