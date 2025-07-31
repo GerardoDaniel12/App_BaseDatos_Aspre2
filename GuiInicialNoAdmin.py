@@ -121,6 +121,16 @@ class GuiInicialNoAdmin(ctk.CTk):
         linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
         linea_inferior.pack(pady=(0, 0))
         
+        ordenes_servicio = ctk.CTkButton(nav_frame, text="Ordenes de servicio", 
+        text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
+        command=lambda: self.mostrar_seccion_ordenes_servicio("Ordenes de servicio"),
+        width=220, fg_color="#3C3C3C" if ctk.get_appearance_mode() == "Dark" else "#D9D9D9", 
+        height=25, hover_color="#1e1d1d" if ctk.get_appearance_mode() == "Dark" else "#f4f4f4", 
+        corner_radius=0)
+        ordenes_servicio.pack(pady=0)
+        linea_inferior = ctk.CTkFrame(nav_frame, height=2, width=220, fg_color="#666666")
+        linea_inferior.pack(pady=(0, 0))
+        
         logout_button = ctk.CTkButton(nav_frame, text="Cerrar Sesion", 
         text_color="#D9D9D9" if ctk.get_appearance_mode() == "Dark" else "#3C3C3C",  
         command=lambda: self.cerrar_sesion(),
@@ -2007,6 +2017,175 @@ class GuiInicialNoAdmin(ctk.CTk):
             seleccionar_filtros(generar_reporte)
 
         ctk.CTkButton(top, text="Exportar Reporte Completo Mensual", command=lambda: exportar_reporte("Reporte Completo")).pack(pady=10)
+
+
+#############################################################################################################
+                                    #Vizualizar y descargar ordenes de servicio
+#############################################################################################################
+
+    def cargar_ordenes_servicio(self, planta=None, search=None, page=1):
+        """
+        Carga los datos de equipos de respiración en la tabla.
+        """
+        try:
+            # Determinar la planta a usar
+            planta_filtrada = self.empresa
+
+            # Llamar a la API
+            ordenes_servicio = obtener_listado_ordenes_servicio(planta_filtrada, search=search, page=page)
+
+            if not ordenes_servicio:
+                messagebox.showwarning("Advertencia", "No se encontraron datos.")
+                return
+
+            # Limpiar la tabla
+            for item in self.tree.get_children():
+                self.tree.delete(item)
+
+            # Agregar los datos a la tabla
+            for equipo in ordenes_servicio:
+                self.tree.insert("", "end", values=(
+                    equipo.get("id", ""),
+                    equipo.get("cliente", ""),
+                    equipo.get("fecha_envio", ""),
+                    equipo.get("firma_confirmacion", "")
+                ))
+            # Actualizar página actual
+            self.current_page = page
+            print(f"[DEBUG] Datos cargados para planta: {planta_filtrada}, página: {page}")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al cargar los datos: {e}")
+
+    def mostrar_seccion_ordenes_servicio(self, titulo):
+        self.title(titulo)  # Cambia el título dinámicamente
+        self.extintores_frame.pack(fill="both", expand=True)
+        for widget in self.extintores_frame.winfo_children():
+            widget.destroy()  # Limpia el contenido actual del frame
+
+        filtros_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        filtros_frame.pack(fill="x", pady=(5, 10))
+
+        # Campo de búsqueda
+        search_label = ctk.CTkLabel(filtros_frame, text="Buscar:", font=("Arial", 12))
+        search_label.pack(side="left", padx=5)
+
+        self.search_ordenes_servicio = ctk.CTkEntry(filtros_frame, placeholder_text="Número", width=180)
+        self.search_ordenes_servicio.pack(side="left", padx=5)
+
+        search_button = ctk.CTkButton(filtros_frame, text="Buscar", command=self.buscar_ordenes_servicio, width=40)
+        search_button.pack(side="left", padx=5)
+
+        # Botón de refrescar tabla
+        refresh_button = ctk.CTkButton(filtros_frame, text="Refrescar", command=self.cargar_ordenes_servicio, width=80)
+        refresh_button.pack(side="left", padx=5)
+        
+        # Botón para exportar tabla completa
+        exportar_button = ctk.CTkButton(filtros_frame, text="Exportar", command=self.descargar_orden_servicio, width=80, fg_color="#4CAF50")
+        exportar_button.pack(side="left", padx=5)
+
+        # Estilo de la tabla
+        style = ttk.Style()
+        style.configure("Treeview", font=("Arial", 10), rowheight=30, background="#1E1E1E", foreground="white", fieldbackground="#1E1E1E", borderwidth=1)
+        style.configure("Treeview.Heading", font=("Arial", 12, "bold"), background="#4B8BBE", foreground="white")
+        style.map("Treeview", background=[("selected", "#4B8BBE")])
+
+        columnas = (
+            "Orden servicio", "Planta", "Fecha de envio"
+        )
+
+        self.tree = ttk.Treeview(self.extintores_frame, columns=columnas, show='headings', style="Treeview")
+
+        # Configuración de encabezados y ancho de columnas
+        for col in columnas:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, anchor="center", width=150)
+
+        # Scrollbars
+        v_scrollbar = ttk.Scrollbar(self.extintores_frame, orient="vertical", command=self.tree.yview)
+        h_scrollbar = ttk.Scrollbar(self.extintores_frame, orient="horizontal", command=self.tree.xview)
+        self.tree.configure(yscroll=v_scrollbar.set, xscroll=h_scrollbar.set)
+
+        self.tree.pack(side="top", fill="both", expand=True, pady=(5, 5))
+        v_scrollbar.pack(side="right", fill="y")
+        h_scrollbar.pack(side="bottom", fill="x")
+
+        # Agregar los botones de paginación
+        paginacion_frame = ctk.CTkFrame(self.extintores_frame, fg_color="transparent")
+        paginacion_frame.pack(side="bottom", fill="x", pady=(10, 5))  # Asegúrate de que esté al final
+
+        # Botón para retroceder de página
+        retroceder_button = ctk.CTkButton(paginacion_frame, text="<< Retroceder", command=self.pagina_anterior_ordenes_servicio, width=100)
+        retroceder_button.pack(side="left", padx=5)
+
+        # Botón para siguiente página
+        siguiente_button = ctk.CTkButton(paginacion_frame, text="Siguiente >>", command=self.pagina_siguiente_ordenes_servicio, width=100)
+        siguiente_button.pack(side="left", padx=5)
+
+        # Cargar datos en la tabla
+        self.cargar_ordenes_servicio()
+
+    def buscar_ordenes_servicio(self):
+        """
+        Función para buscar equipos de respiración según un término de búsqueda.
+        """
+        search_term = self.search_ordenes_servicio.get()  # Obtener el término de búsqueda desde la entrada
+        if not search_term:
+            messagebox.showwarning("Advertencia", "Ingrese un término de búsqueda.")
+            return
+
+        print(f"Término de búsqueda: {search_term}")
+
+        # Reiniciar a la primera página y cargar los datos filtrados
+        self.current_page = 1
+        self.cargar_ordenes_servicio(planta=self.empresa, search=search_term, page=self.current_page)
+
+    def descargar_orden_servicio(self):
+        """
+        Descarga el PDF de la orden seleccionada en la tabla Treeview.
+        """
+        try:
+            # Obtener la fila seleccionada
+            seleccion = self.tree.selection()
+            if not seleccion:
+                messagebox.showwarning("Atención", "Selecciona una orden de la lista.")
+                return
+
+            item_id = seleccion[0]
+            datos_fila = self.tree.item(item_id, "values")
+
+            # Suponiendo que la primera columna es el número de orden y la segunda es la planta
+            orden_id = datos_fila[0]
+
+            # Diálogo para elegir dónde guardar el PDF
+            archivo_salida = filedialog.asksaveasfilename(
+                defaultextension=".pdf",
+                filetypes=[("PDF files", "*.pdf")],
+                initialfile=f"PLANTA_{self.empresa}_ORDENSERVICIO_{orden_id}.pdf",
+                title="Guardar Orden de Servicio"
+            )
+            if not archivo_salida:
+                return  # Usuario canceló
+
+            # Llamar a la API para descargar el PDF usando la planta de la fila
+            descargar_pdf(self.empresa, orden_id, archivo_salida)
+
+            messagebox.showinfo("Éxito", f"Orden #{orden_id} descargada correctamente:\n{archivo_salida}")
+
+        except Exception as e:
+            messagebox.showerror("Error", f"Ocurrió un error al descargar: {e}")
+
+    def pagina_anterior_ordenes_servicio(self):
+        if self.current_page > 1:
+            self.current_page -= 1
+            self.cargar_ordenes_servicio(page=self.current_page)
+
+    def pagina_siguiente_ordenes_servicio(self):
+        self.current_page += 1
+        self.cargar_ordenes_servicio(page=self.current_page)
+
+
+
 
     def cerrar_sesion(self):
         respuesta = messagebox.askyesno("Confirmar", "¿Estás seguro de que deseas cerrar sesión?")

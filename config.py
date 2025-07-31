@@ -51,4 +51,5 @@ API_URL_exportar_reporte_hidrantes_mangueras_psc_api = "https://timeortimee.onre
 API_URL_obtener_reporte_mensual_gabinetes_extintores_api = "https://timeortimee.onrender.com/api/reporte/completo/exportar/extintores/gabinetes/excel"
 
 API_URL_obtener_ordenes_servicio_listado_api = "https://timeortimee.onrender.com/api/aspreconsultores/obtener/listado/ordenes"
-API_URL_aprobar_ordenes_servicio_listado_api = "https://timeortimee.onrender.com/api/aspreconsultores/autorizar/orden"
+API_URL_descargar_ordenes_servicio_api = "https://timeortimee.onrender.com/api/ordenes/pdf"
+

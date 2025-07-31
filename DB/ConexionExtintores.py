@@ -5,6 +5,7 @@ from tkinter import filedialog
 from io import BytesIO
 from config import *
 from datetime import datetime
+import messagebox
 
 
 ###############################################         Extintores         ##############################################
@@ -835,11 +836,13 @@ def obtener_listado_ordenes_servicio(planta, search, page):
         print(f"Error al conectar con la API: {e}")
         return []
 
-def aprobar_orden_servicio(datos):
-    try:
-        response = requests.post(API_URL_aprobar_ordenes_servicio_listado_api, json=datos)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error al conectar con la API: {e}")
-        return {"error": f"Error al conectar con la API: {str(e)}"}
+def descargar_pdf(empresa, orden_id, archivo_salida):
+    url = API_URL_descargar_ordenes_servicio_api  # Cambia esto por tu endpoint real en Render
+    params = {"empresa": empresa, "orden": orden_id}
+
+    r = requests.get(url, params=params)
+    if r.status_code == 200:
+        with open(archivo_salida, "wb") as f:
+            f.write(r.content)
+    else:
+        raise Exception(f"Error {r.status_code}: {r.text}")

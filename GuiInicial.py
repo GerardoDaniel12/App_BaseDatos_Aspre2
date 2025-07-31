@@ -200,7 +200,7 @@ class GuiInicial(ctk.CTk):
         planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
         planta_label.pack(side="left", padx=5)
 
-        self.planta_filtro = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.planta_filtro = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace", "Frisa Aceria", "Frisa Garcia"], state="readonly")
         self.planta_filtro.bind("<<ComboboxSelected>>", self.filtrar_por_planta)
         self.planta_filtro.pack(side="left", padx=5)
 
@@ -841,7 +841,7 @@ class GuiInicial(ctk.CTk):
         planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
         planta_label.pack(side="left", padx=5)
 
-        self.planta_dropdown_resp = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.planta_dropdown_resp = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace", "Frisa Aceria", "Frisa Garcia"], state="readonly")
         self.planta_dropdown_resp.bind("<<ComboboxSelected>>", self.filtrar_por_planta_resp)
         self.planta_dropdown_resp.pack(side="left", padx=5)
 
@@ -1341,7 +1341,7 @@ class GuiInicial(ctk.CTk):
         planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
         planta_label.pack(side="left", padx=5)
 
-        self.planta_dropdown_bomberos = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.planta_dropdown_bomberos = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace", "Frisa Aceria", "Frisa Garcia"], state="readonly")
         self.planta_dropdown_bomberos.bind("<<ComboboxSelected>>", self.filtrar_por_planta_bomberos)
         self.planta_dropdown_bomberos.pack(side="left", padx=5)
 
@@ -1836,7 +1836,7 @@ class GuiInicial(ctk.CTk):
         planta_label = ctk.CTkLabel(filtros_frame, text="Filtrar por Planta:", font=("Arial", 12))
         planta_label.pack(side="left", padx=5)
 
-        self.planta_dropdown_hidrantes = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+        self.planta_dropdown_hidrantes = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace", "Frisa Aceria", "Frisa Garcia"], state="readonly")
         self.planta_dropdown_hidrantes.bind("<<ComboboxSelected>>", self.filtrar_por_planta_hidrantes)
         self.planta_dropdown_hidrantes.pack(side="left", padx=5)
 
@@ -2835,7 +2835,7 @@ class GuiInicial(ctk.CTk):
             ano_entry.grid(row=1, column=1, padx=10, pady=5)
 
             ctk.CTkLabel(filtro_top, text="Planta (Obligatorio):", font=("Arial", 12)).grid(row=2, column=0, padx=10, pady=5, sticky="w")
-            planta_drop = ttk.Combobox(filtro_top, values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
+            planta_drop = ttk.Combobox(filtro_top, values=["Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace", "Frisa Aceria", "Frisa Garcia"], state="readonly")
             planta_drop.grid(row=2, column=1, padx=10, pady=5, sticky="w")
 
             def confirmar_filtros():
@@ -2993,10 +2993,6 @@ class GuiInicial(ctk.CTk):
         self.planta_dropdown_ordenes_serivcio = ttk.Combobox(filtros_frame, values=["Todos", "Aspre Consultores", "Frisa Santa Catarina", "Frisa Aerospace"], state="readonly")
         self.planta_dropdown_ordenes_serivcio.bind("<<ComboboxSelected>>", self.filtrar_ordenes_servicio)
         self.planta_dropdown_ordenes_serivcio.pack(side="left", padx=5)
-
-        # Botón para exportar tabla completa
-        aprobar_orden_servicio = ctk.CTkButton(filtros_frame, text="Aprobar", command=self.aprobar_orden, width=80, fg_color="#4CAF50")
-        aprobar_orden_servicio.pack(side="left", padx=5)
         
         # Botón para exportar tabla completa
         exportar_button = ctk.CTkButton(filtros_frame, text="Exportar", command=self.descargar_orden_servicio, width=80, fg_color="#4CAF50")
@@ -3009,7 +3005,7 @@ class GuiInicial(ctk.CTk):
         style.map("Treeview", background=[("selected", "#4B8BBE")])
 
         columnas = (
-            "Orden servicio", "Planta", "Fecha de envio", "Recibí equipo"
+            "Orden servicio", "Planta", "Fecha de envio"
         )
 
         self.tree = ttk.Treeview(self.extintores_frame, columns=columnas, show='headings', style="Treeview")
@@ -3063,23 +3059,40 @@ class GuiInicial(ctk.CTk):
 
     def descargar_orden_servicio(self):
         """
-        Exporta la tabla completa o filtrada según la planta seleccionada o el privilegio del usuario.
+        Descarga el PDF de la orden seleccionada en la tabla Treeview.
         """
         try:
-            # Si el usuario es admin, usa el valor del dropdown; si no, usa la empresa predeterminada
-            planta_seleccionada = self.planta_dropdown_hidrantes.get() if self.planta_dropdown_hidrantes else self.empresa
+            # Obtener la fila seleccionada
+            seleccion = self.tree.selection()
+            if not seleccion:
+                messagebox.showwarning("Atención", "Selecciona una orden de la lista.")
+                return
 
-            # Llama a la función de exportación, pasando el filtro de planta
-            resultado = exportar_gabinetes_hidrantes_mangueras_api(self.empresa, planta_seleccionada)
+            item_id = seleccion[0]
+            datos_fila = self.tree.item(item_id, "values")
 
-            # Mostrar mensajes según el resultado
-            if "Archivo Excel guardado exitosamente" in resultado:
-                messagebox.showinfo("Éxito", resultado)
-            else:
-                messagebox.showerror("Error", resultado)
+            # Suponiendo que la primera columna es el número de orden y la segunda es la planta
+            orden_id = datos_fila[0]
+            planta_orden_seleccionado = datos_fila[1]
+
+            # Diálogo para elegir dónde guardar el PDF
+            archivo_salida = filedialog.asksaveasfilename(
+                defaultextension=".pdf",
+                filetypes=[("PDF files", "*.pdf")],
+                initialfile=f"PLANTA_{planta_orden_seleccionado}_ORDENSERVICIO_{orden_id}.pdf",
+                title="Guardar Orden de Servicio"
+            )
+            if not archivo_salida:
+                return  # Usuario canceló
+
+            # Llamar a la API para descargar el PDF usando la planta de la fila
+            descargar_pdf(planta_orden_seleccionado, orden_id, archivo_salida)
+
+            messagebox.showinfo("Éxito", f"Orden #{orden_id} descargada correctamente:\n{archivo_salida}")
+
         except Exception as e:
-            messagebox.showerror("Error", f"Error inesperado durante la exportación: {e}")
-
+            messagebox.showerror("Error", f"Ocurrió un error al descargar: {e}")
+            
     def agregar_equipo_hidrantes(self):
         """
         Abre una ventana emergente para agregar un nuevo gabinete de hidrantes.
@@ -3175,40 +3188,6 @@ class GuiInicial(ctk.CTk):
     def pagina_siguiente_ordenes_servicio(self):
         self.current_page += 1
         self.cargar_ordenes_servicio(page=self.current_page)
-
-    def aprobar_orden(id_orden):
-        selected_item = id_orden.tree.focus()
-        if not selected_item:
-            messagebox.showwarning("Advertencia", "Seleccione una orden de servicio.")
-            return
-
-        dato = id_orden.tree.item(selected_item, "values")
-
-        try:
-            id_seleccionado = dato[0]
-        except IndexError as e:
-            messagebox.showerror("Error", f"Error al obtener id de la orden de servicio: {e}")
-            return
-
-        confirmacion = messagebox.askyesno("Confirmar Aprobación", f"¿Estás seguro de aprobar la orden ID {id_seleccionado}?")
-
-        if not confirmacion:
-            messagebox.showinfo("Cancelado", "Aprobación cancelada.")
-            return
-
-        payload = {
-            "id": id_seleccionado,
-            "firma_confirmacion": "Aprobado"
-        }
-
-        resultado = aprobar_orden_servicio(payload)
-
-        if resultado.get("success"):
-            messagebox.showinfo("Éxito", f"Orden ID {id_seleccionado} aprobada exitosamente.")
-            if hasattr(id_orden, 'cargar_ordenes_servicio') and callable(getattr(id_orden, 'cargar_ordenes_servicio')):
-                id_orden.cargar_ordenes_servicio()
-        else:
-            messagebox.showerror("Error", f"Error al aprobar: {resultado.get('error', 'Error desconocido')}")
 
 
 
